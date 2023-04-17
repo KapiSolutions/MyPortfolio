@@ -1,0 +1,23 @@
+type Lang = {
+  en: string;
+  pl: string;
+}
+export type Locale = keyof Lang;
+type Images = Array<string | null>
+
+export interface Project {
+  title: Lang;
+  description: Lang;
+  background: Lang & Images;
+  process: Lang & Images;
+  features: Lang & Images;
+  outcome: Lang & Images;
+  conclusion: Lang & Images;
+  asFreelancer: boolean;
+  technology: Array<string>;
+  liveLink: string;
+  gitHubLink: string;
+  youtubeLink: string;
+  image: string;
+}
+export interface Projects extends Array<Project> {}

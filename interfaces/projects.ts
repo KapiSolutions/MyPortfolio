@@ -3,7 +3,10 @@ type Lang = {
   pl: string;
 }
 export type Locale = keyof Lang;
-type Images = Array<string | null>
+
+type Images = {
+  images: Array<string>;
+}
 
 export interface Project {
   title: Lang;

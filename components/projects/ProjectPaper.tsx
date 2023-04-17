@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Badge from "@mui/material/Badge";
 import Chip from "@mui/material/Chip";
-import Avatar from "@mui/material/Avatar";
 import { Box } from "@mui/material";
 import Image from "next/image";
 import { Project, Locale } from "@/interfaces/projects";
@@ -66,7 +64,7 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
       case "vanillaJS":
         return <MdOutlineJavascript style={styles.techIcon} />;
       case "TypeScript":
-        return <MdOutlineJavascript style={styles.techIcon} />;
+        return <TbBrandTypescript style={styles.techIcon} />;
       case "Stripe":
         return <FaStripe style={styles.techIcon} />;
       case "Raspberry":

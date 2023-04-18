@@ -1,12 +1,17 @@
 [
   {
+    "id": "12a31asd231asdas",
     "title": {
       "en": "Project 1",
       "pl": "Projekt 1"
     },
-    "description": {
+    "shortDesc": {
       "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "pl": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    "description": {
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur adipiscing elit.",
+      "pl": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur adipiscing elit."
     },
     "background": {
       "en": "Project background",
@@ -31,6 +36,12 @@
     "conclusion": {
       "en": "Conclusion",
       "pl": "Podsumowanie",
+      "images": []
+    },
+    "clientReview": {
+      "en": "clientReview",
+      "pl": "Opinia klienta",
+      "name": "Client Name",
       "images": []
     },
     "asFreelancer": true,
@@ -41,13 +52,18 @@
     "image": "https://via.placeholder.com/150"
   },
   {
+    "id": "12a31asa2sd231asdas",
     "title": {
       "en": "Project 2",
       "pl": "Projekt 2"
     },
+    "shortDesc": {
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "pl": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
     "description": {
-      "en": "Pellentesque tincidunt eros ut libero ultricies, nec consequat eros aliquet.",
-      "pl": "Pellentesque tincidunt eros ut libero ultricies, nec consequat eros aliquet."
+      "en": "Pellentesque tincidunt eros ut libero ultricies, nec consequat eros aliquet. Nec consequat eros aliquet.",
+      "pl": "Pellentesque tincidunt eros ut libero ultricies, nec consequat eros aliquet. Nec consequat eros aliquet."
     },
     "background": {
       "en": "Project background",
@@ -74,6 +90,12 @@
       "pl": "Podsumowanie",
       "images": []
     },
+    "clientReview": {
+      "en": "clientReview",
+      "pl": "Opinia klienta",
+      "name": "Client Name",
+      "images": []
+    },
     "asFreelancer": true,
     "technology": ["Next.js", "React"],
     "liveLink": "www",
@@ -82,9 +104,14 @@
     "image": "https://via.placeholder.com/150"
   },
   {
+    "id": "12a3145asd231asdas",
     "title": {
       "en": "Project 3",
       "pl": "Projekt 3"
+    },
+    "shortDesc": {
+      "en": "Vestibulum et quam a mi bibendum ullamcorper. Pellentesque tincidunt eros ut libero ultricies.",
+      "pl": "Vestibulum et quam a mi bibendum ullamcorper. Pellentesque tincidunt eros ut libero ultricies."
     },
     "description": {
       "en": "Vestibulum et quam a mi bibendum ullamcorper. Pellentesque tincidunt eros ut libero ultricies, nec consequat eros aliquet.",
@@ -113,6 +140,12 @@
     "conclusion": {
       "en": "Conclusion",
       "pl": "Podsumowanie",
+      "images": []
+    },
+    "clientReview": {
+      "en": "clientReview",
+      "pl": "Opinia klienta",
+      "name": "Client Name",
       "images": []
     },
     "asFreelancer": true,

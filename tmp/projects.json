@@ -41,8 +41,7 @@
     "clientReview": {
       "en": "clientReview",
       "pl": "Opinia klienta",
-      "name": "Client Name",
-      "images": []
+      "name": "Client Name"
     },
     "asFreelancer": true,
     "technology": ["Node.js", "Next.js", "React"],
@@ -93,8 +92,7 @@
     "clientReview": {
       "en": "clientReview",
       "pl": "Opinia klienta",
-      "name": "Client Name",
-      "images": []
+      "name": "Client Name"
     },
     "asFreelancer": true,
     "technology": ["Next.js", "React"],
@@ -145,8 +143,7 @@
     "clientReview": {
       "en": "clientReview",
       "pl": "Opinia klienta",
-      "name": "Client Name",
-      "images": []
+      "name": "Client Name"
     },
     "asFreelancer": true,
     "technology": ["Next.js", "React"],

@@ -31,9 +31,9 @@ const ThemeSwitch: React.FC = () => {
     height: 30,
     padding: 6, //7
     "& .MuiSwitch-switchBase": {
-      margin: 1,
+      margin: 3,
       padding: 0,
-      transform: "translateX(6px)",
+      transform: "translateX(2px)",
       "&.Mui-checked": {
         color: "#fff",
         transform: "translateX(22px)",

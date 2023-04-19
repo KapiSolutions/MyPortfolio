@@ -16,9 +16,13 @@ import {
   TbBrandCss3,
   TbBrandHtml5,
   TbBrandTypescript,
+  TbBrandMongodb,
+  TbBrandFirebase,
+  TbBrandPhp,
 } from "react-icons/tb";
 import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass } from "react-icons/fa";
 import { MdOutlineJavascript } from "react-icons/md";
+import { SiMysql } from "react-icons/si";
 //Define Types
 
 type Props = {
@@ -28,10 +32,11 @@ type Props = {
 //Styles
 const styles = {
   description: {
-    display: "inline-block",
-    maxHeight: "3em",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
   },
   techIcon: {
     width: 14,
@@ -65,6 +70,14 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
         return <MdOutlineJavascript style={styles.techIcon} />;
       case "TypeScript":
         return <TbBrandTypescript style={styles.techIcon} />;
+      case "Php":
+        return <TbBrandPhp style={styles.techIcon} />;
+      case "MySql":
+        return <SiMysql style={styles.techIcon} />;
+      case "MongoDB":
+        return <TbBrandMongodb style={styles.techIcon} />;
+      case "Firebase":
+        return <TbBrandFirebase style={styles.techIcon} />;
       case "Stripe":
         return <FaStripe style={styles.techIcon} />;
       case "Raspberry":
@@ -75,7 +88,7 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
   };
 
   return (
-    <Paper elevation={1} sx={{ p: 2, borderRadius: 2 }}>
+    <Paper elevation={1} sx={{ p: 2, borderRadius: 2 }} className="pointer zoom">
       <Box sx={{ position: "relative", width: "100%", height: "150px" }}>
         <Image src={project.image} alt={project.title[locale]} fill style={{ objectFit: "cover", borderRadius: 4 }} />
       </Box>
@@ -83,12 +96,12 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
         {project.title[locale]}
       </Typography>
 
-      <Typography variant="body2" sx={styles.description}>
+      <Typography variant="body2" sx={styles.description} component="div">
         {project.description[locale]}
       </Typography>
 
       <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
-        {project.technology.map((item, i) => (
+        {project.technology.slice(0, 3).map((item, i) => (
           <Badge
             key={i}
             badgeContent={
@@ -102,7 +115,7 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
               horizontal: "right",
             }}
           >
-            <Chip label={item} size="small"/>
+            <Chip label={item} size="small" />
           </Badge>
         ))}
       </Stack>

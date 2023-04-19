@@ -83,6 +83,7 @@ const ThemeSwitch: React.FC = () => {
         control={<MaterialUISwitch />}
         label=""
         checked={mode === "dark" ? true : false}
+        sx={{m:0, p:0}}
         onChange={() => {
           setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
         }}

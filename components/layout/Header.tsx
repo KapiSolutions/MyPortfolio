@@ -27,29 +27,32 @@ const Header = ({ locale }: Props): JSX.Element => {
   };
   return (
     <Box className={styles.container}>
-      <Navbar locale={locale}/>
-        <Box className={styles.parallaxContent}>
-          <Typography mb={2} variant="h2">
-            {t[locale]?.h}
-          </Typography>
-          <Typography variant="h6" mb={2}>{t[locale]?.p}</Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              if (router.route === "/") {
-                document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
-              } else {
-                router.push("/#main");
-                // document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
-              }
-            }}
-          >
-            Contact Me
-          </Button>
-          <br/><br/>
-          <AdbIcon fontSize="large" />
-        </Box>
+      <Navbar />
+      <Box className={styles.parallaxContent}>
+        <Typography mb={2} variant="h2">
+          {t[locale]?.h}
+        </Typography>
+        <Typography variant="h6" mb={2}>
+          {t[locale]?.p}
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            if (router.route === "/") {
+              document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
+            } else {
+              router.push("/#main");
+              // document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
+            }
+          }}
+        >
+          Contact Me
+        </Button>
+        <br />
+        <br />
+        <AdbIcon fontSize="large" />
+      </Box>
     </Box>
   );
 };

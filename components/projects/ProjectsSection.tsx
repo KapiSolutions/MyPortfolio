@@ -23,7 +23,7 @@ const ProjectsSection = ({projects}: Props): JSX.Element => {
   }, []);
 
   return (
-    <Box>
+    <Box name="projectsSection" component="section">
       <Typography variant="h3" sx={{mb: 2}}>
         <Typography variant="h4" component="span" color="text.disabled">
           my

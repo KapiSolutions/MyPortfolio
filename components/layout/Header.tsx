@@ -1,11 +1,7 @@
 import React from "react";
-import Image from "next/image";
 import styles from "../../styles/layout/Header.module.scss";
-// import cardsIcon from "../../../../public/img/cards-light.png";
 import { useRouter } from "next/router";
-import { useDeviceStore } from "../../stores/deviceStore";
-import { Button, Typography } from "@mui/material";
-
+import { Box, Button, Typography } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
 import Navbar from "./Navbar";
 import { Locale } from "@/interfaces/main";
@@ -17,7 +13,6 @@ type Props = {
 
 const Header = ({ locale }: Props): JSX.Element => {
   const router = useRouter();
-  const isMobile = useDeviceStore((state) => state.isMobile);
   const t = {
     en: {
       h: "I'm Kuba",
@@ -31,10 +26,9 @@ const Header = ({ locale }: Props): JSX.Element => {
     },
   };
   return (
-    <div className={styles.container}>
-      <Navbar />
-      <div className={styles.proposal}>
-        <div className={`text-uppercase ${styles.parallaxContent}`}>
+    <Box className={styles.container}>
+      <Navbar locale={locale}/>
+        <Box className={styles.parallaxContent}>
           <Typography mb={2} variant="h2">
             {t[locale]?.h}
           </Typography>
@@ -53,34 +47,10 @@ const Header = ({ locale }: Props): JSX.Element => {
           >
             Contact Me
           </Button>
-
-          {/* <Typography mb={2} variant="body1">{t[locale]?.p}</Typography> */}
-          {/* <Button
-            variant="contained"
-            onClick={() => {
-              if (router.route === "/") {
-                document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
-              } else {
-                router.push("/#main");
-                // document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
-              }
-            }}
-          >
-            {t[locale]?.button}
-          </Button> */}
-          <br />
-          <br />
+          <br/><br/>
           <AdbIcon fontSize="large" />
-          {/* <Image
-            src={cardsIcon}
-            width="100"
-            height="100"
-            alt="Tarot Online - Bright Light Gypsy"
-            title="Tarot Online - Bright Light Gypsy"
-          /> */}
-        </div>
-      </div>
-    </div>
+        </Box>
+    </Box>
   );
 };
 

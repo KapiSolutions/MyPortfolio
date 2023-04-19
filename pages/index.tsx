@@ -1,7 +1,10 @@
 import Head from "next/head";
-import { Container } from "@mui/material";
-import ProjectsSection from "@/components/projects/ProjectsSection";
+import { Stack } from "@mui/material";
+import ProjectsSection from "@/components/sections/ProjectsSection";
 import projects from "@/tmp/projects.json";
+import BookBoxSection from "@/components/sections/BookBoxSection";
+import CarrierSection from "@/components/sections/CarrierSection";
+import AboutMeSection from "@/components/sections/AboutMeSection";
 
 export default function Home() {
   return (
@@ -12,9 +15,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container sx={{ pt: 2, pb: 4, display: "flex", justifyContent: "left", flexDirection: "column" }}>
+      <Stack direction="column" spacing={2} justifyContent="center" alignItems="center" sx={{ pt: 2, pb: 4}} >
         <ProjectsSection projects={projects}/>
-      </Container>
+        <BookBoxSection />
+        <CarrierSection />
+        <AboutMeSection />
+      </Stack>
     </>
   );
 }

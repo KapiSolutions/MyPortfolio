@@ -90,7 +90,7 @@ const Navbar = (): JSX.Element => {
                   onClose={handleCloseNavMenu}
                   sx={{ transform: "translateY(6px)" }}
                 >
-                  {pages[locale].map((page, idx) => (
+                  {pages[locale]?.map((page, idx) => (
                     <MenuItem
                       key={idx}
                       onClick={() => {
@@ -151,7 +151,7 @@ const Navbar = (): JSX.Element => {
               </Typography>
             </Link>
             <Stack direction="row" sx={{ flexGrow: 1 }}>
-              {pages[locale].map((page, idx) => (
+              {pages[locale]?.map((page, idx) => (
                 <Button
                   key={page}
                   onClick={() => {

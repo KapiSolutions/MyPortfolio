@@ -6,6 +6,9 @@
 }
 .zoom:hover {
   transform: scale(1.05);
+  transition: all .2s;
+  -webkit-transition: all .1s;
+  -moz-transition: all .2s;
 }
 
 .Hover{

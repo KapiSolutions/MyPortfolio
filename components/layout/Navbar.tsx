@@ -19,6 +19,7 @@ import {
   AppBar,
   useTheme,
   useMediaQuery,
+  Paper,
 } from "@mui/material";
 import { Locale } from "@/interfaces/main";
 import { LocaleSwitch } from "../LocaleSwitch";
@@ -46,7 +47,12 @@ const Navbar = (): JSX.Element => {
   };
 
   const scrollToSection = (name: string) => {
-    document.getElementsByName(name)[0].scrollIntoView({ block: "start", inline: "nearest" });
+    const element = document.getElementsByName(name)[0];
+    if (isMobile) {
+      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+    } else {
+      element.scrollIntoView({ block: "center", inline: "nearest" });
+    }
   };
 
   const brandButtonAction = () => {
@@ -58,129 +64,125 @@ const Navbar = (): JSX.Element => {
   };
 
   return (
-    <AppBar position="fixed">
-      <Container maxWidth="xl">
-        {isMobile ? (
-          <Toolbar disableGutters>
-            <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
-              <Box>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{ transform: "translateY(6px)" }}
-                >
-                  {pages[locale]?.map((page, idx) => (
-                    <MenuItem
-                      key={idx}
-                      onClick={() => {
-                        handleCloseNavMenu();
-                        scrollToSection(pages.sections[idx]);
-                      }}
-                      divider={idx == pages[locale].length - 1 ? true : false}
-                    >
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
-                  <MenuItem onClick={handleCloseNavMenu} divider>
-                    <LocaleSwitch />
-                  </MenuItem>
-                </Menu>
-              </Box>
-
-              <Box sx={{ flexGrow: 1 }} className="pointer" onClick={brandButtonAction}>
-                <FaCodeBranch />
-                <Typography
-                  variant="h5"
-                  noWrap
-                  component="span"
-                  sx={{
-                    ml: 1,
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "inherit",
-                    textDecoration: "none",
-                  }}
-                >
-                  JK
-                </Typography>
-              </Box>
-              <ThemeSwitch />
-            </Stack>
-          </Toolbar>
-        ) : (
-          <Toolbar disableGutters>
-            <Link href="/" className="pointer">
-              <FaCodeBranch />
-              <Typography
-                variant="h6"
-                noWrap
-                component="span"
-                sx={{
-                  ml: 1,
-                  mr: 2,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                JK
-              </Typography>
-            </Link>
-            <Stack direction="row" sx={{ flexGrow: 1 }}>
+    <Paper elevation={4} sx={{ zIndex: 1100, position: "fixed", width: "100%", pl: 3, pr: 3 }} component="nav">
+      {isMobile ? (
+        <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
+          <Box>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              disableScrollLock={true}
+              sx={{ transform: "translateY(6px)" }}
+            >
               {pages[locale]?.map((page, idx) => (
-                <Button
-                  key={page}
+                <MenuItem
+                  key={idx}
                   onClick={() => {
                     handleCloseNavMenu();
                     scrollToSection(pages.sections[idx]);
                   }}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  divider={idx == pages[locale].length - 1 ? true : false}
                 >
-                  {page}
-                </Button>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
               ))}
-            </Stack>
-            <Stack
-              direction="row"
-              justifyContent="right"
-              alignItems="center"
-              spacing={2}
-              divider={<Divider orientation="vertical" flexItem />}
-              component="nav"
+              <MenuItem onClick={handleCloseNavMenu} divider>
+                <LocaleSwitch />
+              </MenuItem>
+            </Menu>
+          </Box>
+
+          <Box sx={{ flexGrow: 1 }} className="pointer" onClick={brandButtonAction}>
+            <FaCodeBranch />
+            <Typography
+              variant="h5"
+              noWrap
+              component="span"
+              sx={{
+                ml: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
             >
-              <Box sx={{ transform: "translateX(5px)" }}>
-                <ThemeSwitch />
-              </Box>
-              <LocaleSwitch />
-            </Stack>
-          </Toolbar>
-        )}
-      </Container>
-    </AppBar>
+              JK
+            </Typography>
+          </Box>
+          <ThemeSwitch />
+        </Stack>
+      ) : (
+        <Stack direction="row" alignItems="center" sx={{ width: "100%", pt: 1, pb: 1 }}>
+          <Box className="pointer" onClick={brandButtonAction}>
+            <FaCodeBranch />
+            <Typography
+              variant="h6"
+              noWrap
+              component="span"
+              sx={{
+                ml: 1,
+                mr: 2,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              JK
+            </Typography>
+          </Box>
+          <Stack direction="row" sx={{ flexGrow: 1 }}>
+            {pages[locale]?.map((page, idx) => (
+              <Button
+                key={page}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  scrollToSection(pages.sections[idx]);
+                }}
+                sx={{ color: "text.primary", display: "block" }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Stack>
+          <Stack
+            direction="row"
+            justifyContent="right"
+            alignItems="center"
+            spacing={2}
+            divider={<Divider orientation="vertical" flexItem />}
+          >
+            <Box sx={{ transform: "translateX(5px)" }}>
+              <ThemeSwitch />
+            </Box>
+            <LocaleSwitch />
+          </Stack>
+        </Stack>
+      )}
+    </Paper>
   );
 };
 export default Navbar;

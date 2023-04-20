@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Container, Typography, useTheme, useMediaQuery, Box, CircularProgress, Stack } from "@mui/material";
 import { Locale } from "@/interfaces/main";
@@ -17,25 +17,38 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 
 const CarrierSection = (): JSX.Element => {
   const [progress, setProgress] = useState(0);
-  const sleep = (milliseconds: number) => {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-  };
-  const progressBar = async () => {
-    if (progress == 0) {
-      for (let i = 0; i <= 100; i++) {
-        await sleep(10);
-        setProgress((prevProgress) => (prevProgress < 100 ? prevProgress + 1 : 100));
-        console.log(progress);
-      }
+  const [isVisible, setIsVisible] = useState(false);
+
+  const checkPosition = () => {
+    const actPos = window.scrollY; //Actual scroll position
+    const windowHeight = window.innerHeight; //Window height
+    const elementPos = document.getElementsByName("carrierProjectsDone")[0].offsetTop; //Element position
+    if (actPos + windowHeight - 140 >= elementPos) {
+      setIsVisible(true);
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    window.addEventListener("scroll", checkPosition);
     return () => {
-      progressBar();
+      window.removeEventListener("scroll", checkPosition);
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const timer =
+      progress < 100 && isVisible
+        ? setInterval(() => {
+            setProgress((prevProgress) => prevProgress >= 100 ? 100 : prevProgress + 2);
+          }, 10)
+        : undefined;
+    return () => {
+      clearInterval(timer);
+    };
+  }, [progress, isVisible]);
+
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
   const theme = useTheme();

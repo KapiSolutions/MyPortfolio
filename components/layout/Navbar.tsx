@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
-import CodeIcon from "@mui/icons-material/Code";
 import { FaCodeBranch } from "react-icons/fa";
 import ThemeSwitch from "../ThemeSwitch";
-import Link from "next/link";
 import {
   Divider,
   Stack,
   Menu,
   MenuItem,
   Button,
-  Container,
   Typography,
   IconButton,
-  Toolbar,
   Box,
-  AppBar,
   useTheme,
   useMediaQuery,
   Paper,
@@ -66,7 +60,7 @@ const Navbar = (): JSX.Element => {
   return (
     <Paper elevation={4} sx={{ zIndex: 1100, position: "fixed", width: "100%", pl: 3, pr: 3 }} component="nav">
       {isMobile ? (
-        <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
+        <Stack direction="row" alignItems="center" sx={{ width: "100%", pt: 1, pb: 1 }}>
           <Box>
             <IconButton
               size="large"

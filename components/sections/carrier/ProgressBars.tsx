@@ -60,7 +60,7 @@ export const ProgressBars = ({ locale }: Props): JSX.Element => {
   return (
     <Container sx={{ mt: 5 }} name="carrierProjectsDone">
       <Typography variant="h6" align="center">
-        {t[locale].projects}
+        {t[locale]?.projects}
       </Typography>
       <Stack mt={3} spacing={5} direction="row" justifyContent="center">
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
@@ -84,7 +84,7 @@ export const ProgressBars = ({ locale }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color="text.secondary">
-          {t[locale].employee}
+            {t[locale]?.employee}
           </Typography>
         </Stack>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
@@ -108,7 +108,7 @@ export const ProgressBars = ({ locale }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color="text.secondary">
-          {t[locale].freelancer}
+            {t[locale]?.freelancer}
           </Typography>
         </Stack>
       </Stack>

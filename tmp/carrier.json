@@ -1,0 +1,142 @@
+[
+    {
+        "id": "1d1d12kp",
+        "title": "KapiSolutions",
+        "as": {
+            "en": "Freelancer - FullStack Dev & Mechatronic Systems Engineer",
+            "pl": "Freelancer - FullStack Dev & Inżynier Systemów Mechatronicznych"
+        },
+        "companyDescription": {
+            "en": "company description",
+            "pl": "opis firmy"
+        },
+        "jobDescription": {
+            "en": "jobe description",
+            "pl": "opis stanowiska"
+        },
+        "companyImage": "",
+        "projectsDone": 6,
+        "projectExamples": [],
+        "responsibilities": {
+            "en" : [],
+            "pl" : []
+        },
+        "technology": [],
+        "images": [],
+        "dateStart": "2020",
+        "dateEnd": "",
+        "summary": ""
+    },
+    {
+        "id": "1d1d122cs",
+        "title": "CSN - Stanel",
+        "as": {
+            "en": "Automation systems engineer",
+            "pl": "Inżynier systemów automatyki"
+        },
+        "companyDescription": {
+            "en": "company description",
+            "pl": "opis firmy"
+        },
+        "jobDescription": {
+            "en": "jobe description",
+            "pl": "opis stanowiska"
+        },
+        "companyImage": "",
+        "projectsDone": 25,
+        "projectExamples": [],
+        "responsibilities": {
+            "en" : [],
+            "pl" : []
+        },
+        "technology": [],
+        "images": [],
+        "dateStart": "2017",
+        "dateEnd": "2019",
+        "summary": ""
+    },
+    {
+        "id": "1d1d122m",
+        "title": "Monit - Shm",
+        "as": {
+            "en": "Automation systems engineer",
+            "pl": "Inżynier systemów automatyki"
+        },
+        "companyDescription": {
+            "en": "company description",
+            "pl": "opis firmy"
+        },
+        "jobDescription": {
+            "en": "jobe description",
+            "pl": "opis stanowiska"
+        },
+        "companyImage": "",
+        "projectsDone": 7,
+        "projectExamples": [],
+        "responsibilities": {
+            "en" : [],
+            "pl" : []
+        },
+        "technology": [],
+        "images": [],
+        "dateStart": "2017",
+        "dateEnd": "2019",
+        "summary": ""
+    },
+    {
+        "id": "1d1d122mp",
+        "title": "Monit - Shm",
+        "as": {
+            "en": "Practice",
+            "pl": "Praktykant"
+        },
+        "companyDescription": {
+            "en": "company description",
+            "pl": "opis firmy"
+        },
+        "jobDescription": {
+            "en": "jobe description",
+            "pl": "opis stanowiska"
+        },
+        "companyImage": "",
+        "projectsDone": 1,
+        "projectExamples": [],
+        "responsibilities": {
+            "en" : [],
+            "pl" : []
+        },
+        "technology": [],
+        "images": [],
+        "dateStart": "2016",
+        "dateEnd": "2016",
+        "summary": ""
+    },
+    {
+        "id": "1d1d122a",
+        "title": "Synthos S.A",
+        "as": {
+            "en": "Practice",
+            "pl": "Praktykant"
+        },
+        "companyDescription": {
+            "en": "company description",
+            "pl": "opis firmy"
+        },
+        "jobDescription": {
+            "en": "jobe description",
+            "pl": "opis stanowiska"
+        },
+        "companyImage": "",
+        "projectsDone": 1,
+        "projectExamples": [],
+        "responsibilities": {
+            "en" : [],
+            "pl" : []
+        },
+        "technology": [],
+        "images": [],
+        "dateStart": "2014",
+        "dateEnd": "2014",
+        "summary": ""
+    }
+]

@@ -43,7 +43,7 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
       </Timeline>
 
       {/* Progress Bars */}
-      <ProgressBars locale={locale} />
+      <ProgressBars locale={locale} carrier={sortedCarrier} />
     </Box>
   );
 };

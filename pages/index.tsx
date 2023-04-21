@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Stack } from "@mui/material";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import projects from "@/tmp/projects.json";
+import carrier from "@/tmp/carrier.json";
 import BookBoxSection from "@/components/sections/BookBoxSection";
 import CarrierSection from "@/components/sections/carrier/CarrierSection";
 import AboutMeSection from "@/components/sections/AboutMeSection";
@@ -18,7 +19,7 @@ export default function Home() {
       <Stack direction="column" spacing={2} justifyContent="center" alignItems="center" sx={{ pt: 2, pb: 4}} >
         <ProjectsSection projects={projects}/>
         <BookBoxSection />
-        <CarrierSection />
+        <CarrierSection carrier={carrier}/>
         <AboutMeSection />
       </Stack>
     </>

@@ -1,147 +1,233 @@
 [
-    {
-        "id": "1d1d12kp",
-        "companyName": "KapiSolutions",
-        "as": {
-            "en": "Freelancer - FullStack Dev & Mechatronic Systems Engineer",
-            "pl": "Freelancer - FullStack Dev & Inżynier Systemów Mechatronicznych"
-        },
-        "type": "freelancer",
-        "companyDescription": {
-            "en": "company description",
-            "pl": "opis firmy"
-        },
-        "jobDescription": {
-            "en": "jobe description",
-            "pl": "opis stanowiska"
-        },
-        "companyImage": "",
-        "projectsDone": 6,
-        "projectExamples": [],
-        "responsibilities": {
-            "en" : [],
-            "pl" : []
-        },
-        "technology": [],
-        "images": [],
-        "dateStart": "2020",
-        "dateEnd": "",
-        "summary": ""
+  {
+    "id": "1d1d12kp",
+    "position": 6,
+    "companyName": {
+      "en": "KapiSolutions",
+      "pl": "KapiSolutions"
     },
-    {
-        "id": "1d1d122cs",
-        "companyName": "CSN - Stanel",
-        "as": {
-            "en": "Automation systems engineer",
-            "pl": "Inżynier systemów automatyki"
-        },
-        "type": "job",
-        "companyDescription": {
-            "en": "company description",
-            "pl": "opis firmy"
-        },
-        "jobDescription": {
-            "en": "jobe description",
-            "pl": "opis stanowiska"
-        },
-        "companyImage": "",
-        "projectsDone": 25,
-        "projectExamples": [],
-        "responsibilities": {
-            "en" : [],
-            "pl" : []
-        },
-        "technology": [],
-        "images": [],
-        "dateStart": "2017",
-        "dateEnd": "2019",
-        "summary": ""
+    "as": {
+      "en": "Freelancer - FullStack Dev & Mechatronic Systems Engineer",
+      "pl": "Freelancer - FullStack Dev & Inżynier Systemów Mechatronicznych"
     },
-    {
-        "id": "1d1d122m",
-        "companyName": "Monit - Shm",
-        "as": {
-            "en": "Automation systems engineer",
-            "pl": "Inżynier systemów automatyki"
-        },
-        "type": "job",
-        "companyDescription": {
-            "en": "company description",
-            "pl": "opis firmy"
-        },
-        "jobDescription": {
-            "en": "jobe description",
-            "pl": "opis stanowiska"
-        },
-        "companyImage": "",
-        "projectsDone": 7,
-        "projectExamples": [],
-        "responsibilities": {
-            "en" : [],
-            "pl" : []
-        },
-        "technology": [],
-        "images": [],
-        "dateStart": "2016",
-        "dateEnd": "2017",
-        "summary": ""
+    "type": "freelancer",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
     },
-    {
-        "id": "1d1d122mp",
-        "companyName": "Monit - Shm",
-        "as": {
-            "en": "Practice",
-            "pl": "Praktykant"
-        },
-        "type": "practice",
-        "companyDescription": {
-            "en": "company description",
-            "pl": "opis firmy"
-        },
-        "jobDescription": {
-            "en": "jobe description",
-            "pl": "opis stanowiska"
-        },
-        "companyImage": "",
-        "projectsDone": 1,
-        "projectExamples": [],
-        "responsibilities": {
-            "en" : [],
-            "pl" : []
-        },
-        "technology": [],
-        "images": [],
-        "dateStart": "2016",
-        "dateEnd": "2016",
-        "summary": ""
+    "jobDescription": {
+      "en": "jobe description",
+      "pl": "opis stanowiska"
     },
-    {
-        "id": "1d1d122a",
-        "companyName": "Synthos S.A",
-        "as": {
-            "en": "Practice",
-            "pl": "Praktykant"
-        },
-        "type": "practice",
-        "companyDescription": {
-            "en": "company description",
-            "pl": "opis firmy"
-        },
-        "jobDescription": {
-            "en": "jobe description",
-            "pl": "opis stanowiska"
-        },
-        "companyImage": "",
-        "projectsDone": 1,
-        "projectExamples": [],
-        "responsibilities": {
-            "en" : [],
-            "pl" : []
-        },
-        "technology": [],
-        "images": [],
-        "dateStart": "2014",
-        "dateEnd": "2014",
-        "summary": ""
-    }
+    "companyImage": "",
+    "projectsDone": 6,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [],
+      "pl": []
+    },
+    "technology": [],
+    "images": [],
+    "dateStart": "2020",
+    "dateEnd": "",
+    "summary": ""
+  },
+  {
+    "id": "1d1d122cs",
+    "position": 5,
+    "companyName": {
+        "en": "CSN - Stanel",
+        "pl": "CSN - Stanel"
+      },
+    "as": {
+      "en": "Automation systems engineer",
+      "pl": "Inżynier systemów automatyki"
+    },
+    "type": "job",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "jobe description",
+      "pl": "opis stanowiska"
+    },
+    "companyImage": "",
+    "projectsDone": 25,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [],
+      "pl": []
+    },
+    "technology": [],
+    "images": [],
+    "dateStart": "2017",
+    "dateEnd": "2019",
+    "summary": ""
+  },
+  {
+    "id": "1d1d122m",
+    "position": 4,
+    "companyName": {
+        "en": "Monit - Shm",
+        "pl": "Monit - Shm"
+      },
+    "as": {
+      "en": "Automation systems engineer",
+      "pl": "Inżynier systemów automatyki"
+    },
+    "type": "job",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "jobe description",
+      "pl": "opis stanowiska"
+    },
+    "companyImage": "",
+    "projectsDone": 7,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [],
+      "pl": []
+    },
+    "technology": [],
+    "images": [],
+    "dateStart": "2016",
+    "dateEnd": "2017",
+    "summary": ""
+  },
+  {
+    "id": "1d1d122mp",
+    "position": 3,
+    "companyName": {
+        "en": "Monit - Shm",
+        "pl": "Monit - Shm"
+      },
+    "as": {
+      "en": "Practice",
+      "pl": "Praktykant"
+    },
+    "type": "practice",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "jobe description",
+      "pl": "opis stanowiska"
+    },
+    "companyImage": "",
+    "projectsDone": 1,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [],
+      "pl": []
+    },
+    "technology": [],
+    "images": [],
+    "dateStart": "2016",
+    "dateEnd": "2016",
+    "summary": ""
+  },
+  {
+    "id": "1d1d122a",
+    "position": 0,
+    "companyName": {
+        "en": "Synthos S.A",
+        "pl": "Synthos S.A"
+      },
+    "as": {
+      "en": "Practice",
+      "pl": "Praktykant"
+    },
+    "type": "practice",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "jobe description",
+      "pl": "opis stanowiska"
+    },
+    "companyImage": "",
+    "projectsDone": 1,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [],
+      "pl": []
+    },
+    "technology": [],
+    "images": [],
+    "dateStart": "2014",
+    "dateEnd": "2014",
+    "summary": ""
+  },
+  {
+    "id": "1d1d122agh",
+    "position": 2,
+    "companyName": {
+        "en": "Master of Engineering degree",
+        "pl": "Magister Inżynier"
+      },
+    "as": {
+      "en": "At Mechatronic Engineering on AGH in Cracow",
+      "pl": "Inżynieria Mechatroniczna na AGH w Krakowie"
+    },
+    "type": "study",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "jobe description",
+      "pl": "opis stanowiska"
+    },
+    "companyImage": "",
+    "projectsDone": 1,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [],
+      "pl": []
+    },
+    "technology": [],
+    "images": [],
+    "dateStart": "2017",
+    "dateEnd": "2017",
+    "summary": ""
+  },
+  {
+    "id": "1d1d122apk",
+    "position": 1,
+    "companyName": {
+        "en": "Engineer's degree",
+        "pl": "Inżynier"
+      },
+    "as": {
+      "en": "At Automation and Robotics on PK in Cracow",
+      "pl": "Automatyka i Robotyka na PK w Krakowie"
+    },
+    "type": "study",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "jobe description",
+      "pl": "opis stanowiska"
+    },
+    "companyImage": "",
+    "projectsDone": 1,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [],
+      "pl": []
+    },
+    "technology": [],
+    "images": [],
+    "dateStart": "2015",
+    "dateEnd": "2015",
+    "summary": ""
+  }
 ]

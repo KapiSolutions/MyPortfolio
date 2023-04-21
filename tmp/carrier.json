@@ -1,12 +1,12 @@
 [
     {
         "id": "1d1d12kp",
-        "title": "KapiSolutions",
+        "companyName": "KapiSolutions",
         "as": {
             "en": "Freelancer - FullStack Dev & Mechatronic Systems Engineer",
             "pl": "Freelancer - FullStack Dev & Inżynier Systemów Mechatronicznych"
         },
-        "asFreelancer": true,
+        "type": "freelancer",
         "companyDescription": {
             "en": "company description",
             "pl": "opis firmy"
@@ -30,12 +30,12 @@
     },
     {
         "id": "1d1d122cs",
-        "title": "CSN - Stanel",
+        "companyName": "CSN - Stanel",
         "as": {
             "en": "Automation systems engineer",
             "pl": "Inżynier systemów automatyki"
         },
-        "asFreelancer": false,
+        "type": "job",
         "companyDescription": {
             "en": "company description",
             "pl": "opis firmy"
@@ -59,12 +59,12 @@
     },
     {
         "id": "1d1d122m",
-        "title": "Monit - Shm",
+        "companyName": "Monit - Shm",
         "as": {
             "en": "Automation systems engineer",
             "pl": "Inżynier systemów automatyki"
         },
-        "asFreelancer": false,
+        "type": "job",
         "companyDescription": {
             "en": "company description",
             "pl": "opis firmy"
@@ -88,12 +88,12 @@
     },
     {
         "id": "1d1d122mp",
-        "title": "Monit - Shm",
+        "companyName": "Monit - Shm",
         "as": {
             "en": "Practice",
             "pl": "Praktykant"
         },
-        "asFreelancer": false,
+        "type": "practice",
         "companyDescription": {
             "en": "company description",
             "pl": "opis firmy"
@@ -117,12 +117,12 @@
     },
     {
         "id": "1d1d122a",
-        "title": "Synthos S.A",
+        "companyName": "Synthos S.A",
         "as": {
             "en": "Practice",
             "pl": "Praktykant"
         },
-        "asFreelancer": false,
+        "type": "practice",
         "companyDescription": {
             "en": "company description",
             "pl": "opis firmy"

@@ -96,7 +96,7 @@ export const CarrierItem = ({ item, locale }: Props): JSX.Element => {
       }
     }else
     {
-      return `${start} - ${t[locale].now}`;
+      return `${start} - ${t[locale]?.now}`;
     }
   };
   return (

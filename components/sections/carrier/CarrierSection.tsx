@@ -19,6 +19,7 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  const sortedCarrier = carrier.sort((a, b) => b.position - a.position);
   const t = {
     en: {
       h: "Carrier",
@@ -36,7 +37,7 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
         </Typography>
       </Container>
       <Timeline position="alternate" sx={{ p: 0 }}>
-        {carrier.map((item, idx) => (
+        {sortedCarrier.map((item, idx) => (
           <CarrierItem key={idx} item={item} locale={locale} />
         ))}
       </Timeline>

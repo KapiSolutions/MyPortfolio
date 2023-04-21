@@ -3,7 +3,7 @@ import { Stack } from "@mui/material";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import projects from "@/tmp/projects.json";
 import BookBoxSection from "@/components/sections/BookBoxSection";
-import CarrierSection from "@/components/sections/CarrierSection";
+import CarrierSection from "@/components/sections/carrier/CarrierSection";
 import AboutMeSection from "@/components/sections/AboutMeSection";
 
 export default function Home() {

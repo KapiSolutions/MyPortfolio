@@ -21,7 +21,7 @@ const BookBoxSection = (): JSX.Element => {
         <iframe
           src="https://myhub.autodesk360.com/ue290b326/shares/public/SHd38bfQT1fb47330c99108e411f643e6476?mode=embed"
           allowFullScreen={true}
-          style={{ height: "75vh",width: "100%",border: "none", margin: "auto" }}
+          style={{ height: "75vh", width: "100%", border: "none", margin: "auto" }}
         ></iframe>
       </Container>
     </Box>

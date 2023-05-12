@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { useDeviceStore } from "../../stores/deviceStore";
 import { Container, Typography, Stack, Divider, useTheme, useMediaQuery } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";

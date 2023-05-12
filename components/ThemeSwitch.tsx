@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { useDeviceStore } from "@/stores/deviceStore";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { setTheme } from "../store/slices/deviceSlice";
 
 const ThemeSwitch: React.FC = () => {
-  const themeState = useDeviceStore((state) => state.themeState);
-  const setThemeState = useDeviceStore((state) => state.setThemeState);
+  const themeState = useAppSelector((state) => state.device.theme);
+  const dispatch = useAppDispatch();
   const [mode, setMode] = useState<"light" | "dark">(themeState);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const ThemeSwitch: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setThemeState(mode);
+    dispatch(setTheme(mode));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
@@ -83,7 +84,7 @@ const ThemeSwitch: React.FC = () => {
         control={<MaterialUISwitch />}
         label=""
         checked={mode === "dark" ? true : false}
-        sx={{m:0, p:0}}
+        sx={{ m: 0, p: 0 }}
         onChange={() => {
           setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
         }}

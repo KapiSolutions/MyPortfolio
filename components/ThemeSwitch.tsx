@@ -3,10 +3,10 @@ import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { setTheme } from "../store/slices/deviceSlice";
+import { selectTheme, setTheme } from "../store/slices/deviceSlice";
 
 const ThemeSwitch: React.FC = () => {
-  const themeState = useAppSelector((state) => state.device.theme);
+  const themeState = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
   const [mode, setMode] = useState<"light" | "dark">(themeState);
 

@@ -36,7 +36,7 @@ const MobileView = ({ projects }: Props): JSX.Element => {
           color="inherit"
           onClick={() => setHowMany(howMany >= projects.length ? projects.length : howMany + 2)}
         >
-          {t[locale].showMore}
+          {t[locale]?.showMore}
         </Button>
       </Container>
     </Grid>

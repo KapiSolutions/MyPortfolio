@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Stack } from "@mui/material";
-import ProjectsSection from "@/components/sections/ProjectsSection";
+import ProjectsSection from "@/components/sections/projects/ProjectsSection";
 import projects from "@/tmp/projects.json";
 import carrier from "@/tmp/carrier.json";
 import BookBoxSection from "@/components/sections/BookBoxSection";

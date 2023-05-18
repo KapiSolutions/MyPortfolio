@@ -42,11 +42,7 @@ const Navbar = (): JSX.Element => {
 
   const scrollToSection = (name: string) => {
     const element = document.getElementsByName(name)[0];
-    if (isMobile) {
-      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
-    } else {
-      element.scrollIntoView({ block: "center", inline: "nearest" });
-    }
+    window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
   };
 
   const brandButtonAction = () => {

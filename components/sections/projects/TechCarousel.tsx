@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useTheme, useMediaQuery } from "@mui/material";
 import {
   TbBrandNextjs,
   TbBrandRedux,
@@ -10,9 +10,10 @@ import {
   TbBrandMongodb,
   TbBrandFirebase,
   TbBrandPhp,
+  TbBrandMysql,
 } from "react-icons/tb";
 import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass } from "react-icons/fa";
-import { SiMysql, SiJavascript, SiTypescript } from "react-icons/si";
+import { SiJavascript, SiTypescript } from "react-icons/si";
 
 //Styles
 const styles = {
@@ -42,6 +43,11 @@ const tech = [
 ];
 
 const TechCarousel = (): JSX.Element => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
+    defaultMatches: true,
+  });
+
   const getIcon = (tech: string): JSX.Element | null => {
     switch (tech) {
       case "React":
@@ -67,7 +73,7 @@ const TechCarousel = (): JSX.Element => {
       case "Php":
         return <TbBrandPhp style={styles.techIcon} />;
       case "MySql":
-        return <SiMysql style={styles.techIcon} />;
+        return <TbBrandMysql style={styles.techIcon} />;
       case "MongoDB":
         return <TbBrandMongodb style={styles.techIcon} />;
       case "Firebase":
@@ -81,8 +87,9 @@ const TechCarousel = (): JSX.Element => {
     }
   };
   const carouselSlides = () => {
-    const sliderItems: number = tech.length > 4 ? 4 : tech.length;
-    const items: Array<any> = [];
+    const qt = isMobile ? 3 : 4; 
+    const sliderItems: number = tech.length > qt ? qt : tech.length;
+    const items: Array<JSX.Element> = [];
 
     for (let i = 0; i < tech.length; i += sliderItems) {
       if (i % sliderItems === 0) {
@@ -103,7 +110,7 @@ const TechCarousel = (): JSX.Element => {
     return items;
   };
   return (
-    <Box sx={{display: "flex", minHeight: "20vh"}}>
+    <Box sx={{ display: "flex", minHeight: "20vh" }}>
       <Carousel
         autoPlay={true}
         indicators={false}

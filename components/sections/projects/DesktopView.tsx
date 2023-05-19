@@ -11,7 +11,7 @@ type Props = {
 };
 
 const DesktopView = ({ projects }: Props): JSX.Element => {
-  const [slides, setSlides] = useState<Array<any> | undefined>();
+  const [slides, setSlides] = useState<Array<JSX.Element>>();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"), {
     defaultMatches: true,
@@ -20,7 +20,7 @@ const DesktopView = ({ projects }: Props): JSX.Element => {
   const carouselSlides = () => {
     const qt = isMobile ? 2 : 3;
     const sliderItems: number = projects.length > qt ? qt : projects.length;
-    const items: Array<any> = [];
+    const items: Array<JSX.Element> = [];
 
     for (let i = 0; i < projects.length; i += sliderItems) {
       if (i % sliderItems === 0) {

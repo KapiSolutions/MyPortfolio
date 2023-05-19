@@ -28,7 +28,7 @@ const Navbar = (): JSX.Element => {
   });
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const pages = {
-    en: ["My Works", "Carrier Path", "About Me"],
+    en: ["Projects", "Carrier Path", "About Me"],
     pl: ["Projekty", "Kariera", "O mnie"],
     sections: ["projectsSection", "carrierSection", "aboutMeSection"],
   };
@@ -42,6 +42,7 @@ const Navbar = (): JSX.Element => {
 
   const scrollToSection = (name: string) => {
     const element = document.getElementsByName(name)[0];
+    // window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
     window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
   };
 

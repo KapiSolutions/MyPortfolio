@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Box, Container, Typography, Button, Stack } from "@mui/material";
+import { Box, Container, Typography, Button, Stack, useTheme, useMediaQuery } from "@mui/material";
 import { Locale } from "@/interfaces/main";
 import img from "../../public/img/bookbox-section/1.png";
 import Image from "next/image";
@@ -10,6 +10,10 @@ import Carousel from "react-material-ui-carousel";
 const BookBoxSection = (): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
+    defaultMatches: true,
+  });
   const t = {
     en: {
       h: "BookBox",
@@ -28,7 +32,7 @@ const BookBoxSection = (): JSX.Element => {
       alignItems: "end",
       justifyContent: "left",
       backgroundSize: "cover",
-      backgroundPosition: "left",
+      backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
     },
     overlay: {
@@ -62,7 +66,7 @@ const BookBoxSection = (): JSX.Element => {
         }
     }} 
     >
-      <Box sx={styles.wrapper} style={{ backgroundImage: 'url("img/bookbox-section/slide1.png")' }}>
+      <Box sx={styles.wrapper} style={{ backgroundImage: `url("img/bookbox-section/slide1${isMobile ? "mobile" : ""}.png")` }}>
         <Box sx={styles.overlay} />
         <Container sx={{ zIndex: 1, mb: 10 }}>
           <Stack spacing={2}>
@@ -86,7 +90,7 @@ const BookBoxSection = (): JSX.Element => {
         </Container>
       </Box>
 
-      <Box sx={styles.wrapper} style={{ backgroundImage: 'url("img/bookbox-section/slide2.jpg")' }}>
+      <Box sx={styles.wrapper} style={{ backgroundImage: `url("img/bookbox-section/slide2${isMobile ? "mobile" : ""}.jpg")` }}>
         <Box sx={styles.overlay} />
         <Container sx={{ zIndex: 1, mb: 10 }}>
           <Stack spacing={2}>

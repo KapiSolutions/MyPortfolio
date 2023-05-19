@@ -83,7 +83,7 @@ const Navbar = (): JSX.Element => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               disableScrollLock={true}
-              sx={{ transform: "translateY(6px)" }}
+              sx={{ transform: "translateY(12px) translateX(-20px)" }}
             >
               {pages[locale]?.map((page, idx) => (
                 <MenuItem

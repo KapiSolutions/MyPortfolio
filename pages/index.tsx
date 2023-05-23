@@ -3,7 +3,7 @@ import { Stack } from "@mui/material";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection";
 import projects from "@/tmp/projects.json";
 import carrier from "@/tmp/carrier.json";
-import BookBoxSection from "@/components/sections/BookBoxSection";
+import BookBoxSection from "@/components/sections/bookBox/BookBoxSection";
 import CarrierSection from "@/components/sections/carrier/CarrierSection";
 import AboutMeSection from "@/components/sections/AboutMeSection";
 

@@ -1,0 +1,30 @@
+[
+  {
+    "title": {
+      "en": "Professionally",
+      "pl": "Zawodowo"
+    },
+    "p1": {
+      "en": "As Engineer with 7 years of expirience in many technical fields I possess excellentproblem-solving skills, attention to detail, and a strong work ethic. I am able to work independently and in a team, enjoying cooperation with others to achieve common goals. My effective communication skills help me convey technical concepts to non-technical stakeholders, enabling better collaboration and understanding with the clients.",
+      "pl": "Nagłówek1"
+    },
+    "p2": {
+      "en": "Overall, I am confident that my experience as Full Stack Developer and Mechatronic Systems Engineer, along with my technical skills and personal traitsmake me a valuable asset to any team.",
+      "pl": "Nagłówek1"
+    }
+  },
+  {
+    "title": {
+      "en": "Privately",
+      "pl": "Nagłówek2"
+    },
+    "p1": {
+      "en": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was p",
+      "pl": "Nagłówek2"
+    },
+    "p2": {
+      "en": "",
+      "pl": ""
+    }
+  }
+]

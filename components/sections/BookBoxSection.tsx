@@ -16,11 +16,22 @@ const BookBoxSection = (): JSX.Element => {
   });
   const t = {
     en: {
-      h: "BookBox",
+      h1: "BookBox Library",
+      p1: "The family of products tailored to the needs of both libraries and their users",
+      b1: "Online Catalogue",
+      h2: "BookBox Library",
+      p2: "Social Links",
+      b2: "first link",
     },
     pl: {
-      h: "BookBox",
+      h1: "BookBox Library",
+      p1: "Rodzina produktów dostosowana do potrzeb bibliotek oraz czytelników",
+      b1: "Katalog online",
+      h2: "BookBox Library",
+      p2: "Social Links",
+      b2: "first link",
     },
+    default: {},
   };
 
   const styles = {
@@ -51,6 +62,7 @@ const BookBoxSection = (): JSX.Element => {
       stopAutoPlayOnHover={true}
       navButtonsAlwaysVisible={false}
       animation="fade"
+      swipe={false}
       duration={400}
       sx={{ m: "auto", height: "100vh", width: "100vw" }}
       indicatorContainerProps={{
@@ -60,13 +72,16 @@ const BookBoxSection = (): JSX.Element => {
           bottom: "30px",
         },
       }}
-      navButtonsWrapperProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
+      navButtonsWrapperProps={{
         style: {
-            paddingRight: "15px"
-        }
-    }} 
+          paddingRight: "15px",
+        },
+      }}
     >
-      <Box sx={styles.wrapper} style={{ backgroundImage: `url("img/bookbox-section/slide1${isMobile ? "mobile" : ""}.png")` }}>
+      <Box
+        sx={styles.wrapper}
+        style={{ backgroundImage: `url("img/bookbox-section/slide1${isMobile ? "mobile" : ""}.png")` }}
+      >
         <Box sx={styles.overlay} />
         <Container sx={{ zIndex: 1, mb: 10 }}>
           <Stack spacing={2}>
@@ -86,11 +101,13 @@ const BookBoxSection = (): JSX.Element => {
               </Button>
             </Link>
           </Stack>
-          {/* <Image src={img} width="300" height="300" alt="asd"/> */}
         </Container>
       </Box>
 
-      <Box sx={styles.wrapper} style={{ backgroundImage: `url("img/bookbox-section/slide2${isMobile ? "mobile" : ""}.jpg")` }}>
+      <Box
+        sx={styles.wrapper}
+        style={{ backgroundImage: `url("img/bookbox-section/slide2${isMobile ? "mobile" : ""}.jpg")` }}
+      >
         <Box sx={styles.overlay} />
         <Container sx={{ zIndex: 1, mb: 10 }}>
           <Stack spacing={2}>
@@ -110,7 +127,6 @@ const BookBoxSection = (): JSX.Element => {
               </Button>
             </Link>
           </Stack>
-          {/* <Image src={img} width="300" height="300" alt="asd"/> */}
         </Container>
       </Box>
     </Carousel>

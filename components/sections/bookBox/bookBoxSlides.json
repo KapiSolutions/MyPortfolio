@@ -1,0 +1,98 @@
+[
+  {
+    "title": {
+      "en": "BookBox | Library",
+      "pl": "BookBox | Library"
+    },
+    "desc": {
+      "en": "The family of products tailored to the needs of both libraries and their users",
+      "pl": "Rodzina produktów dostosowana do potrzeb zarówno bibliotek, jak i czytelników"
+    },
+    "buttons": [
+      {
+        "text": {
+          "en": "Online Catalogue",
+          "pl": "Katalog online"
+        },
+        "url": "https://drive.google.com/file/d/104EoBYCOkScEQ_DSHjN-dfhq0YiIOKIy/view?usp=sharing",
+        "newPage": true
+      }
+    ],
+    "images": {
+      "desktop": "img/bookbox-section/slide1.png",
+      "mobile": "img/bookbox-section/slide1mobile.png"
+    }
+  },
+  {
+    "title": {
+      "en": "Implementations",
+      "pl": "Realizacje"
+    },
+    "desc": {
+      "en": "Library MBP Oświęcim - The implementation of the BookBox|Slim devices in 2020 allowed the opening of the library also on Saturdays in a self-service system",
+      "pl": "MBP Oświęcim - Wdrożenie urządzeń BookBox|Slim w 2020r pozwoliło na otwarcie biblioteki również w soboty w systemie samoobsługowym"
+    },
+    "buttons": [
+      {
+        "text": {
+          "en": "🔗Facebook info",
+          "pl": "🔗Facebook info"
+        },
+        "url": "https://www.facebook.com/mbp.oswiecim/posts/pfbid0H9jzsCKMWSbhZQtLEfMoC5ggxRXLyEy1qJVoVqZ2fBoCcnf1wVDtVbWjLnYG3f5el",
+        "newPage": true
+      },
+      {
+        "text": {
+          "en": "BookBox | SLIM ➡",
+          "pl": "BookBox | SLIM ➡"
+        },
+        "url": "",
+        "newPage": false
+      }
+    ],
+    "images": {
+      "desktop": "img/bookbox-section/slide3.webp",
+      "mobile": "img/bookbox-section/slide4mobile.webp"
+    }
+  },
+  {
+    "title": {
+      "en": "Media mensions",
+      "pl": "Wpisy w mediach"
+    },
+    "desc": {
+      "en": "See mentions and articles about previous implementations of BookBox devices",
+      "pl": "Zobacz wzmianki oraz artykuły o dotychczasowych wdrożeniach urządzeń BookBox"
+    },
+    "buttons": [
+      {
+        "text": {
+          "en": "🔗Facebook",
+          "pl": "🔗Facebook"
+        },
+        "url": "https://www.facebook.com/mbp.oswiecim/posts/pfbid033cr2qhxamw6aFD1D1WVn9GtiJmrSwoQMnNGR89sj8b9BrnYL12niz9n9KeBSAykol",
+        "newPage": true
+      },
+      {
+        "text": {
+          "en": "🔗oswiecim.pl",
+          "pl": "🔗oswiecim.pl"
+        },
+        "url": "https://oswiecim.pl/oswiecim-galeria-ksiazki-zaprasza-juz-miedzy-regaly/32994/",
+        "newPage": true
+      },
+      {
+        "text": {
+          "en": "🔗mbp-oswiecim.pl",
+          "pl": "🔗mbp-oswiecim.pl"
+        },
+        "url": "http://mbp-oswiecim.pl/bookbox/",
+        "newPage": true
+      }
+    ],
+    "images": {
+      "desktop": "img/bookbox-section/slide2.jpg",
+      "mobile": "img/bookbox-section/slide2mobile.jpg"
+    }
+  }
+]

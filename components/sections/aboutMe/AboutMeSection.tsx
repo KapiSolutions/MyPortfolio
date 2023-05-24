@@ -6,7 +6,8 @@ import sections from "./aboutMe.json";
 import Image from "next/image";
 import img1 from "@/public/img/aboutme-section/1.png";
 import img2 from "@/public/img/aboutme-section/2.png";
-const images = [img1, img2]
+import img3 from "@/public/img/aboutme-section/3.png";
+const images = [img1, img2, img3];
 
 const AboutMeSection = (): JSX.Element => {
   const router = useRouter();
@@ -31,10 +32,10 @@ const AboutMeSection = (): JSX.Element => {
       <Typography variant="h2">{t[locale]?.h}</Typography>
       <Stack spacing={4} alignItems="center" sx={{ margin: "auto", mt: 2, width: isMobile ? "100%" : "75%" }}>
         {sections.map((item, idx) => (
-          <Box key={idx}>
+          <Box key={idx} sx={{ width: "100%" }}>
             <Stack
               direction={isMobile ? "column" : isEven(idx + 1) ? "row-reverse" : "row"}
-              justifyContent={isMobile ? "center" : "center"}
+              justifyContent={isMobile ? "center" : isEven(idx + 1) ? "flex-end" : "flex-start"}
               alignItems="center"
               spacing={2}
               sx={{ width: "100%" }}
@@ -50,9 +51,10 @@ const AboutMeSection = (): JSX.Element => {
               >
                 <Image src={images[idx]} alt="About me image" fill style={{ objectFit: "cover" }} />
               </Box>
-              <Stack spacing={2} sx={{ maxWidth: isMobile ? "100%" : "75%" }}>
+
+              <Stack spacing={2} sx={{ width: isMobile ? "100%" : "75%" }}>
                 <Typography variant="h4" align={isEven(idx + 1) ? (isMobile ? "left" : "right") : "left"}>
-                {item.title[locale]}
+                  {item.title[locale]}
                 </Typography>
                 <Typography variant="body1" align="justify">
                   {item.p1[locale]}

@@ -24,7 +24,7 @@ const Layout = ({ children }: Props): JSX.Element => {
       <CssBaseline />
       <div className={styles.container}>
         <Header locale={locale} />
-        <main name="main" className={styles.main}>
+        <main name="main" className={styles.main} style={{ paddingTop: 16, paddingBottom: 32}} >
           {children}
         </main>
         <Footer locale={locale} />

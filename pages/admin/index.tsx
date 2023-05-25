@@ -1,7 +1,6 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { UserProfile } from "@auth0/nextjs-auth0/client";
 import { Typography } from "@mui/material";
-import Link from "next/link";
 
 type ProfileProps = { user: UserProfile };
 
@@ -9,7 +8,7 @@ export default function AdminPage({ user }: ProfileProps): JSX.Element {
   // console.log(user);
   return (
     <Typography variant="body1" sx={{m:4, mt:0}}>
-      Welcome {user.name}! <Link href="/api/auth/logout"> - Logout</Link>
+      Welcome {user.name}! <a href="/api/auth/logout"> - Logout</a>
     </Typography>
   );
 }

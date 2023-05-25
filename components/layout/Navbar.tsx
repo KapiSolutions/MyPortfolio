@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { FaCodeBranch } from "react-icons/fa";
 import ThemeSwitch from "../ThemeSwitch";
+import { Locale } from "@/interfaces/main";
+import { LocaleSwitch } from "../LocaleSwitch";
+import { useRouter } from "next/router";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import {
   Divider,
   Stack,
@@ -15,9 +22,6 @@ import {
   useMediaQuery,
   Paper,
 } from "@mui/material";
-import { Locale } from "@/interfaces/main";
-import { LocaleSwitch } from "../LocaleSwitch";
-import { useRouter } from "next/router";
 
 const pages = {
   en: ["Projects", "Carrier Path", "About Me"],
@@ -29,21 +33,20 @@ const Navbar = (): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const { user, error, isLoading } = useUser();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
 
   useEffect(() => {
-    if(window.location.hash && router.pathname == "/"){
-      const name = window.location.hash.replace('#','');
-      console.log(name)
+    if (window.location.hash && router.pathname == "/") {
+      const name = window.location.hash.replace("#", "");
       const element = document.getElementsByName(name)[0];
       window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
     }
-  }, [router.pathname])
-  
-  
+  }, [router.pathname]);
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -60,10 +63,10 @@ const Navbar = (): JSX.Element => {
       // const newUrl = `/${locale}#${name}`;
       // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
       // console.log("asd: ",router)
-      
+
       window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
     } else {
-      router.push(`/#${name}`, undefined, {scroll: false})
+      router.push(`/#${name}`, undefined, { scroll: false });
     }
   };
 
@@ -78,12 +81,13 @@ const Navbar = (): JSX.Element => {
 
   return (
     <Paper elevation={4} sx={{ zIndex: 1100, position: "fixed", width: "100%", pl: 3, pr: 3 }} component="nav">
+      {/* Mobile View */}
       {isMobile ? (
         <Stack direction="row" alignItems="center" sx={{ width: "100%", pt: 1, pb: 1 }}>
           <Box>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -123,6 +127,30 @@ const Navbar = (): JSX.Element => {
               <MenuItem onClick={handleCloseNavMenu} divider>
                 <LocaleSwitch />
               </MenuItem>
+
+              {/* Admin controls */}
+              {user ? (
+                <section>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Stack direction="row" spacing={1}>
+                      <AdminPanelSettingsIcon color="secondary" />
+                      <Link href="/admin">
+                        <Typography textAlign="center" color="secondary" component="span">
+                          Admin
+                        </Typography>
+                      </Link>
+                    </Stack>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Stack direction="row" spacing={1}>
+                      <LogoutIcon color="secondary" />
+                      <Typography textAlign="center" color="secondary" component="span">
+                        <a href="/api/auth/logout">Log out</a>
+                      </Typography>
+                    </Stack>
+                  </MenuItem>
+                </section>
+              ) : null}
             </Menu>
           </Box>
 
@@ -147,6 +175,7 @@ const Navbar = (): JSX.Element => {
           <ThemeSwitch />
         </Stack>
       ) : (
+        // Desktop View
         <Stack direction="row" alignItems="center" sx={{ width: "100%", pt: 1, pb: 1 }}>
           <Box className="pointer" onClick={brandButtonAction}>
             <FaCodeBranch />

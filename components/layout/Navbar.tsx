@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { FaCodeBranch } from "react-icons/fa";
 import ThemeSwitch from "../ThemeSwitch";
@@ -19,19 +19,31 @@ import { Locale } from "@/interfaces/main";
 import { LocaleSwitch } from "../LocaleSwitch";
 import { useRouter } from "next/router";
 
+const pages = {
+  en: ["Projects", "Carrier Path", "About Me"],
+  pl: ["Projekty", "Kariera", "O mnie"],
+  sections: ["projectsSection", "carrierSection", "aboutMeSection"],
+};
+
 const Navbar = (): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const pages = {
-    en: ["Projects", "Carrier Path", "About Me"],
-    pl: ["Projekty", "Kariera", "O mnie"],
-    sections: ["projectsSection", "carrierSection", "aboutMeSection"],
-  };
+
+  useEffect(() => {
+    if(window.location.hash && router.pathname == "/"){
+      const name = window.location.hash.replace('#','');
+      console.log(name)
+      const element = document.getElementsByName(name)[0];
+      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+    }
+  }, [router.pathname])
+  
+  
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -41,13 +53,23 @@ const Navbar = (): JSX.Element => {
   };
 
   const scrollToSection = (name: string) => {
-    const element = document.getElementsByName(name)[0];
-    // window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
-    window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+    if (router.pathname === "/") {
+      const element = document.getElementsByName(name)[0];
+      window.history.pushState(null, "", `/${locale}#${name}`); //add to history without loading the page (replaceState)
+      // window.history.pushState(null, "", `/${locale}`);
+      // const newUrl = `/${locale}#${name}`;
+      // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+      // console.log("asd: ",router)
+      
+      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+    } else {
+      router.push(`/#${name}`, undefined, {scroll: false})
+    }
   };
 
   const brandButtonAction = () => {
     if (router.pathname === "/") {
+      window.history.pushState(null, "", `/${locale}`);
       window.scrollTo(0, 0);
     } else {
       router.push("/");

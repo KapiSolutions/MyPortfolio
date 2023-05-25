@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from '@mui/icons-material/Settings';
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { FaCodeBranch } from "react-icons/fa";
 import ThemeSwitch from "../ThemeSwitch";
@@ -33,12 +34,28 @@ const Navbar = (): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElNavLg, setAnchorElNavLg] = useState<null | HTMLElement>(null);
   const { user, error, isLoading } = useUser();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  // Mobile menu handlers
+  const openNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const closeNavMenu = () => {
+    setAnchorElNav(null);
+  };
+  // Desktop menu admin handlers
+  const openNavMenuLg = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNavLg(event.currentTarget);
+  };
+  const closeNavMenuLg = () => {
+    setAnchorElNavLg(null);
+  };
 
+  // Handle scrolling actions on the home page when the user redirects to it
   useEffect(() => {
     if (window.location.hash && router.pathname == "/") {
       const name = window.location.hash.replace("#", "");
@@ -47,23 +64,11 @@ const Navbar = (): JSX.Element => {
     }
   }, [router.pathname]);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const scrollToSection = (name: string) => {
     if (router.pathname === "/") {
       const element = document.getElementsByName(name)[0];
-      window.history.pushState(null, "", `/${locale}#${name}`); //add to history without loading the page (replaceState)
-      // window.history.pushState(null, "", `/${locale}`);
-      // const newUrl = `/${locale}#${name}`;
+      window.history.pushState(null, "", `/${locale}#${name}`); //add to history without loading the page
       // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
-      // console.log("asd: ",router)
-
       window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
     } else {
       router.push(`/#${name}`, undefined, { scroll: false });
@@ -90,7 +95,7 @@ const Navbar = (): JSX.Element => {
               aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={openNavMenu}
               color="inherit"
             >
               <MenuIcon />
@@ -108,7 +113,7 @@ const Navbar = (): JSX.Element => {
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={closeNavMenu}
               disableScrollLock={true}
               sx={{ transform: "translateY(12px) translateX(-20px)" }}
             >
@@ -116,7 +121,7 @@ const Navbar = (): JSX.Element => {
                 <MenuItem
                   key={idx}
                   onClick={() => {
-                    handleCloseNavMenu();
+                    closeNavMenu();
                     scrollToSection(pages.sections[idx]);
                   }}
                   divider={idx == pages[locale].length - 1 ? true : false}
@@ -124,14 +129,14 @@ const Navbar = (): JSX.Element => {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
-              <MenuItem onClick={handleCloseNavMenu} divider>
+              <MenuItem onClick={closeNavMenu} divider>
                 <LocaleSwitch />
               </MenuItem>
 
               {/* Admin controls */}
               {user ? (
                 <section>
-                  <MenuItem onClick={handleCloseNavMenu}>
+                  <MenuItem onClick={closeNavMenu}>
                     <Stack direction="row" spacing={1}>
                       <AdminPanelSettingsIcon color="secondary" />
                       <Link href="/admin">
@@ -141,7 +146,7 @@ const Navbar = (): JSX.Element => {
                       </Link>
                     </Stack>
                   </MenuItem>
-                  <MenuItem onClick={handleCloseNavMenu}>
+                  <MenuItem onClick={closeNavMenu}>
                     <Stack direction="row" spacing={1}>
                       <LogoutIcon color="secondary" />
                       <Typography textAlign="center" color="secondary" component="span">
@@ -201,7 +206,7 @@ const Navbar = (): JSX.Element => {
               <Button
                 key={page}
                 onClick={() => {
-                  handleCloseNavMenu();
+                  closeNavMenu();
                   scrollToSection(pages.sections[idx]);
                 }}
                 sx={{ color: "text.primary", display: "block" }}
@@ -209,7 +214,73 @@ const Navbar = (): JSX.Element => {
                 {page}
               </Button>
             ))}
+
+            {/* Admin Menu */}
+            {user ? (
+              <Stack direction="row" sx={{ml:2}} spacing={1}>
+                <Divider orientation="vertical" flexItem />
+                <Button
+                  aria-label="menuAdminLg"
+                  aria-controls="menuAdminLg"
+                  aria-haspopup="true"
+                  onClick={openNavMenuLg}
+                  color="inherit"
+                >
+                  <AdminPanelSettingsIcon />
+                  <Typography textAlign="center" sx={{ml:1}} >
+                    Admin
+                  </Typography>
+                </Button>
+                <Menu
+                  id="menuAdminLg"
+                  anchorEl={anchorElNavLg}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNavLg)}
+                  onClose={closeNavMenuLg}
+                  disableScrollLock={true}
+                  sx={{ transform: "translateY(12px)" }}
+                >
+                  <MenuItem onClick={closeNavMenuLg}>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <SettingsIcon sx={{fontSize:"medium"}}/>
+                      <Link href="/admin/projects">
+                        <Typography textAlign="center" component="span">
+                          Projects
+                        </Typography>
+                      </Link>
+                    </Stack>
+                  </MenuItem>
+                  <MenuItem onClick={closeNavMenuLg} divider>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                    <SettingsIcon sx={{fontSize:"medium"}}/>
+                      <Link href="/admin/carrier">
+                        <Typography textAlign="center" component="span">
+                          Carrier
+                        </Typography>
+                      </Link>
+                    </Stack>
+                  </MenuItem>
+                  <MenuItem onClick={closeNavMenuLg} divider>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <LogoutIcon sx={{fontSize:"medium"}}/>
+                      <Typography textAlign="center">
+                        <a href="/api/auth/logout">Log out</a>
+                      </Typography>
+                    </Stack>
+                  </MenuItem>
+                </Menu>
+              </Stack>
+            ) : null}
           </Stack>
+          {/* Side menu with options */}
           <Stack
             direction="row"
             justifyContent="right"

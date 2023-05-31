@@ -7,6 +7,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "via.placeholder.com",
       },
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        pathname: `/${process.env.GS_BUCKET_NAME}/**`,
+      },
     ],
   },
   i18n: {

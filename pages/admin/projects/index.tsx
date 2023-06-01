@@ -1,28 +1,54 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { UserProfile } from "@auth0/nextjs-auth0/client";
 import { Typography, Container, Stack, Grid, Divider, Box, Button, useTheme, useMediaQuery } from "@mui/material";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ProjectItem from "@/components/admin/projects/ProjectItem";
-import projects from "@/tmp/projects.json"; //!Temporary import
+import { useRouter } from "next/router";
+import type { Locale } from "@/interfaces/main";
+import type { Projects } from "@/schema/project";
 import Link from "next/link";
+import { connectDB, client } from "@/utils/mongodb";
 
-type ProfileProps = { user: UserProfile };
+type Props = {
+  projects: Projects;
+};
 
-export default function AdminProjectsPage({ user }: ProfileProps): JSX.Element {
+export default function AdminProjectsPage({ projects }: Props): JSX.Element {
+  const router = useRouter();
+  const locale = (router.locale || "en") as Locale;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+
+  const t = {
+    en: {
+      h1: "Menage projects",
+      addButton: "Add New!",
+      title: "Title",
+      date: "Date",
+      actions: "Actions",
+      deleteButton: "Delete",
+      editButton: "Edit",
+    },
+    pl: {
+      h1: "Zarządzaj projektami",
+      addButton: "Dodaj nowy!",
+      title: "Tytuł",
+      date: "Data",
+      actions: "Opcje",
+    },
+    default: {},
+  };
   return (
     <Container>
       <Typography variant="h4" align={isMobile ? "center" : "left"}>
-        Menage projects
+        {t[locale].h1}
       </Typography>
       <Box display="flex" justifyContent="flex-end" sx={{ mt: 4 }}>
         <Link href="/admin/projects/new#main">
           <Button variant="outlined" color="inherit" size="large" sx={{ width: isMobile ? "100%" : "auto" }}>
             <PostAddIcon sx={{ mr: 1 }} />
-            Add New!
+            {t[locale].addButton}
           </Button>
         </Link>
       </Box>
@@ -30,16 +56,16 @@ export default function AdminProjectsPage({ user }: ProfileProps): JSX.Element {
       {/* Title Bar */}
       <Grid container spacing={2} wrap="nowrap" sx={{ mt: 2 }}>
         <Grid item xs={9} sm={5} lg={9}>
-          <Typography variant="body1">Title</Typography>
+          <Typography variant="body1">{t[locale].title}</Typography>
         </Grid>
         {isMobile ? null : (
           <Grid item sm={3} lg={1}>
-            <Typography variant="body1">Number</Typography>
+            <Typography variant="body1">{t[locale].date}</Typography>
           </Grid>
         )}
         <Grid item xs={3} sm={4} lg={2}>
           <Box display="flex">
-            <Typography variant="body1">Opcje</Typography>
+            <Typography variant="body1">{t[locale].actions}</Typography>
           </Box>
         </Grid>
       </Grid>
@@ -57,13 +83,25 @@ export default function AdminProjectsPage({ user }: ProfileProps): JSX.Element {
 
 export const getServerSideProps = withPageAuthRequired({
   // withPageAuthRequired checks if the session is authenticated, if not then redirect to Auth0 login page
-  async getServerSideProps(ctx) {
-    // const session = await getSession(ctx.req, ctx.res);
+  async getServerSideProps(context) {
+    const dbName = "Data";
+    const projectsCollection = "projects";
+    let projects = null;
 
-    // custom props are augmented with the session user object
+    try {
+      // Connect to MongoDB
+      await connectDB();
+      // Access the specified database and collection
+      const db = client.db(dbName);
+      const collection = db.collection(projectsCollection);
+      // Retrieve all documents in the collection
+      projects = await collection.find().toArray();
+    } catch (error) {
+      console.log(error);
+    }
     return {
       props: {
-        // customProp: 'val',
+        projects: JSON.parse(JSON.stringify(projects)),
       },
     };
   },

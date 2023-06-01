@@ -21,10 +21,10 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar, VariantType } from "notistack";
 import axios from "axios";
-import configTemplate from "@/utils/schema/project";
-import type { Project } from "@/interfaces/projects";
+import configTemplate from "@/schema/project";
 import type { Locale } from "@/interfaces/main";
-import type { Init } from "@/utils/schema/project";
+import type { Project } from "@/schema/project";
+import ProjectOverview from "@/components/ProjectOverview";
 // import { MuiFileInput } from "mui-file-input";
 
 //Define Types
@@ -38,6 +38,7 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
   const { schema, initValues } = configTemplate(locale);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
@@ -51,7 +52,7 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     watch,
     clearErrors,
     formState: { errors },
-  } = useForm<Init>({
+  } = useForm<Project>({
     resolver: yupResolver(schema),
     defaultValues: initValues,
   });
@@ -59,37 +60,49 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
   const t = {
     en: {
       submitButton: "Add project!",
+      previewShowButton: "Show preview",
+      previewCloseButton: "Close preview",
     },
     pl: {
       submitButton: "Dodaj projekt!",
+      previewShowButton: "Podgląd projektu",
+      previewCloseButton: "Zamknij podgląd",
     },
     default: {},
   };
 
-  //   Scroll and set focus to the error field
+  // Scroll and set focus on the error field
   useEffect(() => {
     const errArray = Object.keys(errors);
+    // check for errors
     if (errArray.length > 0) {
-      console.log(errArray);
-      //@ts-ignore
-      if (Boolean(errors[errArray[0] as keyof Init].message)) {
+      setShowPreview(false);
+      const key = errArray[0] as keyof Project;
+      const property = errors[key];
+
+      if (typeof property === "object" && "message" in property) {
+        // single field
         document.getElementsByName(errArray[0])[0].focus();
         document.getElementsByName(errArray[0])[0].scrollIntoView({ block: "center", inline: "nearest" });
-      } else {
-        //@ts-ignore
-        const nestedErrArr = Object.keys(errors[errArray[0] as keyof Init]);
-        document.getElementsByName(`${errArray[0]}.${nestedErrArr[0]}`)[0].focus();
+      } else if (typeof property === "object" && !("message" in property)) {
+        // Nested object fields
+        const nestedErrArr = Object.keys(property);
+        document.getElementsByName(`${key}.${nestedErrArr[0]}`)[0].focus();
         document
-          .getElementsByName(`${errArray[0]}.${nestedErrArr[0]}`)[0]
+          .getElementsByName(`${key}.${nestedErrArr[0]}`)[0]
           .scrollIntoView({ block: "center", inline: "nearest" });
       }
-      console.log();
-      // document.getElementsByName(errArray[0])[0].focus();
-      // document.getElementsByName(errArray[0])[0].scrollIntoView({ block: "center", inline: "nearest" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
 
-  // Show snackbar on success and error
+  // Close preview on evry change of input form
+  useEffect(() => {
+    watch(() => setShowPreview(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch]);
+
+  // Show snackbar on success or error
   const showSnackBar = useCallback(
     (variant: VariantType, message: string) => {
       enqueueSnackbar(message, {
@@ -105,9 +118,9 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
   );
 
   // Translate fields
-  const translate = async (key: keyof Init, value: string, setValue: (name: keyof Init, value: any) => void) => {
+  const translate = async (key: keyof Project, value: string, setValue: (name: keyof Project, value: any) => void) => {
     const targetLang = locale === "en" ? "pl" : "en";
-    const targetKey = `${key}.${targetLang}` as keyof Init;
+    const targetKey = `${key}.${targetLang}` as keyof Project;
     let translatedTxt = "";
     if (value) {
       try {
@@ -141,8 +154,9 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     return divider;
   };
 
-  // Handle submit event
-  const onSubmit: SubmitHandler<Init> = async (data) => {
+  // Handle submit
+  //   const submitForm: SubmitHandler<Project> = async (data) => {
+  const submitForm = async () => {
     setLoading(true);
     //data - contains only fields with entered values
     //getValues - get all fields
@@ -154,8 +168,10 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     try {
       const res = await axios.post("/api/db/projects/new/", payload);
       // On success:
+      setShowPreview(false);
+      reset(); //clear fields
       showSnackBar("success", "Project added successfully!");
-      //   reset(); //clear fields
+      router.back();
     } catch (err) {
       const errors = err as Error;
       console.log("errMsg: ", errors.message);
@@ -166,121 +182,130 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" height="100%" justifyContent="center" sx={{ mt: 2 }}>
-      <Container maxWidth="md">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack justifyContent="center" sx={{ flexWrap: "wrap" }}>
-            {Object.keys(initValues).map((key, idx) => (
-              <Box key={idx}>
-                {/* Single textfield */}
-                {typeof initValues[key as keyof Init] === "string" ? (
-                  <Controller
-                    name={key as keyof Init}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <TextField
-                        name={key as keyof Init}
-                        helperText={Boolean(errors[key as keyof Init]) ? errors[key as keyof Init]?.message : undefined}
-                        error={Boolean(errors[key as keyof Init])}
-                        onChange={onChange}
-                        value={value || ""}
-                        label={key}
-                        variant="outlined"
-                        margin="normal"
-                        size={key.includes("Link") ? "small" : "medium"}
-                        disabled={loading}
-                        multiline
-                        fullWidth
-                      />
-                    )}
-                  />
-                ) : null}
+    <Box
+      display="flex"
+      flexDirection="column"
+      height="100%"
+      justifyContent="center"
+      sx={{ mt: 2, margin: "auto" }}
+      maxWidth="md"
+    >
+      <form onSubmit={handleSubmit(() => setShowPreview(!showPreview))}>
+        <Stack justifyContent="center" sx={{ flexWrap: "wrap" }}>
+          {Object.keys(initValues).map((key, idx) => (
+            <Box key={idx}>
+              {/* Single textfield */}
+              {typeof initValues[key as keyof Project] === "string" ? (
+                <Controller
+                  name={key as keyof Project}
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <TextField
+                      name={key as keyof Project}
+                      helperText={Boolean(errors[key as keyof Project]) ? errors[key as keyof Project]?.message : undefined}
+                      error={Boolean(errors[key as keyof Project])}
+                      onChange={onChange}
+                      value={value || ""}
+                      label={key}
+                      variant="outlined"
+                      margin="normal"
+                      size={key.includes("Link") ? "small" : "medium"}
+                      disabled={loading}
+                      multiline
+                      fullWidth
+                    />
+                  )}
+                />
+              ) : null}
 
-                {/* Single number input */}
-                {typeof initValues[key as keyof Init] === "number" ? (
-                  <Controller
-                    name={key as keyof Init}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <TextField
-                        helperText={"Default: 0 . You can change it after."}
-                        error={Boolean(errors[key as keyof Init])}
-                        onChange={onChange}
-                        value={value || ""}
-                        label={key}
-                        variant="outlined"
-                        margin="normal"
-                        type="number"
-                        fullWidth
-                        disabled
-                      />
-                    )}
-                  />
-                ) : null}
+              {/* Single number input */}
+              {typeof initValues[key as keyof Project] === "number" ? (
+                <Controller
+                  name={key as keyof Project}
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <TextField
+                      name={key as keyof Project}
+                      helperText={Boolean(errors[key as keyof Project]) ? errors[key as keyof Project]?.message : undefined}
+                      error={Boolean(errors[key as keyof Project])}
+                      onChange={onChange}
+                      value={value || ""}
+                      label={key}
+                      variant="outlined"
+                      margin="normal"
+                      type="number"
+                      fullWidth
+                    />
+                  )}
+                />
+              ) : null}
 
-                {/* Single boolean switch */}
-                {typeof initValues[key as keyof Init] === "boolean" ? (
-                  <Controller
-                    name={key as keyof Init}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <FormControlLabel
-                        onChange={onChange}
-                        value={value}
-                        control={<Switch color="primary" />}
-                        label={key}
-                        labelPlacement="start"
-                      />
-                    )}
-                  />
-                ) : null}
+              {/* Single boolean switch */}
+              {typeof initValues[key as keyof Project] === "boolean" ? (
+                <Controller
+                  name={key as keyof Project}
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <FormControlLabel
+                      onChange={onChange}
+                      value={value}
+                      control={<Switch color="primary" />}
+                      label={key}
+                      labelPlacement="start"
+                    />
+                  )}
+                />
+              ) : null}
 
-                {/* Nested Objects */}
-                {typeof initValues[key as keyof Init] === "object" ? (
-                  <Box>
-                    {showDivider(key)}
-                    {Object.keys(initValues[key as keyof Init]).map((nestedKey, idx) => (
-                      <Controller
-                        key={nestedKey}
-                        //@ts-ignore
-                        name={`${key}.${nestedKey}`}
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                          <Box sx={{ position: "relative" }}>
-                            <TextField
-                              name={`${key}.${nestedKey}`}
+              {/* Nested Objects */}
+              {typeof initValues[key as keyof Project] === "object" ? (
+                <Box>
+                  {showDivider(key)}
+                  {Object.keys(initValues[key as keyof Project]).map((nestedKey, idx) => (
+                    <Controller
+                      key={nestedKey}
+                      //@ts-ignore
+                      name={`${key}.${nestedKey}`}
+                      control={control}
+                      render={({ field: { onChange, value } }) => (
+                        <Box sx={{ position: "relative" }}>
+                          <TextField
+                            name={`${key}.${nestedKey}`}
+                            helperText={
                               //@ts-ignore
-                              helperText={errors[key as keyof Init]?.[nestedKey as keyof Init]?.message ?? undefined}
-                              //@ts-ignore
-                              error={Boolean(errors[key as keyof Init]?.[nestedKey as keyof Init])}
-                              onChange={onChange}
-                              value={value || ""}
-                              label={key + nestedKey.toUpperCase()}
-                              variant="outlined"
-                              margin="normal"
-                              disabled={loading}
-                              multiline
-                              fullWidth
-                            />
-                            {/* Translate Button */}
-                            {nestedKey === locale ? (
-                              <ButtonBase
-                                sx={{ position: "absolute", mt: "15px", ml: "-40px", p: 1, pt: 2 }}
-                                onClick={() => translate(key as keyof Init, value as string, setValue)}
-                              >
-                                <TranslateIcon />
-                              </ButtonBase>
-                            ) : null}
-                          </Box>
-                        )}
-                      />
-                    ))}
-                  </Box>
-                ) : null}
+                              errors[key as keyof Project]?.[nestedKey as "pl" | "en" | "images"]?.message ?? undefined
+                            }
+                            //@ts-ignore
+                            error={Boolean(errors[key as keyof Project]?.[nestedKey as "pl" | "en" | "images"])}
+                            onChange={onChange}
+                            value={value || ""}
+                            label={key + nestedKey.toUpperCase()}
+                            variant="outlined"
+                            margin="normal"
+                            disabled={loading}
+                            multiline
+                            fullWidth
+                          />
+                          {/* Translate Button */}
+                          {nestedKey === locale ? (
+                            <ButtonBase
+                              sx={{ position: "absolute", mt: "15px", ml: "-40px", p: 1, pt: 2 }}
+                              onClick={() => translate(key as keyof Project, value as string, setValue)}
+                            >
+                              <TranslateIcon />
+                            </ButtonBase>
+                          ) : null}
+                        </Box>
+                      )}
+                    />
+                  ))}
+                </Box>
+              ) : null}
 
-                {/* {typeof initValues[key as keyof Init] === "file" ? (
+              {/* File Input */}
+              {/* {typeof initValues[key as keyof Project] === "file" ? (
                   <Controller
-                    name={key as keyof Init}
+                    name={key as keyof Project}
                     control={control}
                     render={({ field: { onChange, value } }) => (
                       <MuiFileInput
@@ -289,27 +314,42 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
                         margin="dense"
                         onChange={(e) => {
                           console.log("e: ", e);
-                          setValue(key as keyof Init, e);
+                          setValue(key as keyof Project, e);
                         }}
                         multiple
                         value={(value as File[]) || undefined}
-                        error={Boolean(errors[key as keyof Init])}
-                        helperText={Boolean(errors[key as keyof Init]) ? errors[key as keyof Init]?.message : undefined}
+                        error={Boolean(errors[key as keyof Project])}
+                        helperText={Boolean(errors[key as keyof Project]) ? errors[key as keyof Project]?.message : undefined}
                       />
                     )}
                   />
                 ) : null} */}
-              </Box>
-            ))}
-          </Stack>
-          <Box my={2}>
+            </Box>
+          ))}
+        </Stack>
+        {/* Preview button */}
+        <Button color="primary" fullWidth size="large" variant="contained" sx={{ mt: 2, mb: 4 }} type="submit">
+          {showPreview ? t[locale].previewCloseButton : t[locale].previewShowButton}
+        </Button>
+
+        {showPreview ? (
+          <>
+            <ProjectOverview project={getValues()} />
             {/* Submit button */}
-            <Button color="primary" disabled={loading} fullWidth size="large" type="submit" variant="contained">
+            <Button
+              color="primary"
+              disabled={loading}
+              fullWidth
+              size="large"
+              onClick={submitForm}
+              variant="contained"
+              sx={{ mt: 4 }}
+            >
               {loading ? <CircularProgress size={26} /> : t[locale].submitButton}
             </Button>
-          </Box>
-        </form>
-      </Container>
+          </>
+        ) : null}
+      </form>
     </Box>
   );
 };

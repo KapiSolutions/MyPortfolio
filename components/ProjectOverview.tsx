@@ -8,16 +8,15 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import LinkIcon from "@mui/icons-material/Link";
 import TuneIcon from "@mui/icons-material/Tune";
 import { Locale } from "@/interfaces/main";
-import type { Init } from "@/utils/schema/project";
+import type { Project } from "@/schema/project";
 import Image from "next/image";
 import Link from "next/link";
 import getIcon from "@/utils/getIcon";
-import axios from "axios";
-const parse = require("html-react-parser");
+import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 
 type Props = {
-  project: Init;
+  project: Project;
 };
 
 const ProjectOverview = ({ project }: Props): JSX.Element => {
@@ -128,7 +127,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
     );
   };
   // Generate sub sections like description, features etc...
-  const getSection = (key: keyof Init, idx: number) => {
+  const getSection = (key: keyof Project, idx: number) => {
     const property = project[key];
     const propertyValue = property[locale as keyof typeof property] as string;
     // Ommit title and main image and start from short description, show only these fields which are not empty
@@ -208,7 +207,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
       {/* Sub sections */}
       {Object.keys(project).map((key, idx) => (
         <Box key={idx} sx={{ mt: 2 }}>
-          {getSection(key as keyof Init, idx)}
+          {getSection(key as keyof Project, idx)}
         </Box>
       ))}
     </Box>

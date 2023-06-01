@@ -83,6 +83,6 @@ const project = (locale: Locale) => {
   return { schema, initValues };
 };
 
-export type Project = typeof initValues;
+export type Project = typeof initValues & {_id?: string};
 export interface Projects extends Array<Project> {}
 export default project;

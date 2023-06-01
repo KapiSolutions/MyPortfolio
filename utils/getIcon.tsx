@@ -22,37 +22,37 @@ const styles = {
   };
 const getIcon = (tech:string): JSX.Element | null => {
     switch (tech) {
-      case "React":
+      case "react":
         return <FaReact style={styles.techIcon} />;
-      case "Next.js":
+      case "next.js":
         return <TbBrandNextjs style={styles.techIcon} />;
-      case "Node.js":
+      case "node.js":
         return <FaNodeJs style={styles.techIcon} />;
-      case "Redux":
+      case "redux":
         return <TbBrandRedux style={styles.techIcon} />;
-      case "Bootstrap":
+      case "bootstrap":
         return <TbBrandBootstrap style={styles.techIcon} />;
-      case "Sass":
+      case "sass":
         return <FaSass style={styles.techIcon} />;
-      case "Css":
+      case "css":
         return <TbBrandCss3 style={styles.techIcon} />;
-      case "Html":
+      case "html":
         return <TbBrandHtml5 style={styles.techIcon} />;
-      case "vanillaJS":
+      case "javascript":
         return <MdOutlineJavascript style={styles.techIcon} />;
-      case "TypeScript":
+      case "typescript":
         return <TbBrandTypescript style={styles.techIcon} />;
-      case "Php":
+      case "php":
         return <TbBrandPhp style={styles.techIcon} />;
-      case "MySql":
+      case "mysql":
         return <SiMysql style={styles.techIcon} />;
-      case "MongoDB":
+      case "mongodb":
         return <TbBrandMongodb style={styles.techIcon} />;
-      case "Firebase":
+      case "firebase":
         return <TbBrandFirebase style={styles.techIcon} />;
-      case "Stripe":
+      case "stripe":
         return <FaStripe style={styles.techIcon} />;
-      case "Raspberry":
+      case "raspberry":
         return <FaRaspberryPi style={styles.techIcon} />;
       default:
         return null;

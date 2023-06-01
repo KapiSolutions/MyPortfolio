@@ -13,7 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import getIcon from "@/utils/getIcon";
 import parse from "html-react-parser";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 type Props = {
   project: Project;
@@ -38,7 +38,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
       technology: "Technologia",
     },
   };
-
+  
   const convertTitle = (title: string) => {
     const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
     if (locale === "pl" && title in polishTitles) {
@@ -129,12 +129,13 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
   // Generate sub sections like description, features etc...
   const getSection = (key: keyof Project, idx: number) => {
     const property = project[key];
-    const propertyValue = property[locale as keyof typeof property] as string;
+    const propertyValue = property && (property[locale as keyof typeof property] as string);
     // Ommit title and main image and start from short description, show only these fields which are not empty
     if (typeof property === "object" && locale in property && propertyValue != "" && idx > 2) {
       let content;
       // If section includes html objects then parse them into section
-      if (propertyValue.includes("<")) {
+
+      if (propertyValue?.includes("<")) {
         const tag = propertyValue.includes("<ol>") ? "<ol>" : propertyValue.includes("<ul>") ? "<ul>" : "<ol>";
         const tmp = DOMPurify.sanitize(propertyValue).replaceAll(
           tag,

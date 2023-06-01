@@ -1,13 +1,22 @@
 import Head from "next/head";
+import { GetStaticPropsContext } from "next";
 import { Stack } from "@mui/material";
+import axios from "axios";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection";
-import projects from "@/tmp/projects.json";
+// import projects from "@/tmp/projects.json";
 import carrier from "@/tmp/carrier.json";
 import BookBoxSection from "@/components/sections/bookBox/BookBoxSection";
 import CarrierSection from "@/components/sections/carrier/CarrierSection";
 import AboutMeSection from "@/components/sections/aboutMe/AboutMeSection";
+import { connectDB, client } from "@/utils/mongodb";
+import type { Locale } from "@/interfaces/main";
+import type { Projects } from "@/schema/project";
 
-export default function Home() {
+//
+type Props = {
+  projects: Projects;
+};
+export default function Home({ projects }: Props) {
   return (
     <>
       <Head>
@@ -16,12 +25,38 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Stack direction="column" spacing={3} justifyContent="center" alignItems="center" >
-        <ProjectsSection projects={projects}/>
+      <Stack direction="column" spacing={3} justifyContent="center" alignItems="center">
+        <ProjectsSection projects={projects} />
         <BookBoxSection />
-        <CarrierSection carrier={carrier}/>
+        <CarrierSection carrier={carrier} />
         <AboutMeSection />
       </Stack>
     </>
   );
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  // Get all products
+  const dbName = "Data";
+  const projectsCollection = "projects";
+  const carrierCollection = "carrier";
+  let projects = null;
+
+  try {
+    // Connect to MongoDB
+    await connectDB();
+    // Access the specified database and collection
+    const db = client.db(dbName);
+    const collection = db.collection(projectsCollection);
+    // Retrieve all documents in the collection
+    projects = await collection.find().toArray();
+  } catch (error) {
+    console.log(error);
+  }
+  return {
+    props: {
+      projects: JSON.parse(JSON.stringify(projects)),
+    },
+    revalidate: false, //on demand revalidation
+  };
 }

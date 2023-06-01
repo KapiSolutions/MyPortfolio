@@ -73,7 +73,7 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
                   key={i}
                   badgeContent={
                     <Box sx={{ width: 14, height: 14, borderRadius: "50%", backgroundColor: "background.default" }}>
-                      {getIcon(item)}
+                      {getIcon(item.toLowerCase())}
                     </Box>
                   }
                   // overlap="circular"

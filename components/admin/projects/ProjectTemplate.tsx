@@ -166,7 +166,11 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     };
 
     try {
-      const res = await axios.post("/api/db/projects/new/", payload);
+      await axios.post("/api/db/projects/new/", payload);
+      const revalidateData = {
+        paths: ["/"],
+      };
+      await axios.post("/api/revalidate/", revalidateData);
       // On success:
       setShowPreview(false);
       reset(); //clear fields

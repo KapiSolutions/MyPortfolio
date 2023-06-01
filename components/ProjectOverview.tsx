@@ -37,8 +37,9 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
       as: "Jako",
       technology: "Technologia",
     },
+    default: {},
   };
-  
+
   const convertTitle = (title: string) => {
     const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
     if (locale === "pl" && title in polishTitles) {

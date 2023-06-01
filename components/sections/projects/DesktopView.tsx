@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Grid, useTheme, useMediaQuery } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import ProjectPaper from "../../ProjectPaper";
-import { Projects } from "@/interfaces/projects";
+import type { Projects } from "@/schema/project";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 
 //Define Types

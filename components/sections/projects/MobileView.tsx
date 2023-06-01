@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, Container, Stack } from "@mui/material";
 import ProjectPaper from "../../ProjectPaper";
-import { Projects } from "@/interfaces/projects";
+import type { Projects } from "@/schema/project";
 import { useRouter } from "next/router";
-import { Locale } from "@/interfaces/main";
+import type { Locale } from "@/interfaces/main";
 
 //Define Types
 type Props = {
@@ -27,6 +27,8 @@ const MobileView = ({ projects }: Props): JSX.Element => {
     },
     default: {},
   };
+
+
   return (
     <Stack spacing={2}>
       {projects.slice(0, howMany).map((project, index) => (

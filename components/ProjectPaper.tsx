@@ -9,9 +9,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import getIcon from "@/utils/getIcon";
 //Define Types
-import type { Project, Locale } from "@/interfaces/projects";
+import type { Project } from "@/schema/project";
+import type { Locale } from "@/interfaces/main";
 type Props = {
-  project: Project;
+  project: Project | null;
 };
 
 //Styles
@@ -22,28 +23,32 @@ const styles = {
     display: "-webkit-box",
     WebkitLineClamp: 2,
     WebkitBoxOrient: "vertical",
-  }
+  },
 };
 
 const ProjectPaper = ({ project }: Props): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    
     // Simulating data loading delay
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
 
+  if (!project) {
+    return <></>;
+  }
+
   return (
     <>
       <Paper elevation={1} sx={{ p: 2, borderRadius: 2, minHeight: "320px" }} className="pointer zoom">
         {loading ? (
           <>
-            <Skeleton variant="rectangular" width="100%" height={150} style={{borderRadius: 4}} />
+            <Skeleton variant="rectangular" width="100%" height={150} style={{ borderRadius: 4 }} />
             <Skeleton variant="text" width="50%" height={34} sx={{ mt: 2 }} />
             <Skeleton variant="text" width="75%" height={12} sx={{ mt: 1 }} />
             <Skeleton variant="text" width="75%" height={12} sx={{ mt: 1 }} />
@@ -68,23 +73,26 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
             </Typography>
 
             <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
-              {project.technology.slice(0, 3).map((item, i) => (
-                <Badge
-                  key={i}
-                  badgeContent={
-                    <Box sx={{ width: 14, height: 14, borderRadius: "50%", backgroundColor: "background.default" }}>
-                      {getIcon(item.toLowerCase())}
-                    </Box>
-                  }
-                  // overlap="circular"
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                >
-                  <Chip label={item} size="small" />
-                </Badge>
-              ))}
+              {project.technology
+                .split(" ")
+                .slice(0, 3)
+                .map((item, i) => (
+                  <Badge
+                    key={i}
+                    badgeContent={
+                      <Box sx={{ width: 14, height: 14, borderRadius: "50%", backgroundColor: "background.default" }}>
+                        {getIcon(item.toLowerCase())}
+                      </Box>
+                    }
+                    // overlap="circular"
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "right",
+                    }}
+                  >
+                    <Chip label={item} size="small" />
+                  </Badge>
+                ))}
             </Stack>
           </>
         )}

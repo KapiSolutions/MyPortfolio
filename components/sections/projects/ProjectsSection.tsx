@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import { Box, Container, useTheme, useMediaQuery } from "@mui/material";
-import { Projects } from "@/interfaces/projects";
+import type { Projects } from "@/schema/project";
 import MobileView from "./MobileView";
 import DesktopView from "./DesktopView";
 import TechCarousel from "./TechCarousel";
@@ -28,7 +28,7 @@ const ProjectsSection = ({ projects }: Props): JSX.Element => {
     pl: {
       sectionName: "Projekty",
     },
-    default: {}
+    default: {},
   };
   return (
     <Box sx={{ width: "100vw", minHeight: "90vh" }} name="projectsSection" component="section">
@@ -36,7 +36,9 @@ const ProjectsSection = ({ projects }: Props): JSX.Element => {
         <Typography variant="h2" sx={{ mb: isMobile ? 2 : 1, mt: 1 }}>
           {t[locale].sectionName}
         </Typography>
-        <Box>{isMobile ? <MobileView projects={projects} /> : <DesktopView projects={projects} />}</Box>
+        {projects.length > 0 ? (
+          <Box>{isMobile ? <MobileView projects={projects} /> : <DesktopView projects={projects} />}</Box>
+        ) : null}
       </Container>
 
       <TechCarousel />

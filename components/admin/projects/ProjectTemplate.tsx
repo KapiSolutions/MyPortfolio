@@ -4,10 +4,8 @@ import {
   Box,
   TextField,
   Stack,
-  Typography,
   Divider,
   ButtonBase,
-  Container,
   useTheme,
   useMediaQuery,
   FormControlLabel,
@@ -54,17 +52,19 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     formState: { errors },
   } = useForm<Project>({
     resolver: yupResolver(schema),
-    defaultValues: initValues,
+    defaultValues: project ? project : initValues,
   });
-
+  const editMode = project ? true : false;
   const t = {
     en: {
       submitButton: "Add project!",
+      submitEditButton: "Update project!",
       previewShowButton: "Show preview",
       previewCloseButton: "Close preview",
     },
     pl: {
       submitButton: "Dodaj projekt!",
+      submitEditButton: "Zaktualizuj projekt!",
       previewShowButton: "Podgląd projektu",
       previewCloseButton: "Zamknij podgląd",
     },
@@ -199,14 +199,16 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
           {Object.keys(initValues).map((key, idx) => (
             <Box key={idx}>
               {/* Single textfield */}
-              {typeof initValues[key as keyof Project] === "string" ? (
+              {typeof initValues[key as keyof typeof initValues] === "string" ? (
                 <Controller
                   name={key as keyof Project}
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <TextField
                       name={key as keyof Project}
-                      helperText={Boolean(errors[key as keyof Project]) ? errors[key as keyof Project]?.message : undefined}
+                      helperText={
+                        Boolean(errors[key as keyof Project]) ? errors[key as keyof Project]?.message : undefined
+                      }
                       error={Boolean(errors[key as keyof Project])}
                       onChange={onChange}
                       value={value || ""}
@@ -223,14 +225,16 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
               ) : null}
 
               {/* Single number input */}
-              {typeof initValues[key as keyof Project] === "number" ? (
+              {typeof initValues[key as keyof typeof initValues] === "number" ? (
                 <Controller
                   name={key as keyof Project}
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <TextField
                       name={key as keyof Project}
-                      helperText={Boolean(errors[key as keyof Project]) ? errors[key as keyof Project]?.message : undefined}
+                      helperText={
+                        Boolean(errors[key as keyof Project]) ? errors[key as keyof Project]?.message : undefined
+                      }
                       error={Boolean(errors[key as keyof Project])}
                       onChange={onChange}
                       value={value || ""}
@@ -245,7 +249,7 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
               ) : null}
 
               {/* Single boolean switch */}
-              {typeof initValues[key as keyof Project] === "boolean" ? (
+              {typeof initValues[key as keyof typeof initValues] === "boolean" ? (
                 <Controller
                   name={key as keyof Project}
                   control={control}
@@ -262,10 +266,10 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
               ) : null}
 
               {/* Nested Objects */}
-              {typeof initValues[key as keyof Project] === "object" ? (
+              {typeof initValues[key as keyof typeof initValues] === "object" ? (
                 <Box>
                   {showDivider(key)}
-                  {Object.keys(initValues[key as keyof Project]).map((nestedKey, idx) => (
+                  {Object.keys(initValues[key as keyof typeof initValues]).map((nestedKey, idx) => (
                     <Controller
                       key={nestedKey}
                       //@ts-ignore
@@ -349,7 +353,13 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
               variant="contained"
               sx={{ mt: 4 }}
             >
-              {loading ? <CircularProgress size={26} /> : t[locale].submitButton}
+              {loading ? (
+                <CircularProgress size={26} />
+              ) : editMode ? (
+                t[locale].submitEditButton
+              ) : (
+                t[locale].submitButton
+              )}
             </Button>
           </>
         ) : null}

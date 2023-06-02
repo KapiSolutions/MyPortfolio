@@ -8,6 +8,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import paletteProvider from "@/utils/paletteProvider";
 import { useAppSelector } from "../../store/hooks";
+import { Box } from "@mui/material";
 
 //Define Types:
 type Props = {
@@ -22,13 +23,13 @@ const Layout = ({ children }: Props): JSX.Element => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className={styles.container}>
+      <Box className={styles.container}>
         <Header locale={locale} />
-        <main name="main" className={styles.main} style={{ paddingTop: 16, paddingBottom: 32}} >
+        <Box component="main" name="main" className={styles.main} sx={{ pt: 2, pb: 8 }}>
           {children}
-        </main>
+        </Box>
         <Footer locale={locale} />
-      </div>
+      </Box>
     </ThemeProvider>
   );
 };

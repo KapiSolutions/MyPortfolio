@@ -3,8 +3,8 @@ import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
 
-export default async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-  if (req.method === "GET") {
+async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> {
+  if (req.method === "DELETE") {
     // Extract the the request query parameters
     const { dbName, collectionName, id }: { dbName?: string; collectionName?: string; id?: string } = req.query;
     // Validate the database name, collection name, and ID format
@@ -27,7 +27,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
         return;
       }
 
-      res.status(200).json({ message: 'Document deleted successfully' });
+      res.status(200).json({ message: "Document deleted successfully" });
     } catch (error) {
       console.error("Error retrieving document:", error);
       res.status(500).json({ error: "Server error" });
@@ -36,10 +36,10 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
       client.close();
     }
   } else {
-    res.setHeader("Allow", "GET");
+    res.setHeader("Allow", "DELETE");
     res.status(405).end("Method Not Allowed");
   }
 }
 
 // withApiAuthRequired checks if the session is authenticated, if yes then handle function is called
-// export default withApiAuthRequired(handle);
+export default withApiAuthRequired(handle);

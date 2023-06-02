@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
-import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsIcon from "@mui/icons-material/Settings";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { FaCodeBranch } from "react-icons/fa";
 import ThemeSwitch from "../ThemeSwitch";
@@ -138,10 +138,10 @@ const Navbar = (): JSX.Element => {
                 <section>
                   <MenuItem onClick={closeNavMenu}>
                     <Stack direction="row" spacing={1}>
-                      <AdminPanelSettingsIcon color="secondary" />
-                      <Link href="/admin">
+                      <SettingsIcon color="secondary" />
+                      <Link href="/admin/projects#main">
                         <Typography textAlign="center" color="secondary" component="span">
-                          Admin
+                          Projects
                         </Typography>
                       </Link>
                     </Stack>
@@ -217,7 +217,7 @@ const Navbar = (): JSX.Element => {
 
             {/* Admin Menu */}
             {user ? (
-              <Stack direction="row" sx={{ml:2}} spacing={1}>
+              <Stack direction="row" sx={{ ml: 2 }} spacing={1}>
                 <Divider orientation="vertical" flexItem />
                 <Button
                   aria-label="menuAdminLg"
@@ -227,7 +227,7 @@ const Navbar = (): JSX.Element => {
                   color="inherit"
                 >
                   <AdminPanelSettingsIcon />
-                  <Typography textAlign="center" sx={{ml:1}} >
+                  <Typography textAlign="center" sx={{ ml: 1 }}>
                     Admin
                   </Typography>
                 </Button>
@@ -248,9 +248,9 @@ const Navbar = (): JSX.Element => {
                   disableScrollLock={true}
                   sx={{ transform: "translateY(12px)" }}
                 >
-                  <MenuItem onClick={closeNavMenuLg}>
+                  <MenuItem onClick={closeNavMenuLg} divider>
                     <Stack direction="row" alignItems="center" spacing={1}>
-                    <SettingsIcon sx={{fontSize:"medium"}}/>
+                      <SettingsIcon sx={{ fontSize: "medium" }} />
                       <Link href="/admin/projects">
                         <Typography textAlign="center" component="span">
                           Projects
@@ -258,7 +258,7 @@ const Navbar = (): JSX.Element => {
                       </Link>
                     </Stack>
                   </MenuItem>
-                  <MenuItem onClick={closeNavMenuLg} divider>
+                  {/* <MenuItem onClick={closeNavMenuLg} divider>
                     <Stack direction="row" alignItems="center" spacing={1}>
                     <SettingsIcon sx={{fontSize:"medium"}}/>
                       <Link href="/admin/carrier">
@@ -267,10 +267,10 @@ const Navbar = (): JSX.Element => {
                         </Typography>
                       </Link>
                     </Stack>
-                  </MenuItem>
+                  </MenuItem> */}
                   <MenuItem onClick={closeNavMenuLg} divider>
                     <Stack direction="row" alignItems="center" spacing={1}>
-                      <LogoutIcon sx={{fontSize:"medium"}}/>
+                      <LogoutIcon sx={{ fontSize: "medium" }} />
                       <Typography textAlign="center">
                         <a href="/api/auth/logout">Log out</a>
                       </Typography>

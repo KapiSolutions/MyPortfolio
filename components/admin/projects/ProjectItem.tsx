@@ -60,7 +60,7 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
               onClick={() => {
                 router.push({
                   pathname: "/admin/projects/[pid]",
-                  query: { pid: project.title.en.replaceAll(" ", "-"), id: project._id },
+                  query: { pid: project._id },
                   hash: "main",
                 });
                 // setLoadingEdit(true);

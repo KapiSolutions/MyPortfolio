@@ -55,8 +55,7 @@ export const getServerSideProps = withPageAuthRequired({
     const projectsCollection = "projects";
     let project = null;
 
-    // const productName = context.params?.pid ? context.params?.pid.toString().replaceAll("-", " ") : "";
-    const { id }: { id?: string } = context.query;
+    const id: string | undefined = Array.isArray(context.params?.pid) ? context.params?.pid[0] : context.params?.pid;
     if (id && ObjectId.isValid(id)) {
       try {
         // Connect to MongoDB

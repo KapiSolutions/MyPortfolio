@@ -161,21 +161,37 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     //data - contains only fields with entered values
     //getValues - get all fields
     const allData = getValues();
-    const payload = {
-      newProject: allData,
-    };
 
     try {
-      await axios.post("/api/db/projects/new/", payload);
-      const revalidateData = {
-        paths: ["/"],
-      };
-      await axios.post("/api/revalidate/", revalidateData);
-      // On success:
-      setShowPreview(false);
-      reset(); //clear fields
-      showSnackBar("success", "Project added successfully!");
-      router.back();
+      let status = 0;
+      let docId;
+      if (editMode) {
+        // update existing project
+        const res = await axios.put("/api/db/projects/update/", { updates: allData });
+        status = res.status;
+        docId = allData._id;
+      } else {
+        // add new project
+        const res = await axios.post("/api/db/projects/new/", { newProject: allData });
+        status = res.status;
+        docId = res.data.insertedId;
+      }
+      if (status === 204) {
+        // no changes to made
+        setShowPreview(false);
+        showSnackBar("warning", "There is no changes to made.");
+      } else if (status === 200) {
+        // request was successful
+        const revalidateData = {
+          paths: ["/", `/projects/${docId}`],
+        };
+        await axios.post("/api/revalidate/", revalidateData);
+
+        setShowPreview(false);
+        reset(); //clear fields
+        showSnackBar("success", `Project ${editMode ? "updated" : "added"} successfully!`);
+        router.push("/admin/projects#main");
+      }
     } catch (err) {
       const errors = err as Error;
       console.log("errMsg: ", errors.message);

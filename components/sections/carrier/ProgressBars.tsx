@@ -15,6 +15,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
   const [freProjects, setFreProjects] = useState(0); //Projects as Freelancer
   const [protProjects, setProtProjects] = useState(0); //Prototypes
 
+  // Set projects quantity for the progress bars
   const getProjects = () => {
     let employee = 0;
     let freelancer = 0;
@@ -43,13 +44,16 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
   const checkPosition = () => {
     const actPos = window.scrollY; //Actual scroll position
     const windowHeight = window.innerHeight; //Window height
-    const elementPos = document.getElementsByName("carrierProjectsDone")[0].offsetTop; //Element position
-    // If visible, fire up the progress bars
-    if (actPos + windowHeight - 140 >= elementPos) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-      setProgress(0);
+    const element = document.getElementsByName("carrierProjectsDone")[0];
+    if (element) {
+      const elementPos = element.offsetTop; //Element position
+      // If visible, fire up the progress bars
+      if (actPos + windowHeight - 140 >= elementPos) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+        setProgress(0);
+      }
     }
   };
 
@@ -62,6 +66,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Handle Progress Bars
   useEffect(() => {
     const timer =
       progress < 100 && isVisible
@@ -79,13 +84,13 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
       projects: "Projects Done:",
       employee: "As Employee",
       freelancer: "As Freelancer",
-      prototypes: "As Student"
+      prototypes: "As Student",
     },
     pl: {
       projects: "Ukończone Projekty:",
       employee: "Jako Pracownik",
       freelancer: "Jako Freelancer",
-      prototypes: "Jako Student"
+      prototypes: "Jako Student",
     },
   };
   return (
@@ -93,7 +98,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
       <Typography variant="h6" align="center">
         {t[locale]?.projects}
       </Typography>
-      <Stack mt={3} direction="row" justifyContent="center" sx={{ flexWrap: 'wrap', gap: 4 }}>
+      <Stack mt={3} direction="row" justifyContent="center" sx={{ flexWrap: "wrap", gap: 4 }}>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
           <Box sx={{ position: "relative", display: "inline-flex" }}>
             <CircularProgress variant="determinate" size={70} value={progress} />

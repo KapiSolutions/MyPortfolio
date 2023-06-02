@@ -21,6 +21,7 @@ const BreadCrumbs = ({ items }: Props): JSX.Element => {
     pl: {
       home: "Strona Główna",
     },
+    default: {}
   };
   return (
     <Box component="nav" sx={{ mb: 2 }}>

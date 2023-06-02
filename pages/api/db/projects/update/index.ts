@@ -4,6 +4,29 @@ import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
 import configTemplate from "@/schema/project";
 
+const processNestedObjects = (
+  existingObj: Record<string, any>,
+  updatedObj: Record<string, any>
+): Record<string, any> => {
+  const updatedFields: Record<string, any> = {};
+
+  for (const key in updatedObj) {
+    if (key === "_id") {
+      continue; // Skip comparing and updating the _id field
+    }
+    if (typeof updatedObj[key] === "object" && typeof existingObj[key] === "object") {
+      const nestedUpdates = processNestedObjects(existingObj[key], updatedObj[key]);
+      if (Object.keys(nestedUpdates).length > 0) {
+        updatedFields[key] = nestedUpdates;
+      }
+    } else if (existingObj[key] !== updatedObj[key]) {
+      updatedFields[key] = updatedObj[key];
+    }
+  }
+
+  return updatedFields;
+};
+
 async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   if (req.method === "PUT") {
     const { schema } = configTemplate("en");
@@ -24,26 +47,22 @@ async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> 
       const collection = db.collection("projects");
 
       // Get existing document by specified id
-      const existingDocument = await collection.findOne({ _id: docId });
+      const existingDocument = await collection.findOne({ _id: new ObjectId(docId) });
       if (!existingDocument) {
         return res.status(404).json({ message: "Document not found" });
       }
 
       // Find the fields that have new values and are different from the existing values
-      const updatedFields = Object.entries(updates).reduce((acc: Record<string, any>, [key, value]) => {
-        if (existingDocument[key] !== value) {
-          acc[key] = value;
-        }
-        return acc;
-      }, {});
+      const updatedFields = processNestedObjects(existingDocument, updates);
 
       // Check if there is any difference between the existing document and the update
       if (Object.keys(updatedFields).length === 0) {
-        return res.status(200).json({ message: "No changes to update" });
+        res.status(204).end();
+        return Promise.resolve();
       }
 
       // Update the document with the updated fields
-      const result = await collection.updateOne({ _id: docId }, { $set: updatedFields });
+      const result = await collection.updateOne({ _id: new ObjectId(docId) }, { $set: updatedFields });
       if (result.modifiedCount === 1) {
         return res.status(200).json({ message: "Document updated successfully" });
       } else {

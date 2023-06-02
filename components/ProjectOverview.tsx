@@ -131,11 +131,11 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
   const getSection = (key: keyof Project, idx: number) => {
     const property = project[key];
     const propertyValue = property && (property[locale as keyof typeof property] as string);
-    // Ommit title and main image and start from short description, show only these fields which are not empty
-    if (typeof property === "object" && locale in property && propertyValue != "" && idx > 2) {
+    const startIndex = Object.keys(project).indexOf("description");
+    // Ommit title, main image etc. and start from description, show only these fields which are not empty
+    if (typeof property === "object" && locale in property && propertyValue != "" && idx >= startIndex) {
       let content;
-      // If section includes html objects then parse them into section
-
+      // If section includes html objects then parse them
       if (propertyValue?.includes("<")) {
         const tag = propertyValue.includes("<ol>") ? "<ol>" : propertyValue.includes("<ul>") ? "<ul>" : "<ol>";
         const tmp = DOMPurify.sanitize(propertyValue).replaceAll(

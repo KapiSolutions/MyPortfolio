@@ -13,8 +13,11 @@ export const LocaleSwitch = () => {
   });
   const toggleLocale = (newLocale: string) => {
     const { pathname, asPath, query } = router;
-    // router.push({ pathname, query }, asPath, { locale: newLocale, scroll:false });
-    router.push({ pathname, query }, pathname+window.location.hash, { locale: newLocale, scroll:false });
+    if (pathname != "/") {
+      router.push({ pathname, query }, asPath, { locale: newLocale, scroll: false });
+    } else {
+      router.push({ pathname, query }, pathname + window.location.hash, { locale: newLocale, scroll: false });
+    }
   };
   return (
     <>

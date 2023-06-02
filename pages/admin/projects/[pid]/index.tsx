@@ -1,26 +1,50 @@
 import ProjectTemplate from "@/components/admin/projects/ProjectTemplate";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Typography, Container, useTheme, useMediaQuery } from "@mui/material";
+import { Typography, Box, Container, useTheme, useMediaQuery } from "@mui/material";
 import type { Project } from "@/schema/project";
 import type { Locale } from "@/interfaces/main";
 import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
+import BreadCrumbs from "@/components/BreadCrumbs";
+import { useRouter } from "next/router";
 
 // Define types
 type Props = { project: Project | null };
 
 export default function AdminNewProjectPage({ project }: Props): JSX.Element {
+  const router = useRouter();
+  const locale = (router.locale || "en") as Locale;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  const t = {
+    en: {
+      prev: "Menage projects",
+      h1: "Edit Project!",
+    },
+    pl: {
+      prev: "Twoje projekty",
+      h1: "Edycja Projektu",
+    },
+    default: {},
+  };
+  const breadcrumbs = [
+    { name: t[locale].prev, path: "/admin/projects#main" },
+    { name: project ? project.title[locale] : "404", path: `admin/projects/${project?._id}` },
+  ];
   return (
-    <Container>
-      <Typography variant="h4" align={isMobile ? "center" : "left"}>
-        Edit Project
-      </Typography>
-      {project ? <ProjectTemplate project={project} /> : null}
-    </Container>
+    <>
+      <Box sx={{ mt: 5, ml: 2 }}>
+        <BreadCrumbs items={breadcrumbs} />
+      </Box>
+      <Container>
+        <Typography variant="h4" align={isMobile ? "center" : "left"}>
+          {t[locale].h1}
+        </Typography>
+        {project ? <ProjectTemplate project={project} /> : "Project not found."}
+      </Container>
+    </>
   );
 }
 
@@ -30,8 +54,8 @@ export const getServerSideProps = withPageAuthRequired({
     const dbName = "Data";
     const projectsCollection = "projects";
     let project = null;
-    
-    const productName = context.params?.pid ? context.params?.pid.toString().replaceAll("-", " ") : "";
+
+    // const productName = context.params?.pid ? context.params?.pid.toString().replaceAll("-", " ") : "";
     const { id }: { id?: string } = context.query;
     if (id && ObjectId.isValid(id)) {
       try {

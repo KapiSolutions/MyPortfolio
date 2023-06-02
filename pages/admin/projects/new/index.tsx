@@ -1,22 +1,47 @@
+import BreadCrumbs from "@/components/BreadCrumbs";
 import ProjectTemplate from "@/components/admin/projects/ProjectTemplate";
+import type { Locale } from "@/interfaces/main";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { UserProfile } from "@auth0/nextjs-auth0/client";
-import { Typography, Container, Box,TextField, useTheme, useMediaQuery } from "@mui/material";
+import { Typography, Container, Box, useTheme, useMediaQuery } from "@mui/material";
+import { useRouter } from "next/router";
 
 type ProfileProps = { user: UserProfile };
 
 export default function AdminNewProjectPage({ user }: ProfileProps): JSX.Element {
+  const router = useRouter();
+  const locale = (router.locale || "en") as Locale;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  const t = {
+    en: {
+      prev: "Menage projects",
+      h1: "New Project!",
+    },
+    pl: {
+      prev: "Twoje projekty",
+      h1: "Nowy Projekt!",
+    },
+    default: {},
+  };
+  const breadcrumbs = [
+    { name: t[locale].prev, path: "/admin/projects#main" },
+    { name: t[locale].h1, path: "/admin/projects/new" },
+  ];
   return (
-    <Container>
-      <Typography variant="h4" align={isMobile ? "center" : "left"}>
-        New Project!
-      </Typography>
-      <ProjectTemplate project={null}/>
-    </Container>
+    <>
+      <Box sx={{ mt: 5, ml: 2 }}>
+        <BreadCrumbs items={breadcrumbs} />
+      </Box>
+      <Container>
+        <Typography variant="h4" align={isMobile ? "center" : "left"}>
+          New Project!
+        </Typography>
+        <ProjectTemplate project={null} />
+      </Container>
+    </>
   );
 }
 

@@ -1,16 +1,14 @@
 import Head from "next/head";
 import { GetStaticPropsContext } from "next";
-import { Stack } from "@mui/material";
-import axios from "axios";
+import { Stack, Box } from "@mui/material";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection";
-// import projects from "@/tmp/projects.json";
 import carrier from "@/tmp/carrier.json";
 import BookBoxSection from "@/components/sections/bookBox/BookBoxSection";
 import CarrierSection from "@/components/sections/carrier/CarrierSection";
 import AboutMeSection from "@/components/sections/aboutMe/AboutMeSection";
 import { connectDB, client } from "@/utils/mongodb";
-import type { Locale } from "@/interfaces/main";
 import type { Projects } from "@/schema/project";
+import BreadCrumbs from "@/components/BreadCrumbs";
 
 //
 type Props = {
@@ -25,7 +23,9 @@ export default function Home({ projects }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Box sx={{ml: 2}}><BreadCrumbs items={null} /></Box>
       <Stack direction="column" spacing={3} justifyContent="center" alignItems="center">
+        
         <ProjectsSection projects={projects} />
         <BookBoxSection />
         <CarrierSection carrier={carrier} />

@@ -7,6 +7,7 @@ import type { Locale } from "@/interfaces/main";
 import type { Projects } from "@/schema/project";
 import Link from "next/link";
 import { connectDB, client } from "@/utils/mongodb";
+import BreadCrumbs from "@/components/BreadCrumbs";
 
 type Props = {
   projects: Projects;
@@ -31,7 +32,7 @@ export default function AdminProjectsPage({ projects }: Props): JSX.Element {
       editButton: "Edit",
     },
     pl: {
-      h1: "Zarządzaj projektami",
+      h1: "Twoje projekty",
       addButton: "Dodaj nowy!",
       title: "Tytuł",
       date: "Data",
@@ -39,45 +40,51 @@ export default function AdminProjectsPage({ projects }: Props): JSX.Element {
     },
     default: {},
   };
+  const breadcrumbs = [{ name: t[locale].h1, path: "/admin/projects" }];
   return (
-    <Container>
-      <Typography variant="h4" align={isMobile ? "center" : "left"}>
-        {t[locale].h1}
-      </Typography>
-      <Box display="flex" justifyContent="flex-end" sx={{ mt: 4 }}>
-        <Link href="/admin/projects/new#main">
-          <Button variant="outlined" color="inherit" size="large" sx={{ width: isMobile ? "100%" : "auto" }}>
-            <PostAddIcon sx={{ mr: 1 }} />
-            {t[locale].addButton}
-          </Button>
-        </Link>
+    <>
+      <Box sx={{ mt: 5, ml: 2 }}>
+        <BreadCrumbs items={breadcrumbs} />
       </Box>
+      <Container>
+        <Typography variant="h4" align={isMobile ? "center" : "left"}>
+          {t[locale].h1}
+        </Typography>
+        <Box display="flex" justifyContent="flex-end" sx={{ mt: 4 }}>
+          <Link href="/admin/projects/new#main">
+            <Button variant="outlined" color="inherit" size="large" sx={{ width: isMobile ? "100%" : "auto" }}>
+              <PostAddIcon sx={{ mr: 1 }} />
+              {t[locale].addButton}
+            </Button>
+          </Link>
+        </Box>
 
-      {/* Title Bar */}
-      <Grid container spacing={2} wrap="nowrap" sx={{ mt: 2 }}>
-        <Grid item xs={9} sm={5} lg={9}>
-          <Typography variant="body1">{t[locale].title}</Typography>
-        </Grid>
-        {isMobile ? null : (
-          <Grid item sm={3} lg={1}>
-            <Typography variant="body1">{t[locale].date}</Typography>
+        {/* Title Bar */}
+        <Grid container spacing={2} wrap="nowrap" sx={{ mt: 2 }}>
+          <Grid item xs={9} sm={5} lg={9}>
+            <Typography variant="body1">{t[locale].title}</Typography>
           </Grid>
-        )}
-        <Grid item xs={3} sm={4} lg={2}>
-          <Box display="flex">
-            <Typography variant="body1">{t[locale].actions}</Typography>
-          </Box>
+          {isMobile ? null : (
+            <Grid item sm={3} lg={1}>
+              <Typography variant="body1">{t[locale].date}</Typography>
+            </Grid>
+          )}
+          <Grid item xs={3} sm={4} lg={2}>
+            <Box display="flex">
+              <Typography variant="body1">{t[locale].actions}</Typography>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
 
-      {/* Items */}
-      <Stack direction="column" spacing={3} sx={{ mt: 2 }}>
-        <Divider orientation="horizontal" flexItem />
-        {projects.map((project, idx) => (
-          <ProjectItem key={idx} project={project} />
-        ))}
-      </Stack>
-    </Container>
+        {/* Items */}
+        <Stack direction="column" spacing={3} sx={{ mt: 2 }}>
+          <Divider orientation="horizontal" flexItem />
+          {projects.map((project, idx) => (
+            <ProjectItem key={idx} project={project} />
+          ))}
+        </Stack>
+      </Container>
+    </>
   );
 }
 

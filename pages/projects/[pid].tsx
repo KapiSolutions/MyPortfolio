@@ -1,15 +1,28 @@
 import { GetStaticPropsContext, GetStaticPathsContext } from "next";
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
+import type { Locale } from "@/interfaces/main";
 import type { Project } from "@/schema/project";
 import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
+import { useRouter } from "next/router";
 import ProjectOverview from "@/components/ProjectOverview";
+import BreadCrumbs from "@/components/BreadCrumbs";
 
 // Define types
 type Props = { project: Project | null };
 
 export default function ProjectOverviewPage({ project }: Props): JSX.Element {
-  return <Container maxWidth="md">{project ? <ProjectOverview project={project} /> : "Project doesnt exist."}</Container>;
+  const router = useRouter();
+  const locale = (router.locale || "en") as Locale;
+  const breadcrumbs = [{ name: project ? project.title[locale] : "404", path: `/projects/${project?._id}` }];
+  return (
+    <>
+      <Box sx={{ mt: 5, ml: 2 }}>
+        <BreadCrumbs items={breadcrumbs} />
+      </Box>
+      <Container maxWidth="md">{project ? <ProjectOverview project={project} /> : "Project doesnt exist."}</Container>
+    </>
+  );
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {

@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import FilePresentIcon from "@mui/icons-material/FilePresent";
 import { FaCodeBranch } from "react-icons/fa";
 import ThemeSwitch from "../ThemeSwitch";
 import { Locale } from "@/interfaces/main";
@@ -83,7 +84,15 @@ const Navbar = (): JSX.Element => {
       router.push("/");
     }
   };
-
+  const t = {
+    en: {
+      cv: "CV / RESUME",
+    },
+    pl: {
+      cv: "CV",
+    },
+    default: {},
+  };
   return (
     <Paper elevation={4} sx={{ zIndex: 1100, position: "fixed", width: "100%", pl: 3, pr: 3 }} component="nav">
       {/* Mobile View */}
@@ -129,6 +138,22 @@ const Navbar = (): JSX.Element => {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
+
+              <MenuItem onClick={closeNavMenu} divider sx={{pb:2, pt:2}}>
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={"https://drive.google.com/file/d/13QfDmQj-MrpUZTZf55GkAetpfJgO9p-z/view?usp=sharing"}
+                >
+                  <Stack direction="row" spacing={1}>
+                  <FilePresentIcon />
+                  <Typography textAlign="center">
+                    {t[locale].cv}
+                  </Typography>
+                  </Stack>
+                </Link>
+              </MenuItem>
+
               <MenuItem onClick={closeNavMenu} divider>
                 <LocaleSwitch />
               </MenuItem>
@@ -214,7 +239,21 @@ const Navbar = (): JSX.Element => {
                 {page}
               </Button>
             ))}
-
+            <Stack direction="row" spacing={1} sx={{ ml: 1 }}>
+              <Divider orientation="vertical" flexItem />
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={"https://drive.google.com/file/d/13QfDmQj-MrpUZTZf55GkAetpfJgO9p-z/view?usp=sharing"}
+              >
+                <Button aria-label="menuAdminLg" aria-controls="menuAdminLg" aria-haspopup="true" color="inherit">
+                  <FilePresentIcon />
+                  <Typography textAlign="center" sx={{ ml: 1 }}>
+                    {t[locale].cv}
+                  </Typography>
+                </Button>
+              </Link>
+            </Stack>
             {/* Admin Menu */}
             {user ? (
               <Stack direction="row" sx={{ ml: 2 }} spacing={1}>

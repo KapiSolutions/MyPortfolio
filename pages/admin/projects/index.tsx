@@ -8,6 +8,7 @@ import type { Projects } from "@/schema/project";
 import Link from "next/link";
 import { connectDB, client } from "@/utils/mongodb";
 import BreadCrumbs from "@/components/BreadCrumbs";
+import { NextSeo } from "next-seo";
 
 type Props = {
   projects: Projects;
@@ -43,6 +44,8 @@ export default function AdminProjectsPage({ projects }: Props): JSX.Element {
   const breadcrumbs = [{ name: t[locale].h1, path: "/admin/projects" }];
   return (
     <>
+      <NextSeo title={`JK Portfolio | ${t[locale].h1}`} nofollow={true} />
+
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>

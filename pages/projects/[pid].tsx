@@ -7,6 +7,7 @@ import { ObjectId } from "mongodb";
 import { useRouter } from "next/router";
 import ProjectOverview from "@/components/ProjectOverview";
 import BreadCrumbs from "@/components/BreadCrumbs";
+import { NextSeo, ArticleJsonLd } from "next-seo";
 
 // Define types
 type Props = { project: Project | null };
@@ -17,6 +18,35 @@ export default function ProjectOverviewPage({ project }: Props): JSX.Element {
   const breadcrumbs = [{ name: project ? project.title[locale] : "404", path: `/projects/${project?._id}` }];
   return (
     <>
+      <NextSeo
+        title={`JK Portfolio | ${project?.title[locale]}`}
+        canonical={`https://www.brightlightgypsy.pl/${locale}`}
+        description={project?.description[locale]}
+        languageAlternates={[
+          {
+            hrefLang: "en",
+            href: `https://kapisolutions.vercel.app/en/projects/${project?._id}`,
+          },
+          {
+            hrefLang: "pl",
+            href: `https://kapisolutions.vercel.app/pl/projects/${project?._id}`,
+          },
+          {
+            hrefLang: "x-default",
+            href: `https://kapisolutions.vercel.app/projects/${project?._id}`,
+          },
+        ]}
+      />
+      <ArticleJsonLd
+        type="BlogPosting"
+        url={`https://kapisolutions.vercel.app/${locale}${router.asPath}`}
+        title={project ? project.title[locale] : "Title"}
+        images={[project ? project.image : ""]}
+        datePublished={project ? project.date : "2023-05-05T09:00:00+08:00"}
+        dateModified={project ? project.date : "2023-05-05T09:00:00+08:00"}
+        authorName="Jakub Kapturkiewicz"
+        description={project ? project.description[locale] : ""}
+      />
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>

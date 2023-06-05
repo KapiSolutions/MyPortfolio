@@ -2,13 +2,11 @@ import BreadCrumbs from "@/components/BreadCrumbs";
 import ProjectTemplate from "@/components/admin/projects/ProjectTemplate";
 import type { Locale } from "@/interfaces/main";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { UserProfile } from "@auth0/nextjs-auth0/client";
 import { Typography, Container, Box, useTheme, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 
-type ProfileProps = { user: UserProfile };
-
-export default function AdminNewProjectPage({ user }: ProfileProps): JSX.Element {
+export default function AdminNewProjectPage(): JSX.Element {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
   const theme = useTheme();
@@ -32,6 +30,8 @@ export default function AdminNewProjectPage({ user }: ProfileProps): JSX.Element
   ];
   return (
     <>
+      <NextSeo title={`JK Portfolio | ${t[locale].h1}`} nofollow={true} />
+
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>
@@ -45,16 +45,4 @@ export default function AdminNewProjectPage({ user }: ProfileProps): JSX.Element
   );
 }
 
-export const getServerSideProps = withPageAuthRequired({
-  // withPageAuthRequired checks if the session is authenticated, if not then redirect to Auth0 login page
-  async getServerSideProps(ctx) {
-    // const session = await getSession(ctx.req, ctx.res);
-
-    // custom props are augmented with the session user object
-    return {
-      props: {
-        // customProp: 'val',
-      },
-    };
-  },
-});
+export const getServerSideProps = withPageAuthRequired();

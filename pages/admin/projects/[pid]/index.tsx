@@ -7,6 +7,7 @@ import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 
 // Define types
 type Props = { project: Project | null };
@@ -35,6 +36,8 @@ export default function AdminNewProjectPage({ project }: Props): JSX.Element {
   ];
   return (
     <>
+      <NextSeo title={`JK Portfolio | ${t[locale].h1}`} nofollow={true} />
+
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>

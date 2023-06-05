@@ -79,7 +79,7 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
             src={project.image}
             alt={project.title[locale]}
             fill
-            style={{ objectFit: "cover", borderRadius: 4 }}
+            style={{ objectFit: "cover", borderRadius: 4, opacity: loading ? 0 : 1 }}
             sizes="(max-width: 600px) 90vw, (max-width: 900px) 50vw, 33vw"
           />
         </Box>

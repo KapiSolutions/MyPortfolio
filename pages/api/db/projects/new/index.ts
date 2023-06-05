@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import { connectDB, client } from "@/utils/mongodb";
-import configTemplate from "@/schema/project";
+import configTemplate from "@/utils/schema/project";
 
 async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   if (req.method === "POST") {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Container, Typography, Stack, Box, useTheme, useMediaQuery, Divider } from "@mui/material";
-import { Locale } from "@/interfaces/main";
+import { Locale } from "@/utils/interfaces/main";
 import sections from "./aboutMe.json";
 import Image from "next/image";
 import img1 from "@/public/img/aboutme-section/1.png";

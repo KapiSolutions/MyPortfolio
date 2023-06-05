@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import { Locale, BreadCrumbs } from "@/interfaces/main";
+import { Locale, BreadCrumbs } from "@/utils/interfaces/main";
 import Link from "next/link";
 
 type Props = {

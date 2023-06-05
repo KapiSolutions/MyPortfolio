@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { Box, Button, Typography, Stack, useTheme, useMediaQuery } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
 import Navbar from "./Navbar";
-import { Locale } from "@/interfaces/main";
+import { Locale } from "@/utils/interfaces/main";
 
 //Define Types:
 type Props = {

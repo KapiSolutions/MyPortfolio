@@ -1,8 +1,8 @@
 import ProjectTemplate from "@/components/admin/projects/ProjectTemplate";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { Typography, Box, Container, useTheme, useMediaQuery } from "@mui/material";
-import type { Project } from "@/schema/project";
-import type { Locale } from "@/interfaces/main";
+import type { Project } from "@/utils/schema/project";
+import type { Locale } from "@/utils/interfaces/main";
 import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
 import BreadCrumbs from "@/components/BreadCrumbs";

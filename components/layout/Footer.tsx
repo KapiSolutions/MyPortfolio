@@ -4,7 +4,7 @@ import { Container, Typography, Stack, Divider, useTheme, useMediaQuery } from "
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Locale } from "@/interfaces/main";
+import { Locale } from "@/utils/interfaces/main";
 //Define Types:
 type Props = {
   locale: Locale;

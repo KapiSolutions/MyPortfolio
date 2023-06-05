@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, Container, Stack } from "@mui/material";
 import ProjectPaper from "../../ProjectPaper";
-import type { Projects } from "@/schema/project";
+import type { Projects } from "@/utils/schema/project";
 import { useRouter } from "next/router";
-import type { Locale } from "@/interfaces/main";
+import type { Locale } from "@/utils/interfaces/main";
 
 //Define Types
 type Props = {

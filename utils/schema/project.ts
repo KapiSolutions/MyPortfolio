@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import type { Locale } from "@/interfaces/main";
+import type { Locale } from "@/utils/interfaces/main";
 
 const initValues = {
   title: {

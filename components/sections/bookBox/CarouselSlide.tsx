@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Box, Container, Typography, Button, Stack, useTheme, useMediaQuery } from "@mui/material";
-import { Locale } from "@/interfaces/main";
+import { Locale } from "@/utils/interfaces/main";
 import img from "../../public/img/bookbox-section/1.png";
 import Image from "next/image";
 import Link from "next/link";

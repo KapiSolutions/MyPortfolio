@@ -18,8 +18,8 @@ import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { Typography } from "@mui/material";
-import { Job } from "@/interfaces/carrier";
-import { Locale } from "@/interfaces/main";
+import { Job } from "@/utils/interfaces/carrier";
+import { Locale } from "@/utils/interfaces/main";
 
 //Define Types:
 type Props = {

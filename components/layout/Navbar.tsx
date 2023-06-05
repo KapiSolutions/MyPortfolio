@@ -7,7 +7,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import FilePresentIcon from "@mui/icons-material/FilePresent";
 import { FaCodeBranch } from "react-icons/fa";
 import ThemeSwitch from "../ThemeSwitch";
-import { Locale } from "@/interfaces/main";
+import { Locale } from "@/utils/interfaces/main";
 import { LocaleSwitch } from "../LocaleSwitch";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";

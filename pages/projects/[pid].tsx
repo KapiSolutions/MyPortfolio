@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, GetStaticPathsContext } from "next";
 import { Container, Box } from "@mui/material";
-import type { Locale } from "@/interfaces/main";
-import type { Project } from "@/schema/project";
+import type { Locale } from "@/utils/interfaces/main";
+import type { Project } from "@/utils/schema/project";
 import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
 import { useRouter } from "next/router";

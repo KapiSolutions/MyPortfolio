@@ -1,12 +1,12 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import { Box, Container, useTheme, useMediaQuery } from "@mui/material";
-import type { Projects } from "@/schema/project";
+import type { Projects } from "@/utils/schema/project";
 import MobileView from "./MobileView";
 import DesktopView from "./DesktopView";
 import TechCarousel from "./TechCarousel";
 import { useRouter } from "next/router";
-import { Locale } from "@/interfaces/main";
+import { Locale } from "@/utils/interfaces/main";
 
 //Define Types
 type Props = {

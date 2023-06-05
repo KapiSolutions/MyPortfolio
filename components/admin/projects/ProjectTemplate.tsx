@@ -19,9 +19,9 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar, VariantType } from "notistack";
 import axios from "axios";
-import configTemplate from "@/schema/project";
-import type { Locale } from "@/interfaces/main";
-import type { Project } from "@/schema/project";
+import configTemplate from "@/utils/schema/project";
+import type { Locale } from "@/utils/interfaces/main";
+import type { Project } from "@/utils/schema/project";
 import ProjectOverview from "@/components/ProjectOverview";
 // import { MuiFileInput } from "mui-file-input";
 

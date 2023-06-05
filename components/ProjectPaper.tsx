@@ -16,8 +16,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import getIcon from "@/utils/getIcon";
 //Define Types
-import type { Project } from "@/schema/project";
-import type { Locale } from "@/interfaces/main";
+import type { Project } from "@/utils/schema/project";
+import type { Locale } from "@/utils/interfaces/main";
 type Props = {
   project: Project | null;
 };

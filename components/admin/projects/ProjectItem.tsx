@@ -17,9 +17,9 @@ import {
   Backdrop,
   CircularProgress,
 } from "@mui/material";
-import type { Project } from "@/schema/project";
+import type { Project } from "@/utils/schema/project";
 import { useRouter } from "next/router";
-import { Locale } from "@/interfaces/main";
+import { Locale } from "@/utils/interfaces/main";
 import CloseIcon from "@mui/icons-material/Close";
 
 //Define Types

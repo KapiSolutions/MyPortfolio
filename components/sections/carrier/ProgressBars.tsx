@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, CircularProgress, Container, Stack, Typography } from "@mui/material";
-import { Locale } from "@/interfaces/main";
-import { Carrier } from "@/interfaces/carrier";
+import { Locale } from "@/utils/interfaces/main";
+import { Carrier } from "@/utils/interfaces/carrier";
 //Define Types:
 type Props = {
   locale: Locale;

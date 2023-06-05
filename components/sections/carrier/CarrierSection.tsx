@@ -1,8 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Container, Typography, useTheme, useMediaQuery, Box } from "@mui/material";
-import { Locale } from "@/interfaces/main";
-import { Carrier } from "@/interfaces/carrier";
+import { Locale } from "@/utils/interfaces/main";
+import { Carrier } from "@/utils/interfaces/carrier";
 import { Timeline } from "@mui/lab";
 import { ProgressBars } from "./ProgressBars";
 import { CarrierItem } from "./CarrierItem";

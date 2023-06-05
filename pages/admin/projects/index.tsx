@@ -3,8 +3,8 @@ import { Typography, Container, Stack, Grid, Divider, Box, Button, useTheme, use
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ProjectItem from "@/components/admin/projects/ProjectItem";
 import { useRouter } from "next/router";
-import type { Locale } from "@/interfaces/main";
-import type { Projects } from "@/schema/project";
+import type { Locale } from "@/utils/interfaces/main";
+import type { Projects } from "@/utils/schema/project";
 import Link from "next/link";
 import { connectDB, client } from "@/utils/mongodb";
 import BreadCrumbs from "@/components/BreadCrumbs";

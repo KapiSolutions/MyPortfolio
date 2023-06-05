@@ -1,6 +1,6 @@
 import BreadCrumbs from "@/components/BreadCrumbs";
 import ProjectTemplate from "@/components/admin/projects/ProjectTemplate";
-import type { Locale } from "@/interfaces/main";
+import type { Locale } from "@/utils/interfaces/main";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { Typography, Container, Box, useTheme, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";

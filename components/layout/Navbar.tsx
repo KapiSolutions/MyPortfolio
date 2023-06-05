@@ -290,7 +290,7 @@ const Navbar = (): JSX.Element => {
                   <MenuItem onClick={closeNavMenuLg} divider>
                     <Stack direction="row" alignItems="center" spacing={1}>
                       <SettingsIcon sx={{ fontSize: "medium" }} />
-                      <Link href="/admin/projects">
+                      <Link href="/admin/projects#main">
                         <Typography textAlign="center" component="span">
                           Projects
                         </Typography>

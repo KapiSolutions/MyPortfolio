@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React, { useEffect } from "react";
 import { GetStaticPropsContext } from "next";
 import { Stack, Box } from "@mui/material";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection";
@@ -9,12 +10,18 @@ import AboutMeSection from "@/components/sections/aboutMe/AboutMeSection";
 import { connectDB, client } from "@/utils/mongodb";
 import type { Projects } from "@/schema/project";
 import BreadCrumbs from "@/components/BreadCrumbs";
+import { useRouter } from "next/router";
 
 //
 type Props = {
   projects: Projects;
 };
 export default function Home({ projects }: Props) {
+  const router = useRouter();
+  useEffect(() => {
+    // Prefetch the project pages
+    router.prefetch("/projects/[pid]");
+  }, [router]);
   return (
     <>
       <Head>
@@ -23,9 +30,10 @@ export default function Home({ projects }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box sx={{ml: 2}}><BreadCrumbs items={null} /></Box>
+      <Box sx={{ ml: 2 }}>
+        <BreadCrumbs items={null} />
+      </Box>
       <Stack direction="column" spacing={3} justifyContent="center" alignItems="center">
-        
         <ProjectsSection projects={projects} />
         <BookBoxSection />
         <CarrierSection carrier={carrier} />

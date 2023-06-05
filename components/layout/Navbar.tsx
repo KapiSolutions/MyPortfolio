@@ -239,7 +239,7 @@ const Navbar = (): JSX.Element => {
                 {page}
               </Button>
             ))}
-            <Stack direction="row" spacing={1} sx={{ ml: 1 }}>
+            <Stack direction="row" alignItems="center" spacing={1} sx={{ ml: 1 }}>
               <Divider orientation="vertical" flexItem />
               <Link
                 target="_blank"
@@ -247,8 +247,8 @@ const Navbar = (): JSX.Element => {
                 href={"https://drive.google.com/file/d/13QfDmQj-MrpUZTZf55GkAetpfJgO9p-z/view?usp=sharing"}
               >
                 <Button aria-label="menuAdminLg" aria-controls="menuAdminLg" aria-haspopup="true" color="inherit">
-                  <FilePresentIcon />
-                  <Typography textAlign="center" sx={{ ml: 1 }}>
+                  <FilePresentIcon fontSize="small"/>
+                  <Typography textAlign="center" variant="body2" sx={{ ml: 1 }}>
                     {t[locale].cv}
                   </Typography>
                 </Button>

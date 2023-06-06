@@ -23,9 +23,11 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
   const t = {
     en: {
       h: "Carrier",
+      clickForDetails: "Click on the time line for details.",
     },
     pl: {
       h: "Kariera",
+      clickForDetails: "Kliknij w wybrany etap, aby zobaczyć szczegóły.",
     },
   };
 
@@ -38,10 +40,15 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
       </Container>
       <Timeline position="alternate" sx={{ p: 0 }}>
         {sortedCarrier.map((item, idx) => (
-          <CarrierItem key={idx} item={item} locale={locale} />
+          <CarrierItem key={idx} item={item} locale={locale} isMobile={isMobile} />
         ))}
       </Timeline>
 
+      <Box sx={{ margin: "auto", display: "flex", mt: 3 }}>
+        <Typography variant="body2" align="center" sx={{ margin: "auto" }}>
+          {t[locale].clickForDetails}
+        </Typography>
+      </Box>
       {/* Progress Bars */}
       <ProgressBars locale={locale} carrier={sortedCarrier} />
     </Box>

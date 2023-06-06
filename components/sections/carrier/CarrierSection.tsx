@@ -29,13 +29,14 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
       h: "Kariera",
       clickForDetails: "Kliknij w wybrany etap, aby zobaczyć szczegóły.",
     },
+    default: {},
   };
 
   return (
     <Box sx={{ width: "100%" }} name="carrierSection">
       <Container>
         <Typography variant="h2" sx={{ m: isMobile ? 2 : 0 }}>
-          {t[locale]?.h}
+          {t[locale].h}
         </Typography>
       </Container>
       <Timeline position="alternate" sx={{ p: 0 }}>

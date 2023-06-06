@@ -16,7 +16,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
   const [freProjects, setFreProjects] = useState(0); //Projects as Kapisolutions
   const [protProjects, setProtProjects] = useState(0); //Prototypes
   const themeState = useAppSelector((state) => state.device.theme);
-  const textColor = themeState === "light" ? "inherit" : "text.secondary"
+  const textColor = themeState === "light" ? "inherit" : "text.secondary";
   // Set projects quantity for the progress bars
   const getProjects = () => {
     let employee = 0;
@@ -94,11 +94,12 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
       freelancer: "KapiSolutions",
       prototypes: "Student",
     },
+    default: {},
   };
   return (
     <Container sx={{ mt: 5 }} name="carrierProjectsDone">
       <Typography variant="h6" align="center">
-        {t[locale]?.projects}
+        {t[locale].projects}
       </Typography>
       <Stack mt={3} direction="row" justifyContent="center" sx={{ flexWrap: "wrap", gap: 4 }}>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
@@ -122,7 +123,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color={textColor}>
-            {t[locale]?.employee}
+            {t[locale].employee}
           </Typography>
         </Stack>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
@@ -146,7 +147,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color={textColor}>
-            {t[locale]?.freelancer}
+            {t[locale].freelancer}
           </Typography>
         </Stack>
 
@@ -171,7 +172,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color={textColor}>
-            {t[locale]?.prototypes}
+            {t[locale].prototypes}
           </Typography>
         </Stack>
       </Stack>

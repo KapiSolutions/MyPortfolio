@@ -72,6 +72,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
       links: "Linki:",
       close: "Zamknij",
     },
+    default: {},
   };
   const getDotItem = (type: string) => {
     switch (type) {
@@ -117,7 +118,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
         return `${start} - ${end}`;
       }
     } else {
-      return `${start} - ${t[locale]?.now}`;
+      return `${start} - ${t[locale].now}`;
     }
   };
   return (

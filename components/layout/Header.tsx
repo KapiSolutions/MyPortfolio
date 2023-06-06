@@ -36,7 +36,7 @@ const Header = ({ locale }: Props): JSX.Element => {
       <Navbar />
       {/* , bottom: 0 */}
       {isMobile ? (
-        <Box sx={{ opacity: 0.4, zIndex: -1, position: "absolute", maxHeight:"110vh", overflow: "hidden"  }}>
+        <Box sx={{ opacity: 0.4, zIndex: -1, position: "absolute", maxWidth:"100vw", maxHeight:"110vh", overflow: "hidden"  }}>
           {theme.palette.mode === "light" && (
             <Lottie
               animationData={headerLight}

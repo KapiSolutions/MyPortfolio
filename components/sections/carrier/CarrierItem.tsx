@@ -189,7 +189,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
               </Typography>
               <DialogContentText component="span">
                 <List sx={{ listStyleType: "disc", pl: 4 }}>
-                  {item.responsibilities[locale].length > 0 &&
+                  {item.responsibilities[locale]?.length > 0 &&
                     item.responsibilities[locale].map((res, idx) => (
                       <ListItem key={idx} sx={{ display: "list-item" }}>
                         {res}

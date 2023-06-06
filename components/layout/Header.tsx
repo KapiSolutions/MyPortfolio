@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/layout/Header.module.scss";
 import { useRouter } from "next/router";
-import { Box, Button, Typography, Stack, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Button, Typography, Stack, Container, useTheme, useMediaQuery } from "@mui/material";
 import Navbar from "./Navbar";
 import { Locale } from "@/utils/interfaces/main";
 import Lottie from "lottie-react";
@@ -36,7 +36,7 @@ const Header = ({ locale }: Props): JSX.Element => {
       <Navbar />
       {/* , bottom: 0 */}
       {isMobile ? (
-        <Box sx={{ opacity: 0.3, zIndex: -1, position: "absolute", overflow: "hidden" }}>
+        <Box sx={{ opacity: 0.4, zIndex: -1, position: "absolute", overflow: "hidden" }}>
           {theme.palette.mode === "light" && (
             <Lottie
               animationData={headerLight}
@@ -46,7 +46,7 @@ const Header = ({ locale }: Props): JSX.Element => {
           {theme.palette.mode === "dark" && (
             <Lottie
               animationData={headerDark}
-              style={{ position: "relative", right: "450px", bottom: "100px", width: "300%", height: "300%" }}
+              style={{ position: "relative", right: "370px", bottom: "100px", width: "280%", height: "280%" }}
             />
           )}
         </Box>
@@ -58,41 +58,42 @@ const Header = ({ locale }: Props): JSX.Element => {
           {theme.palette.mode === "dark" && (
             <Lottie
               animationData={headerDark}
-              style={{ position: "relative", right: "50px", bottom: "400px", width: "110vw" }}
+              style={{ position: "relative", bottom: "400px", width: "100vw", minWidth: "1200px" }}
             />
           )}
         </Box>
       )}
-
-      <Stack spacing={isMobile ? 3 : 6} className={styles.parallaxContent}>
-        <Typography
-          variant={isMobile ? "h3" : "h2"}
-          component="h1"
-          sx={{ textTransform: "uppercase", fontWeight: "bold" }}
-        >
-          Jakub Kapturkiewicz
-        </Typography>
-        <Typography variant={isMobile ? "body1" : "h6"} mb={2}>
-          {t[locale]?.p}
-        </Typography>
-        <Box>
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            sx={{ mt: isMobile ? 2 : 0 }}
-            onClick={() => {
-              if (router.route === "/") {
-                document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
-              } else {
-                router.push("/#main");
-              }
-            }}
+      <Container>
+        <Stack spacing={isMobile ? 3 : 6} className={styles.parallaxContent}>
+          <Typography
+            variant="h2"
+            component="h1"
+            sx={{ textTransform: "uppercase", fontWeight: "bold", fontSize: isMobile ? "11vw" : "auto" }}
           >
-            {t[locale].mainButton}
-          </Button>
-        </Box>
-      </Stack>
+            Jakub Kapturkiewicz
+          </Typography>
+          <Typography variant={isMobile ? "body1" : "h6"} mb={2}>
+            {t[locale]?.p}
+          </Typography>
+          <Box>
+            <Button
+              variant="contained"
+              size="large"
+              color="primary"
+              sx={{ mt: isMobile ? 2 : 0 }}
+              onClick={() => {
+                if (router.route === "/") {
+                  document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
+                } else {
+                  router.push("/#main");
+                }
+              }}
+            >
+              {t[locale].mainButton}
+            </Button>
+          </Box>
+        </Stack>
+      </Container>
     </Box>
   );
 };

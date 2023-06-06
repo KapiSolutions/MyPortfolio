@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, CircularProgress, Container, Stack, Typography } from "@mui/material";
 import { Locale } from "@/utils/interfaces/main";
 import { Carrier } from "@/utils/interfaces/carrier";
+import { useAppSelector } from "@/store/hooks";
 //Define Types:
 type Props = {
   locale: Locale;
@@ -12,9 +13,10 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [empProjects, setEmpProjects] = useState(0); //Projects as Employee
-  const [freProjects, setFreProjects] = useState(0); //Projects as Freelancer
+  const [freProjects, setFreProjects] = useState(0); //Projects as Kapisolutions
   const [protProjects, setProtProjects] = useState(0); //Prototypes
-
+  const themeState = useAppSelector((state) => state.device.theme);
+  const textColor = themeState === "light" ? "inherit" : "text.secondary"
   // Set projects quantity for the progress bars
   const getProjects = () => {
     let employee = 0;
@@ -82,15 +84,15 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
   const t = {
     en: {
       projects: "Projects Done:",
-      employee: "As Employee",
-      freelancer: "As Freelancer",
-      prototypes: "As Student",
+      employee: "Employee",
+      freelancer: "KapiSolutions",
+      prototypes: "Student",
     },
     pl: {
       projects: "Ukończone Projekty:",
-      employee: "Jako Pracownik",
-      freelancer: "Jako Freelancer",
-      prototypes: "Jako Student",
+      employee: "Pracownik",
+      freelancer: "KapiSolutions",
+      prototypes: "Student",
     },
   };
   return (
@@ -114,12 +116,12 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
                 justifyContent: "center",
               }}
             >
-              <Typography variant="body1" component="div" color="text.secondary">
+              <Typography variant="body1" component="div" color={textColor}>
                 {empProjects}
               </Typography>
             </Box>
           </Box>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color={textColor}>
             {t[locale]?.employee}
           </Typography>
         </Stack>
@@ -138,12 +140,12 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
                 justifyContent: "center",
               }}
             >
-              <Typography variant="body1" component="div" color="text.secondary">
+              <Typography variant="body1" component="div" color={textColor}>
                 {freProjects}
               </Typography>
             </Box>
           </Box>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color={textColor}>
             {t[locale]?.freelancer}
           </Typography>
         </Stack>
@@ -163,12 +165,12 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
                 justifyContent: "center",
               }}
             >
-              <Typography variant="body1" component="div" color="text.secondary">
+              <Typography variant="body1" component="div" color={textColor}>
                 {protProjects}
               </Typography>
             </Box>
           </Box>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color={textColor}>
             {t[locale]?.prototypes}
           </Typography>
         </Stack>

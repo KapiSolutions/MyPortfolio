@@ -7,8 +7,8 @@
       "pl": "KapiSolutions"
     },
     "as": {
-      "en": "Freelancer - FullStack Dev & Mechatronic Systems Engineer",
-      "pl": "Freelancer - FullStack Dev & Inżynier Systemów Mechatronicznych"
+      "en": "CEO / FullStack Dev & Mechatronic Systems Engineer",
+      "pl": "CEO / FullStack Dev & Inżynier Systemów Mechatronicznych"
     },
     "type": "freelancer",
     "companyDescription": {
@@ -16,17 +16,39 @@
       "pl": "opis firmy"
     },
     "jobDescription": {
-      "en": "jobe description",
-      "pl": "opis stanowiska"
+      "en": "",
+      "pl": ""
     },
     "companyImage": "",
     "projectsDone": 6,
     "projectExamples": [],
     "responsibilities": {
-      "en": [],
-      "pl": []
+      "en": [
+        "Software development - Full Stack (JavaScript, TypeScript, Php, Html, Css, Sass, Node.js, Express.js, Next.js, React with Context / Redux Toolkit / Zustand, HTTP/S, REST, Socket.io, OAuth 2.0, SQL (mySQL), noSQL (MongoDB, Firebase), Bootstrap, MUI Components, GIT, NPM, UI / UX, Photoshop, Figma, Canva, Fusion360)",
+        "Operating and programming Raspberry using Python, Node.js and JavaScript",
+        "Electric and electronic circuits design and fabrication",
+        "Construction design 3D/2D - Fusion360",
+        "Manufacturing (3D printing, Welding - MIG, Plasma cutting, Varnishing, operation of other hand and electric tools)",
+        "Creating technical and operational documentation of the products",
+        "Preparation of contracts and other formal documents",
+        "Contact with the clients",
+        "Staff training",
+        "Accountancy"
+      ],
+      "pl": [
+        "Rozwój oprogramowania - Full Stack (JavaScript, TypeScript, Php, Html, Css, Sass, Node.js, Express.js, Next.js, React with Context / Redux Toolkit / Zustand, HTTP/S, REST, Socket.io, OAuth 2.0, SQL (mySQL), noSQL (MongoDB, Firebase), Bootstrap, MUI Components, GIT, NPM, UI / UX, Photoshop, Figma, Canva, Fusion360)",
+        "Obsługa i programowanie Raspberry Pi przy użyciu Python, Node.js i JavaScript",
+        "Projektowanie i wykonywanie obwodów elektrycznych i elektronicznych",
+        "Modelowanie 3D/2D - Fusion360",
+        "Produkcja (druk 3D, Spawanie - MIG, Cięcie plazmowe, Lakierowanie, obsługa pozostałych narzędzi ręcznych i elektrycznych)",
+        "Tworzenie dokumentacji technicznej i eksploatacyjnej wyrobów",
+        "Przygotowywanie umów i innych dokumentów formalnych",
+        "Kontakt z klientami",
+        "Szkolenie personelu",
+        "Księgowość"
+      ]
     },
-    "technology": [],
+    "links": [],
     "images": [],
     "dateStart": "2020",
     "dateEnd": "",
@@ -36,9 +58,9 @@
     "id": "1d1d122cs",
     "position": 5,
     "companyName": {
-        "en": "CSN - Stanel",
-        "pl": "CSN - Stanel"
-      },
+      "en": "CSN - Stanel",
+      "pl": "CSN - Stanel"
+    },
     "as": {
       "en": "Automation systems engineer",
       "pl": "Inżynier systemów automatyki"
@@ -49,17 +71,37 @@
       "pl": "opis firmy"
     },
     "jobDescription": {
-      "en": "jobe description",
-      "pl": "opis stanowiska"
+      "en": "",
+      "pl": ""
     },
     "companyImage": "",
     "projectsDone": 25,
     "projectExamples": [],
     "responsibilities": {
-      "en": [],
-      "pl": []
+      "en": [
+        "Writing programms in LAD, FBD and SCL for the Siemens PLC (TIA Portal, Step7, MicroWin), operating with Siemens and Pro-Face HMI",
+        "Operating with Cognex and Keyence Vision systems",
+        "Implementation and programming of industrial security systems (Pilz, Sick)",
+        "Operating with I2C, SPI, UART, ProfiBus, ProfiNet, Modbus, TCP/IP communication buses and networks",
+        "Operating with pneumatic sensors, actuators, single valves and integrated valve terminals (FESTO)",
+        "Operation with Kistler measurement and acquisition systems (maXYmos)",
+        "Design, creation, modernization and commissioning of machines and industrial lines (part of automation)",
+        "Creating electrical diagrams (WSCAD), and electrical fabrication",
+        "Project, fabrication, run up and administration of the access system in the new location of the company"
+      ],
+      "pl": [
+        "Pisanie programów w językach LAD, FBD i SCL dla sterowników PLC Siemens (TIA Portal, Step7, MicroWin), integracja z panelami HMI (Siemens, Pro-Face)",
+        "Obsługa i integracja systemów wizyjnych Cognex i Keyence",
+        "Wdrażanie i programowanie systemów bezpieczeństwa (Pilz, Sick)",
+        "Praca z magistralami komunikacyjnymi i sieciami I2C, SPI, UART, ProfiBus, ProfiNet, Modbus, TCP/IP",
+        "Praca z czujnikami pneumatycznymi, siłownikami, pojedynczymi zaworami i zintegrowanymi wyspami zaworowymi (FESTO)",
+        "Praca z systemami pomiarowymi i akwizycji danych Kistler (maXYmos)",
+        "Projektowanie, tworzenie, modernizacja i uruchamianie maszyn i linii przemysłowych (zakres automatyki)",
+        "Tworzenie schematów elektrycznych (WSCAD) oraz prefabrykacja elektryczna",
+        "Stworzenie, uruchomienie i administracja systemem dostępu w nowej lokalizacji firmy"
+      ]
     },
-    "technology": [],
+    "links": [],
     "images": [],
     "dateStart": "2017",
     "dateEnd": "2019",
@@ -69,9 +111,9 @@
     "id": "1d1d122m",
     "position": 3,
     "companyName": {
-        "en": "Monit - Shm",
-        "pl": "Monit - Shm"
-      },
+      "en": "Monit - Shm",
+      "pl": "Monit - Shm"
+    },
     "as": {
       "en": "Automation systems engineer",
       "pl": "Inżynier systemów automatyki"
@@ -82,17 +124,33 @@
       "pl": "opis firmy"
     },
     "jobDescription": {
-      "en": "jobe description",
-      "pl": "opis stanowiska"
+      "en": "",
+      "pl": ""
     },
     "companyImage": "",
     "projectsDone": 7,
     "projectExamples": [],
     "responsibilities": {
-      "en": [],
-      "pl": []
+      "en": [
+        "Writing programms in LAD/FBD for the PLC (Fatek, Mitsubishi) and operating with HMI (Weintek)",
+        "Writing programms in C++ for the Arduino controllers",
+        "Design, creation, and commissioning of devices, machines and industrial lines (part of automation)",
+        "Creating electrical diagrams (EPlan, PC SCHEMATIC), electrical fabrication and measurements according to the applicable standards (Sonel MPI-520)",
+        "Creating electronic diagrams, designing PCBs and electronic fabrication",
+        "Component selection and costs estimating. Writing production documentation of product",
+        "Staff training"
+      ],
+      "pl": [
+        "Programowanie w LAD/FBD sterowników PLC (Fatek, Mitsubishi) oraz obsługa HMI (Weintek)",
+        "Pisanie programów w C++ dla kontrolerów Arduino",
+        "Projektowanie, tworzenie i uruchamianie urządzeń, maszyn i linii przemysłowych (zakres automatyki)",
+        "Tworzenie schematów elektrycznych (EPlan, PC SCHEMATIC), prefabrykacja elektryczna i pomiary zgodnie z obowiązującymi normami (Sonel MPI-520)",
+        "Tworzenie schematów elektronicznych, projektowanie obwodów drukowanych PCB i prefabrykacja elektroniczna",
+        "Dobór komponentów i kosztorysowanie. Pisanie dokumentacji techniczno ruchowych(zakres automatyki)",
+        "Szkolenie personelu"
+      ]
     },
-    "technology": [],
+    "links": [],
     "images": [],
     "dateStart": "2016",
     "dateEnd": "2017",
@@ -102,11 +160,11 @@
     "id": "1d1d122mp",
     "position": 2,
     "companyName": {
-        "en": "Monit - Shm",
-        "pl": "Monit - Shm"
-      },
+      "en": "Monit - Shm",
+      "pl": "Monit - Shm"
+    },
     "as": {
-      "en": "Practice",
+      "en": "Trainee",
       "pl": "Praktykant"
     },
     "type": "practice",
@@ -115,8 +173,8 @@
       "pl": "opis firmy"
     },
     "jobDescription": {
-      "en": "jobe description",
-      "pl": "opis stanowiska"
+      "en": "Implementation of a work station for non-destructive visual examination of objects using the laser triangulation method. (Electric, safety and automation design and fabrication, wtiting code in LAD/FBD for the PLC controller, operating with Servo motor, HMI and vision system)",
+      "pl": "Wykonanie stanowiska roboczego do nieniszczących badań obiektów metodą triangulacji laserowej. (Projekt i prefabrykacja instalacji elektrycznej, bezpieczeństwa i automatyki, oprogramowanie sterownika PLC w języku FBD/LAD, integracja serwonapędu, interfejsu HMI oraz systemu wizyjnego)"
     },
     "companyImage": "",
     "projectsDone": 1,
@@ -125,7 +183,7 @@
       "en": [],
       "pl": []
     },
-    "technology": [],
+    "links": [],
     "images": [],
     "dateStart": "2016",
     "dateEnd": "2016",
@@ -135,11 +193,11 @@
     "id": "1d1d122a",
     "position": 0,
     "companyName": {
-        "en": "Synthos S.A",
-        "pl": "Synthos S.A"
-      },
+      "en": "Synthos S.A",
+      "pl": "Synthos S.A"
+    },
     "as": {
-      "en": "Practice",
+      "en": "Trainee",
       "pl": "Praktykant"
     },
     "type": "practice",
@@ -148,8 +206,8 @@
       "pl": "opis firmy"
     },
     "jobDescription": {
-      "en": "jobe description",
-      "pl": "opis stanowiska"
+      "en": "Replacement and installation of pressure transmitters and their calibration using the HART protocol. Calculations and setting of PID regulators in order to optimize the operation of technological valves. Geting knowledge about the general principles of industrial automation on the example of individual production departments in Synthos.",
+      "pl": "Wymiana i montaż przetworników ciśnienia oraz ich kalibracja z wykorzystaniem protokołu HART. Obliczenia i nastawy regulatorów PID w celu optymalizacji pracy zaworów technologicznych. Zapoznanie się z ogólnymi zasadami automatyki przemysłowej na przykładzie poszczególnych działów produkcyjnych w Synthos."
     },
     "companyImage": "",
     "projectsDone": 1,
@@ -158,7 +216,7 @@
       "en": [],
       "pl": []
     },
-    "technology": [],
+    "links": [],
     "images": [],
     "dateStart": "2014",
     "dateEnd": "2014",
@@ -168,12 +226,12 @@
     "id": "1d1d122agh",
     "position": 4,
     "companyName": {
-        "en": "Master of Engineering degree",
-        "pl": "Magister Inżynier"
-      },
+      "en": "Master of Engineering",
+      "pl": "Magister Inżynier"
+    },
     "as": {
-      "en": "At Mechatronic Engineering on AGH in Cracow",
-      "pl": "Inżynieria Mechatroniczna na AGH w Krakowie"
+      "en": "Mechatronic Engineering - AGH in Cracow",
+      "pl": "Inżynieria Mechatroniczna - AGH w Krakowie"
     },
     "type": "study",
     "companyDescription": {
@@ -181,17 +239,17 @@
       "pl": "opis firmy"
     },
     "jobDescription": {
-      "en": "jobe description",
-      "pl": "opis stanowiska"
+      "en": "Design, fabrication and implementation of a system for monitoring human gait parameters. The idea behind the device was to combine the advantages of research conducted using inertial acceleration sensors and resistive pressure sensors. Parameters that can be measured thanks to the sensors used include: foot pressure distribution, stride length and rhythm, and speed and trajectory. The created system was supposed to be easy to use and convenient to use, so it was decided to transmit data wirelessly from the measuring system to a computer with a preloaded interface application. The measurement system was based on the Arduino Nano platform, the HC-06 Bluetooth module, the GY-521 three-axis accelerometer and gyroscope module, as well as the SEN-09375 resistance sensors. The interface application was created based on the Processing programming environment. The made human gait monitor works and generates highly repeatable and accurate results.",
+      "pl": "Zaprojektowanie oraz wykonanie układu monitorującego parametry chodu człowieka. Ideą tworzonego urządzenia było połączenie zalet badań przeprowadzanych przy użyciu inercyjnych sensorów przyśpieszeń oraz rezystancyjnych czujników nacisku. Parametry jakie mogą być zmierzone dzięki zastosowanym sensorom to m.in. rozkład nacisku stóp, długość i rytm kroków oraz prędkość i tor ruchu. Stworzony układ miał być prosty w obsłudze oraz wygodny w użyciu, dla tego zdecydowano się na bezprzewodową transmisję danych z układu pomiarowego na komputer z wgraną aplikacją interfejsu. Układ pomiarowy oparto o platformę Arduino Nano, moduł Bluetooth HC-06, moduł trój osiowego akcelerometru oraz żyroskopu GY-521, a także czujniki rezystancyjne SEN- 09375. Aplikację interfejsu stworzono w oparciu o środowisko programistyczne Processing. Wykonany monitor parametrów chodu człowieka działa i generuje wysoce powtarzalne i dokładne wyniki."
     },
     "companyImage": "",
-    "projectsDone": 1,
+    "projectsDone": 2,
     "projectExamples": [],
     "responsibilities": {
       "en": [],
       "pl": []
     },
-    "technology": [],
+    "links": [],
     "images": [],
     "dateStart": "2017",
     "dateEnd": "2017",
@@ -201,12 +259,12 @@
     "id": "1d1d122apk",
     "position": 1,
     "companyName": {
-        "en": "Engineer's degree",
-        "pl": "Inżynier"
-      },
+      "en": "Bachelor of Engineering",
+      "pl": "Inżynier"
+    },
     "as": {
-      "en": "At Automation and Robotics on PK in Cracow",
-      "pl": "Automatyka i Robotyka na PK w Krakowie"
+      "en": "Automation and Robotics - PK in Cracow",
+      "pl": "Automatyka i Robotyka - PK w Krakowie"
     },
     "type": "study",
     "companyDescription": {
@@ -214,8 +272,8 @@
       "pl": "opis firmy"
     },
     "jobDescription": {
-      "en": "jobe description",
-      "pl": "opis stanowiska"
+      "en": "Creation of a combustion process monitor based on the rotational speed of the crankshaft in a Honda 1.4l engine. The scope of work included the selection of appropriate boundary parameters conditioning the operation of the monitor, the selection of the appropriate decision-making strategy defining the behavior of the system depending on the collected data, and the physical construction of the device and its further implementation. An important aspect of the work was to create a clear signaling of possible errors and to display important information, such as the current rotational speed of the engine shaft and the status of the monitor. The combustion process monitor was made using an Arduino microcontroller, a Hall sensor and other necessary electronic components. The project has been completed and is still operating at the Faculty of Mechanical Engineering of the Cracow University of links (PK).",
+      "pl": "Stworzenie monitora procesu spalania na bazie prędkości obrotowej wału korbowego w silniku Hondy 1.4l. Zakres pracy obejmował dobranie odpowiednich parametrów granicznych warunkujących działanie monitora, wybór właściwej strategii decyzyjnej definiującej zachowanie układu w zależności od zebranych danych oraz fizyczne wykonanie urządzenia i jego dalsza implementacja. Ważnym aspektem pracy było stworzenie przejrzystej sygnalizacji o ewentualnych błędach oraz wyświetlenie istotnych informacji, takich jak np. aktualna prędkość obrotowa wału silnika oraz stan monitora. Monitor procesu spalania wykonano przy użyciu mikrokontrolera Arduino, czujnika Hall'a oraz pozostałych niezbędnych elementów elektronicznych. Projekt został zakończony i działa do dziś na wydziale Mechanicznym Politechniki Krakowskiej."
     },
     "companyImage": "",
     "projectsDone": 1,
@@ -224,7 +282,7 @@
       "en": [],
       "pl": []
     },
-    "technology": [],
+    "links": [],
     "images": [],
     "dateStart": "2015",
     "dateEnd": "2015",

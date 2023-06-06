@@ -28,6 +28,7 @@ const Header = ({ locale }: Props): JSX.Element => {
       p: "Full-Stack Developer & Mechatronic Systems Engineer",
       mainButton: "Pokaż projekty",
     },
+    default: {},
   };
 
   return (
@@ -50,18 +51,27 @@ const Header = ({ locale }: Props): JSX.Element => {
           )}
         </Box>
       ) : (
-        <Box sx={{ opacity: 0.3, zIndex: -1, position: "absolute"}}>
+        <Box sx={{ opacity: 0.3, zIndex: -1, position: "absolute" }}>
           {theme.palette.mode === "light" && (
             <Lottie animationData={headerLight} style={{ position: "relative", bottom: "100px" }} />
           )}
           {theme.palette.mode === "dark" && (
-            <Lottie animationData={headerDark} style={{ position: "relative", right: "50px", bottom: "400px", width: "110vw" }} />
+            <Lottie
+              animationData={headerDark}
+              style={{ position: "relative", right: "50px", bottom: "400px", width: "110vw" }}
+            />
           )}
         </Box>
       )}
 
       <Stack spacing={isMobile ? 3 : 6} className={styles.parallaxContent}>
-        <Typography variant={isMobile ? "h3" : "h2"} component="h1" sx={{textTransform: "uppercase", fontWeight: "bold"}}>Jakub Kapturkiewicz</Typography>
+        <Typography
+          variant={isMobile ? "h3" : "h2"}
+          component="h1"
+          sx={{ textTransform: "uppercase", fontWeight: "bold" }}
+        >
+          Jakub Kapturkiewicz
+        </Typography>
         <Typography variant={isMobile ? "body1" : "h6"} mb={2}>
           {t[locale]?.p}
         </Typography>

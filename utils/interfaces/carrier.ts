@@ -2,6 +2,7 @@ type Lang = {
   en: string | Array<string>;
   pl: string | Array<string>;
 };
+export type Locale = keyof Lang;
 export interface Job {
   id: string;
   position: number;
@@ -13,8 +14,8 @@ export interface Job {
   companyImage: string;
   projectsDone: number;
   projectExamples: Array<string>;
-  responsibilities: Lang;
-  technology: Array<string>;
+  responsibilities: {en: Array<string>, pl: Array<string>};
+  links: Array<string>;
   images: Array<string>;
   dateStart: string;
   dateEnd: string;

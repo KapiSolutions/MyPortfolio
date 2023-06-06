@@ -94,7 +94,20 @@ const Navbar = (): JSX.Element => {
     default: {},
   };
   return (
-    <Paper elevation={4} sx={{ zIndex: 1100, position: "fixed", width: "100%", pl: 3, pr: 3 }} component="nav">
+    <Paper
+      elevation={1}
+      sx={{
+        zIndex: 1000,
+        position: "fixed",
+        width: "100%",
+        pl: 3,
+        pr: 3,
+        borderRadius: 0,
+        backgroundColor: "background.nav",
+        backdropFilter: "blur(16px) saturate(180%)",
+      }}
+      component="nav"
+    >
       {/* Mobile View */}
       {isMobile ? (
         <Stack direction="row" alignItems="center" sx={{ width: "100%", pt: 1, pb: 1 }}>
@@ -124,7 +137,10 @@ const Navbar = (): JSX.Element => {
               open={Boolean(anchorElNav)}
               onClose={closeNavMenu}
               disableScrollLock={true}
-              sx={{ transform: "translateY(12px) translateX(-20px)" }}
+              sx={{
+                transform: "translateY(12px) translateX(-20px)",
+                "& .MuiMenu-paper": { backgroundColor: "background.nav", backdropFilter: "blur(24px)" },
+              }}
             >
               {pages[locale]?.map((page, idx) => (
                 <MenuItem
@@ -139,17 +155,15 @@ const Navbar = (): JSX.Element => {
                 </MenuItem>
               ))}
 
-              <MenuItem onClick={closeNavMenu} divider sx={{pb:2, pt:2}}>
+              <MenuItem onClick={closeNavMenu} divider sx={{ pb: 2, pt: 2 }}>
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
                   href={"https://drive.google.com/file/d/13QfDmQj-MrpUZTZf55GkAetpfJgO9p-z/view?usp=sharing"}
                 >
                   <Stack direction="row" spacing={1}>
-                  <FilePresentIcon />
-                  <Typography textAlign="center">
-                    {t[locale].cv}
-                  </Typography>
+                    <FilePresentIcon />
+                    <Typography textAlign="center">{t[locale].cv}</Typography>
                   </Stack>
                 </Link>
               </MenuItem>
@@ -247,7 +261,7 @@ const Navbar = (): JSX.Element => {
                 href={"https://drive.google.com/file/d/13QfDmQj-MrpUZTZf55GkAetpfJgO9p-z/view?usp=sharing"}
               >
                 <Button aria-label="menuAdminLg" aria-controls="menuAdminLg" aria-haspopup="true" color="inherit">
-                  <FilePresentIcon fontSize="small"/>
+                  <FilePresentIcon fontSize="small" />
                   <Typography textAlign="center" variant="body2" sx={{ ml: 1 }}>
                     {t[locale].cv}
                   </Typography>

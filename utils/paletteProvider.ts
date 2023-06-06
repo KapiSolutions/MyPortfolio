@@ -10,32 +10,29 @@ const paletteProvider = (mode: PaletteMode) => ({
     ...(mode === "light"
       ? {
           // palette values for light mode
-          // primary: { main: "#90caf9" }, //buttons
           divider: "rgba(0, 0, 0, 0.12)",
           background: {
-            default: "#fff",
+            default: "#fafafa",
             paper: "#fff",
+            nav: " rgba(255, 255, 255, 0.75)",
+          },
+          primary: {
+            main: "#121212",
+            dark: "#000000",
           },
           text: {
             primary: "rgba(0, 0, 0, 0.87)",
             secondary: "rgba(0, 0, 0, 0.6)",
             disabled: "rgba(0, 0, 0, 0.38)",
           },
-          // action: {
-          //   active: "rgba(0, 0, 0, 0.54)",
-          //   hover: "rgba(0, 0, 0, 0.04)",
-          //   selected: "rgba(0, 0, 0, 0.08)",
-          //   disabled: "rgba(0, 0, 0, 0.26)",
-          //   disabledBackground: "rgba(0, 0, 0, 0.12)",
-          // }
         }
       : {
           // palette values for dark mode
-          // primary: { main: "#90caf9" },
           divider: "rgba(255, 255, 255, 0.12)",
           background: {
             default: "#121212",
             paper: "#121212",
+            nav: "rgba(18, 18, 18, 0.75)",
           },
           text: {
             primary: "#fff",

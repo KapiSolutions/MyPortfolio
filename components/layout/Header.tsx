@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import { Locale } from "@/utils/interfaces/main";
 import Lottie from "lottie-react";
 import headerDark from "@/public/lotties/headerDark.json";
-import headerLight from "@/public/lotties/headerLight.json"; //Mobile dark?
+import headerLight from "@/public/lotties/headerLight.json"; 
 
 //Define Types:
 type Props = {
@@ -36,7 +36,7 @@ const Header = ({ locale }: Props): JSX.Element => {
       <Navbar />
       {/* , bottom: 0 */}
       {isMobile ? (
-        <Box sx={{ opacity: 0.4, zIndex: -1, position: "absolute", overflow: "hidden" }}>
+        <Box sx={{ opacity: 0.4, zIndex: -1, position: "absolute", maxHeight:"110vh", overflow: "hidden"  }}>
           {theme.palette.mode === "light" && (
             <Lottie
               animationData={headerLight}
@@ -46,19 +46,19 @@ const Header = ({ locale }: Props): JSX.Element => {
           {theme.palette.mode === "dark" && (
             <Lottie
               animationData={headerDark}
-              style={{ position: "relative", right: "370px", bottom: "100px", width: "280%", height: "280%" }}
+              style={{ position: "relative",right: "200px", bottom: "00px", width: "1000px"}}
             />
           )}
         </Box>
       ) : (
-        <Box sx={{ opacity: 0.3, zIndex: -1, position: "absolute" }}>
+        <Box sx={{ opacity: 0.3, zIndex: -1, position: "absolute", maxHeight:"100vh", overflow: "hidden" }}>
           {theme.palette.mode === "light" && (
             <Lottie animationData={headerLight} style={{ position: "relative", bottom: "100px" }} />
           )}
           {theme.palette.mode === "dark" && (
             <Lottie
               animationData={headerDark}
-              style={{ position: "relative", bottom: "400px", width: "100vw", minWidth: "1200px" }}
+              style={{ position: "relative", bottom: "100px", minWidth: "1100px", width: "100%"}}
             />
           )}
         </Box>

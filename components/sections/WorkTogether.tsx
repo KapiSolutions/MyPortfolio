@@ -20,9 +20,13 @@ const WorkTogether = (): JSX.Element => {
       h1: "Zapraszam do współpracy",
       p: "Skontaktuj się poprzez",
     },
+    default: {},
   };
   const gradient = {
-    backgroundImage: theme.palette.mode === "light" ? "linear-gradient(45deg, #0a0a0a, #ffffff)" : "linear-gradient(45deg, #ffffff, #0a0a0a)",
+    backgroundImage:
+      theme.palette.mode === "light"
+        ? "linear-gradient(45deg, #0a0a0a, #ffffff)"
+        : "linear-gradient(45deg, #ffffff, #0a0a0a)",
     backgroundSize: "150%",
     backgroundRepeat: "repeat",
     WebkitBackgroundClip: "text",
@@ -46,7 +50,7 @@ const WorkTogether = (): JSX.Element => {
             {t[locale].p}
           </Typography>
           <Link href="mailto:biuro@kapisolutions.pl">
-            <Typography variant="h5" sx={{ }}>
+            <Typography variant="h5" sx={{}}>
               biuro@kapisolutions.pl
             </Typography>
           </Link>

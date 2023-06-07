@@ -108,21 +108,21 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
     return (
       <Stack direction="row" flexWrap="wrap" useFlexGap spacing={1.5}>
         {project.technology.split(" ").map((item, idx) => (
-          <Badge
-            key={idx}
-            badgeContent={
-              <Box sx={{ width: 14, height: 14, borderRadius: "50%", backgroundColor: "background.default" }}>
-                {getIcon(item.toLowerCase())}
-              </Box>
-            }
-            // overlap="circular"
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-          >
-            <Chip label={item} size="small" />
-          </Badge>
+          // <Badge
+          //   key={idx}
+          //   badgeContent={
+          //     <Box sx={{ width: 14, height: 14, borderRadius: "50%", backgroundColor: "background.default" }}>
+          //       {getIcon(item.toLowerCase())}
+          //     </Box>
+          //   }
+          //   // overlap="circular"
+          //   anchorOrigin={{
+          //     vertical: "bottom",
+          //     horizontal: "right",
+          //   }}
+          // >
+            <Chip label={item} size="small" key={idx} />
+          // </Badge>
         ))}
       </Stack>
     );

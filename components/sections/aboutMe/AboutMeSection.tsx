@@ -23,6 +23,7 @@ const AboutMeSection = (): JSX.Element => {
     pl: {
       h: "O mnie",
     },
+    default: {},
   };
   function isEven(n: number) {
     return n % 2 == 0;
@@ -49,11 +50,20 @@ const AboutMeSection = (): JSX.Element => {
                   margin: isMobile ? "auto" : 0,
                 }}
               >
-                <Image src={images[idx]} alt="About me image" fill style={{ objectFit: "cover", filter:"grayscale(50%) opacity(80%)"}} />
+                <Image
+                  src={images[idx]}
+                  alt="About me image"
+                  fill
+                  style={{ objectFit: "cover", filter: "grayscale(50%) opacity(80%)" }}
+                />
               </Box>
 
               <Stack spacing={2} sx={{ width: isMobile ? "100%" : "75%" }}>
-                <Typography variant="h4" sx={{fontWeight: "bold", textTransform: "uppercase"}} align={isEven(idx + 1) ? (isMobile ? "left" : "right") : "left"}>
+                <Typography
+                  variant="h4"
+                  sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+                  align={isEven(idx + 1) ? (isMobile ? "left" : "right") : "left"}
+                >
                   {item.title[locale]}
                 </Typography>
                 <Typography variant="body1" align="justify">

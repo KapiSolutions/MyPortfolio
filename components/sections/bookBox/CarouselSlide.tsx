@@ -76,7 +76,7 @@ const CarouselSlide = ({ slide }: Props): JSX.Element => {
         }}
       >
         <Stack spacing={2} sx={{ width: isMobile ? "100%" : "60%" }}>
-          <Typography variant="h4" component="h1">
+          <Typography variant="h4" component="h1" sx={{textTransform: "uppercase", fontSize: isMobile ? "9vw" : "auto"}}>
             {slide.title[locale]}
           </Typography>
 

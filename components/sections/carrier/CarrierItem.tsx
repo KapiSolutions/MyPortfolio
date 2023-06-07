@@ -219,7 +219,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
             </>
           )}
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{p:2}}>
           <Button onClick={handleClose} color="inherit" variant="outlined">
             {t[locale].close}
           </Button>

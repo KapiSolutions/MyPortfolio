@@ -53,7 +53,7 @@ const Header = ({ locale }: Props): JSX.Element => {
               right: "200px",
               bottom: "450px",
               width: "1700px",
-              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(40%)" : "none",
+              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(80%)" : "none",
             }}
           />
         </Box>
@@ -63,7 +63,7 @@ const Header = ({ locale }: Props): JSX.Element => {
             opacity: 0.3,
             zIndex: -1,
             position: "absolute",
-            maxHeight: "120vh",
+            maxHeight: "105vh",
             overflow: "hidden",
             maskImage: `linear-gradient(0deg, transparent 1%, ${theme.palette.background.default} 10%)`,
           }}
@@ -74,7 +74,7 @@ const Header = ({ locale }: Props): JSX.Element => {
               position: "relative",
               bottom: "100px",
               minWidth: "800px",
-              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(40%)" : "none",
+              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(80%)" : "none",
             }}
           />
         </Box>

@@ -57,12 +57,12 @@
   },
   {
     "title": {
-      "en": "Media mentions",
-      "pl": "Wpisy w mediach"
+      "en": "Media",
+      "pl": "Media"
     },
     "desc": {
-      "en": "See mentions and articles about previous implementations of BookBox devices",
-      "pl": "Zobacz wzmianki oraz artykuły o dotychczasowych wdrożeniach urządzeń BookBox"
+      "en": "Mentions and articles about previous implementations of BookBox devices",
+      "pl": "Wpisy oraz artykuły o dotychczasowych wdrożeniach urządzeń BookBox"
     },
     "buttons": [
       {

@@ -13,6 +13,7 @@ import type { Locale } from "@/utils/interfaces/main";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
+import WorkTogether from "@/components/sections/WorkTogether";
 
 type Props = {
   projects: Projects;
@@ -58,11 +59,12 @@ export default function Home({ projects }: Props) {
       <Box sx={{ ml: 2 }}>
         <BreadCrumbs items={null} />
       </Box>
-      <Stack direction="column" spacing={3} justifyContent="center" alignItems="center">
+      <Stack direction="column" spacing={5} justifyContent="center" alignItems="center">
         <ProjectsSection projects={projects} />
         <BookBoxSection />
         <CarrierSection carrier={carrier} />
-        <AboutMeSection />
+        {/* <AboutMeSection /> */}
+        <WorkTogether />
       </Stack>
     </>
   );
@@ -82,7 +84,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
       const month = parseInt(parts[1], 10) - 1;
       const day = parseInt(parts[0], 10);
       return new Date(year, month, day).getTime();
-    }else{
+    } else {
       return 0;
     }
   }
@@ -96,9 +98,11 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     const projects = await collection.find().toArray();
     // Sort documents by date
     sortedProjects = projects.sort((a: { date: string }, b: { date: string }) => parseDate(b.date) - parseDate(a.date));
-
   } catch (error) {
     console.log(error);
+  } finally {
+    // Close the MongoDB connection
+    client.close();
   }
   return {
     props: {

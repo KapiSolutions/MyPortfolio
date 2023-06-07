@@ -96,8 +96,19 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(context) {
     const dbName = "Data";
     const projectsCollection = "projects";
-    let projects = null;
+    let sortedProjects = null;
 
+    function parseDate(input: string) {
+      const parts = input.match(/(\d+)/g);
+      if (parts !== null && parts.length === 3) {
+        const year = parseInt(parts[2], 10);
+        const month = parseInt(parts[1], 10) - 1;
+        const day = parseInt(parts[0], 10);
+        return new Date(year, month, day).getTime();
+      } else {
+        return 0;
+      }
+    }
     try {
       // Connect to MongoDB
       await connectDB();
@@ -105,7 +116,11 @@ export const getServerSideProps = withPageAuthRequired({
       const db = client.db(dbName);
       const collection = db.collection(projectsCollection);
       // Retrieve all documents in the collection
-      projects = await collection.find().toArray();
+      const projects = await collection.find().toArray();
+      // Sort documents by date
+      sortedProjects = projects.sort(
+        (a: { date: string }, b: { date: string }) => parseDate(b.date) - parseDate(a.date)
+      );
     } catch (error) {
       console.log(error);
     } finally {
@@ -114,7 +129,7 @@ export const getServerSideProps = withPageAuthRequired({
     }
     return {
       props: {
-        projects: JSON.parse(JSON.stringify(projects)),
+        projects: JSON.parse(JSON.stringify(sortedProjects)),
       },
     };
   },

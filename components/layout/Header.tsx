@@ -5,7 +5,7 @@ import { Box, Button, Typography, Stack, Container, useTheme, useMediaQuery } fr
 import Navbar from "./Navbar";
 import { Locale } from "@/utils/interfaces/main";
 import Lottie from "lottie-react";
-import headerDark from "@/public/lotties/headerDark.json";
+import headerDark from "@/public/lotties/headerDark2.json";
 import headerLight from "@/public/lotties/headerLight.json"; 
 import test from "@/public/lotties/test.json"; 
 

@@ -7,8 +7,8 @@ import { Locale } from "@/utils/interfaces/main";
 import Lottie from "lottie-react";
 import headerDark from "@/public/lotties/headerDark.json";
 import headerLight from "@/public/lotties/headerLight.json"; 
-import developer from "@/public/lotties/developer.json"; 
-import designer from "@/public/lotties/designer.json"; 
+import test from "@/public/lotties/test.json"; 
+
 //Define Types:
 type Props = {
   locale: Locale;
@@ -46,8 +46,8 @@ const Header = ({ locale }: Props): JSX.Element => {
           )}
           {theme.palette.mode === "dark" && (
             <Lottie
-              animationData={designer}
-              style={{ position: "relative",right: "200px", bottom: "00px", width: "1000px"}}
+              animationData={headerDark}
+              style={{ position: "relative",right: "200px", width: "1000px"}}
             />
           )}
         </Box>
@@ -58,7 +58,7 @@ const Header = ({ locale }: Props): JSX.Element => {
           )}
           {theme.palette.mode === "dark" && (
             <Lottie
-              animationData={developer}
+              animationData={headerDark}
               style={{ position: "relative", bottom: "100px", minWidth: "1100px", width: "100%"}}
             />
           )}

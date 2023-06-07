@@ -5,9 +5,7 @@ import { Box, Button, Typography, Stack, Container, useTheme, useMediaQuery } fr
 import Navbar from "./Navbar";
 import { Locale } from "@/utils/interfaces/main";
 import Lottie from "lottie-react";
-import headerDark from "@/public/lotties/headerDark2.json";
-import headerLight from "@/public/lotties/headerLight.json"; 
-import test from "@/public/lotties/dark2.json"; 
+import headerLight from "@/public/lotties/headerLight.json";
 
 //Define Types:
 type Props = {
@@ -37,33 +35,51 @@ const Header = ({ locale }: Props): JSX.Element => {
       <Navbar />
       {/* , bottom: 0 */}
       {isMobile ? (
-        <Box sx={{ opacity: 0.4, zIndex: -1, position: "absolute", maxWidth:"100vw", MinHeight:"110vh", overflow: "hidden"  }}>
-          {theme.palette.mode === "light" && (
-            <Lottie
-              animationData={headerLight}
-              style={{ position: "relative", right: "200px", bottom: "450px", width: "450%", height: "450%" }}
-            />
-          )}
-          {theme.palette.mode === "dark" && (
-            <Lottie
-              animationData={test}
-              style={{ position: "relative",right: "25vh", width: "100vh"}}
-            />
-          )}
+        <Box
+          sx={{
+            opacity: 0.4,
+            zIndex: -1,
+            position: "absolute",
+            maxWidth: "100vw",
+            maxHeight: "110vh",
+            overflow: "hidden",
+            maskImage: `linear-gradient(0deg, transparent 1%, ${theme.palette.background.default} 10%)`,
+          }}
+        >
+          <Lottie
+            animationData={headerLight}
+            style={{
+              position: "relative",
+              right: "200px",
+              bottom: "450px",
+              width: "1700px",
+              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(40%)" : "none",
+            }}
+          />
         </Box>
       ) : (
-        <Box sx={{ opacity: 0.3, zIndex: -1, position: "absolute", maxHeight:"100vh", overflow: "hidden" }}>
-          {theme.palette.mode === "light" && (
-            <Lottie animationData={headerLight} style={{ position: "relative", bottom: "100px" }} />
-          )}
-          {theme.palette.mode === "dark" && (
-            <Lottie
-              animationData={test}
-              style={{ position: "relative", bottom: "25vw", width: "100vw"}}
-            />
-          )}
+        <Box
+          sx={{
+            opacity: 0.3,
+            zIndex: -1,
+            position: "absolute",
+            maxHeight: "120vh",
+            overflow: "hidden",
+            maskImage: `linear-gradient(0deg, transparent 1%, ${theme.palette.background.default} 10%)`,
+          }}
+        >
+          <Lottie
+            animationData={headerLight}
+            style={{
+              position: "relative",
+              bottom: "100px",
+              minWidth: "800px",
+              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(40%)" : "none",
+            }}
+          />
         </Box>
       )}
+
       <Container>
         <Stack spacing={isMobile ? 3 : 6} className={styles.parallaxContent}>
           <Typography

@@ -33,7 +33,7 @@ const ProjectsSection = ({ projects }: Props): JSX.Element => {
   return (
     <Box sx={{ width: "100vw", minHeight: "90vh" }} name="projectsSection" component="section">
       <Container sx={{ minHeight: "70vh" }}>
-        <Typography variant="h2" sx={{ mb: isMobile ? 2 : 1, mt: 1 }}>
+        <Typography variant="h3" sx={{textTransform: "uppercase", mb: isMobile ? 2 : 1, mt: 1 }}>
           {t[locale].sectionName}
         </Typography>
         {projects.length > 0 ? (

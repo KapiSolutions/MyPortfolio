@@ -26,9 +26,9 @@ import {
 } from "@mui/material";
 
 const pages = {
-  en: ["Projects", "Carrier Path", "About Me"],
-  pl: ["Projekty", "Kariera", "O mnie"],
-  sections: ["projectsSection", "carrierSection", "aboutMeSection"],
+  en: ["Projects", "Carrier Path", "Contact"],
+  pl: ["Projekty", "Kariera", "Kontakt"],
+  sections: ["projectsSection", "carrierSection", "contactSection"],
 };
 
 const Navbar = (): JSX.Element => {

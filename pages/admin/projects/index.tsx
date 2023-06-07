@@ -108,6 +108,9 @@ export const getServerSideProps = withPageAuthRequired({
       projects = await collection.find().toArray();
     } catch (error) {
       console.log(error);
+    } finally {
+      // Close the MongoDB connection
+      client.close();
     }
     return {
       props: {

@@ -70,6 +70,9 @@ export const getServerSideProps = withPageAuthRequired({
         project = await collection.findOne({ _id: new ObjectId(id) });
       } catch (error) {
         console.log(error);
+      } finally {
+        // Close the MongoDB connection
+        client.close();
       }
     }
 

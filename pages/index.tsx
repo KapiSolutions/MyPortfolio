@@ -72,9 +72,20 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
   // Get all products
   const dbName = "Data";
   const projectsCollection = "projects";
-  const carrierCollection = "carrier";
-  let projects = null;
+  // const carrierCollection = "carrier";
+  let sortedProjects = null;
 
+  function parseDate(input: string) {
+    const parts = input.match(/(\d+)/g);
+    if (parts !== null && parts.length === 3) {
+      const year = parseInt(parts[2], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[0], 10);
+      return new Date(year, month, day).getTime();
+    }else{
+      return 0;
+    }
+  }
   try {
     // Connect to MongoDB
     await connectDB();
@@ -82,13 +93,16 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     const db = client.db(dbName);
     const collection = db.collection(projectsCollection);
     // Retrieve all documents in the collection
-    projects = await collection.find().toArray();
+    const projects = await collection.find().toArray();
+    // Sort documents by date
+    sortedProjects = projects.sort((a: { date: string }, b: { date: string }) => parseDate(b.date) - parseDate(a.date));
+
   } catch (error) {
     console.log(error);
   }
   return {
     props: {
-      projects: JSON.parse(JSON.stringify(projects)),
+      projects: JSON.parse(JSON.stringify(sortedProjects)),
     },
     revalidate: false, //on demand revalidation
   };

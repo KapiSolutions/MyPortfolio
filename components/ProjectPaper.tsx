@@ -88,7 +88,7 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
         </Typography>
 
         <Typography variant="body2" sx={styles.description} component="div">
-          {project.description[locale]}
+          {project.shortDesc[locale]}
         </Typography>
 
         <Stack direction="row" spacing={1} sx={{ mt: 2 }}>

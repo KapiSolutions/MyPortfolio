@@ -80,7 +80,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
           {array ? (
             <Box> {content}</Box>
           ) : (
-            <Typography variant="body2" sx={{ wordBreak: "break-all" }}>
+            <Typography variant="body2" >
               {content}
             </Typography>
           )}
@@ -133,7 +133,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
     const propertyValue = property && (property[locale as keyof typeof property] as string);
     const startIndex = Object.keys(project).indexOf("description");
     // Ommit title, main image etc. and start from description, show only these fields which are not empty
-    if (typeof property === "object" && locale in property && propertyValue != "" && idx >= startIndex) {
+    if (typeof property === "object" && locale in property && propertyValue && idx >= startIndex) {
       let content;
       // If section includes html objects then parse them
       if (propertyValue?.includes("<")) {
@@ -159,7 +159,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
           {content}
 
           {/* Show images if exist */}
-          {"images" in property && property.images != "" ? (
+          {"images" in property && property.images ? (
             <Stack direction="row" flexWrap="wrap" useFlexGap spacing={2} sx={{ mt: 2, ml: 1 }}>
               {property.images
                 .replaceAll("\n", " ")

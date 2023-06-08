@@ -37,6 +37,7 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
   });
   const [openDialog, setOpenDialog] = useState(false);
   const [loading, seLoading] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
 
   const handleOpen = () => {
     setOpenDialog(true);
@@ -123,15 +124,17 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
                 variant="contained"
                 size="small"
                 onClick={() => {
-                  router.push({
-                    pathname: "/admin/projects/[pid]",
-                    query: { pid: project._id },
-                    hash: "main",
-                  });
-                  // setLoadingEdit(true);
+                  if (!redirecting) {
+                    router.push({
+                      pathname: "/admin/projects/[pid]",
+                      query: { pid: project._id },
+                      hash: "main",
+                    });
+                  }
+                  setRedirecting(true);
                 }}
               >
-                {t[locale].editButton}
+                {redirecting ? <CircularProgress color="inherit" size={18}  /> : t[locale].editButton}
               </Button>
             </Stack>
           </Grid>

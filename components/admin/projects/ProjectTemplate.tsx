@@ -184,13 +184,12 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
         showSnackBar("warning", "There is no changes to made.");
       } else if (status === 200) {
         // request was successful
-        
-        // const revalidateData = {
-        //   paths: ["/", `/projects/${docId}`],
-        // };
-        // await axios.post("/api/revalidate/", revalidateData);
-        await axios.post("/api/revalidate/", {paths: ["/"]});
-        await axios.post("/api/revalidate/", {paths: [`/projects/${docId}`]});
+        const revalidateData = {
+          paths: ["/", `/projects/${docId}`],
+        };
+        await axios.post("/api/revalidate/", revalidateData);
+        // await axios.post("/api/revalidate/", {paths: ["/"]});
+        // await axios.post("/api/revalidate/", {paths: [`/projects/${docId}`]});
 
         setShowPreview(false);
         reset(); //clear fields
@@ -200,7 +199,7 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     } catch (err) {
       const errors = err as Error;
       console.log("errMsg: ", errors.message);
-      showSnackBar("error", "Something went wrong!");
+      showSnackBar("error", errors.message);
     } finally {
       setLoading(false);
     }

@@ -53,7 +53,7 @@ const Header = ({ locale }: Props): JSX.Element => {
               right: "200px",
               bottom: "450px",
               width: "1700px",
-              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(80%)" : "none",
+              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(80%) grayscale(100%)" : "none",
             }}
           />
         </Box>
@@ -74,7 +74,7 @@ const Header = ({ locale }: Props): JSX.Element => {
               position: "relative",
               bottom: "100px",
               minWidth: "800px",
-              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(80%)" : "none",
+              filter: theme.palette.mode === "dark" ? "invert(100%) opacity(80%) grayscale(100%)" : "none",
             }}
           />
         </Box>

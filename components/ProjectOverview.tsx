@@ -77,13 +77,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
           </Typography>
         </Grid>
         <Grid item xs={10} sm={7}>
-          {array ? (
-            <Box> {content}</Box>
-          ) : (
-            <Typography variant="body2" >
-              {content}
-            </Typography>
-          )}
+          {array ? <Box> {content}</Box> : <Typography variant="body2">{content}</Typography>}
         </Grid>
       </Grid>
     );
@@ -121,7 +115,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
           //     horizontal: "right",
           //   }}
           // >
-            <Chip label={item} size="small" key={idx} />
+          <Chip label={item} size="small" key={idx} />
           // </Badge>
         ))}
       </Stack>

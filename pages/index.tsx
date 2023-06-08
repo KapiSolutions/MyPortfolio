@@ -55,6 +55,12 @@ export default function Home({ projects }: Props) {
             href: "https://kapisolutions.vercel.app",
           },
         ]}
+        additionalMetaTags={[
+          {
+            name: "google-site-verification",
+            content: "ZLBkwVLkikeGku687CjdWRlUAjhiD51qPa03EFFlH9k",
+          },
+        ]}
       />
       <Box sx={{ ml: 2 }}>
         <BreadCrumbs items={null} />

@@ -54,7 +54,7 @@ const initValues = {
 };
 
 const project = (locale: Locale) => {
-  const maxLength = 1000;
+  const maxLength = 10000;
   const errorMsg = locale === "en" || "default" ? "Field required" : "Pole wymagane";
   const optionalString = Yup.string().max(maxLength, `Max ${maxLength} characters!`);
   const requiredString = Yup.string().max(maxLength, `Max ${maxLength} characters!`).required(errorMsg);

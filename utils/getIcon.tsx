@@ -13,7 +13,7 @@ import {
 } from "react-icons/tb";
 import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass } from "react-icons/fa";
 import { MdOutlineJavascript } from "react-icons/md";
-import { SiMysql, SiSocketdotio, SiExpress } from "react-icons/si";
+import { SiMysql, SiSocketdotio, SiExpress, SiJavascript } from "react-icons/si";
 
 const styles = {
   techIcon: {
@@ -44,7 +44,7 @@ const getIcon = (tech: string): JSX.Element | null => {
     case "html":
       return <TbBrandHtml5 style={styles.techIcon} />;
     case "javascript":
-      return <MdOutlineJavascript style={styles.techIcon} />;
+      return <SiJavascript style={styles.techIcon} />;
     case "typescript":
       return <TbBrandTypescript style={styles.techIcon} />;
     case "php":

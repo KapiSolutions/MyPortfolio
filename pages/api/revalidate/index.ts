@@ -9,10 +9,10 @@ async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> 
       await Promise.all(
         paths.map(async (path: string) => {
           await res.revalidate(path);
-          // if (process.env.NODE_ENV == "production") {
-          //   await res.revalidate("/pl" + path);
-          //   await res.revalidate("/en" + path);
-          // }
+          if (process.env.NODE_ENV == "production") {
+            await res.revalidate("/pl" + path);
+            await res.revalidate("/en" + path);
+          }
         })
       );
 

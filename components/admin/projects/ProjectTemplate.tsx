@@ -11,9 +11,11 @@ import {
   FormControlLabel,
   Switch,
   CircularProgress,
+  IconButton,
 } from "@mui/material";
 import TranslateIcon from "@mui/icons-material/Translate";
 import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -200,7 +202,9 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
       setLoading(false);
     }
   };
-
+  const scrollDown = () => {
+    document.getElementsByName("showPreviewProjectButton")[0].scrollIntoView({ block: "start", inline: "nearest" });
+  };
   return (
     <Box
       display="flex"
@@ -352,7 +356,15 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
           ))}
         </Stack>
         {/* Preview button */}
-        <Button color="primary" fullWidth size="large" variant="contained" sx={{ mt: 2, mb: 4 }} type="submit">
+        <Button
+          name="showPreviewProjectButton"
+          color="primary"
+          fullWidth
+          size="large"
+          variant="contained"
+          sx={{ mt: 2, mb: 4 }}
+          type="submit"
+        >
           {showPreview ? t[locale].previewCloseButton : t[locale].previewShowButton}
         </Button>
 
@@ -378,7 +390,13 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
               )}
             </Button>
           </>
-        ) : null}
+        ) : (
+          <Box sx={{ position: "fixed", right: "20px", bottom: "20px", zIndex: 1 }}>
+            <Button color="primary" variant="contained" onClick={scrollDown} sx={{ borderRadius: "50%", py: 1, px: 0 }}>
+              <KeyboardArrowDownIcon sx={{ fontSize: 48 }} />
+            </Button>
+          </Box>
+        )}
       </form>
     </Box>
   );

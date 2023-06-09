@@ -4,6 +4,28 @@ import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
 import configTemplate from "@/utils/schema/project";
 
+// const processNestedObjects = (
+//   existingObj: Record<string, any>,
+//   updatedObj: Record<string, any>
+// ): Record<string, any> => {
+//   const updatedFields: Record<string, any> = {};
+
+//   for (const key in updatedObj) {
+//     if (key === "_id") {
+//       continue; // Skip comparing and updating the _id field
+//     }
+//     if (typeof updatedObj[key] === "object" && typeof existingObj[key] === "object") {
+//       const nestedUpdates = processNestedObjects(existingObj[key], updatedObj[key]);
+//       if (Object.keys(nestedUpdates).length > 0) {
+//         updatedFields[key] = nestedUpdates;
+//       }
+//     } else if (existingObj[key] !== updatedObj[key]) {
+//       updatedFields[key] = updatedObj[key];
+//     }
+//   }
+
+//   return updatedFields;
+// };
 const processNestedObjects = (
   existingObj: Record<string, any>,
   updatedObj: Record<string, any>
@@ -19,14 +41,17 @@ const processNestedObjects = (
       if (Object.keys(nestedUpdates).length > 0) {
         updatedFields[key] = nestedUpdates;
       }
+    } else if (key === "images" && updatedObj[key] !== "") {
+      updatedFields[key] = updatedObj[key];
     } else if (existingObj[key] !== updatedObj[key]) {
       updatedFields[key] = updatedObj[key];
+    } else {
+      updatedFields[key] = existingObj[key];
     }
   }
 
   return updatedFields;
 };
-
 async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   if (req.method === "PUT") {
     const { schema } = configTemplate("en");

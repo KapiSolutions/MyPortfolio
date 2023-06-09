@@ -11,9 +11,9 @@ import {
   TbBrandPhp,
   TbBrandPython,
 } from "react-icons/tb";
-import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass } from "react-icons/fa";
-import { MdOutlineJavascript } from "react-icons/md";
-import { SiMysql, SiSocketdotio, SiExpress, SiJavascript } from "react-icons/si";
+import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass, FaJava } from "react-icons/fa";
+import { DiJavascript1 } from "react-icons/di";
+import { SiMysql, SiSocketdotio, SiExpress, SiArduino, SiCplusplus, SiProcessingfoundation } from "react-icons/si";
 
 const styles = {
   techIcon: {
@@ -44,7 +44,7 @@ const getIcon = (tech: string): JSX.Element | null => {
     case "html":
       return <TbBrandHtml5 style={styles.techIcon} />;
     case "javascript":
-      return <SiJavascript style={styles.techIcon} />;
+      return <DiJavascript1 style={styles.techIcon} />;
     case "typescript":
       return <TbBrandTypescript style={styles.techIcon} />;
     case "php":
@@ -59,8 +59,16 @@ const getIcon = (tech: string): JSX.Element | null => {
       return <FaStripe style={styles.techIcon} />;
     case "raspberry":
       return <FaRaspberryPi style={styles.techIcon} />;
+    case "arduino":
+      return <SiArduino style={styles.techIcon} />;
     case "python":
       return <TbBrandPython style={styles.techIcon} />;
+    case "java":
+      return <FaJava style={styles.techIcon} />;
+    case "c++":
+      return <SiCplusplus style={styles.techIcon} />;
+    case "processing":
+      return <SiProcessingfoundation style={styles.techIcon} />;
     default:
       return null;
   }

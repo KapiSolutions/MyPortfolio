@@ -184,7 +184,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
 
   return (
     <Box name="projectOverviewSection">
-      <Typography variant="h3" component="h1" sx={{ wordBreak: "break-all" }}>
+      <Typography variant="h3" component="h1">
         {project.title[locale]}
       </Typography>
 

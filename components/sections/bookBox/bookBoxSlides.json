@@ -19,7 +19,7 @@
       }
     ],
     "images": {
-      "desktop": "img/bookbox-section/slide1.png",
+      "desktop": "img/bookbox-section/slide1.webp",
       "mobile": "img/bookbox-section/slide1mobile.png"
     }
   },
@@ -91,7 +91,7 @@
       }
     ],
     "images": {
-      "desktop": "img/bookbox-section/slide2.jpg",
+      "desktop": "img/bookbox-section/slide2.webp",
       "mobile": "img/bookbox-section/slide2mobile.jpg"
     }
   }

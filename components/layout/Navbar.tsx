@@ -159,7 +159,7 @@ const Navbar = (): JSX.Element => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={"https://drive.google.com/file/d/13QfDmQj-MrpUZTZf55GkAetpfJgO9p-z/view?usp=sharing"}
+                  href={"https://drive.google.com/file/d/171psC_i7riqRGySjFMgInVdLu26YTxPU/view?usp=sharing"}
                 >
                   <Stack direction="row" spacing={1}>
                     <FilePresentIcon />
@@ -258,7 +258,7 @@ const Navbar = (): JSX.Element => {
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
-                href={"https://drive.google.com/file/d/13QfDmQj-MrpUZTZf55GkAetpfJgO9p-z/view?usp=sharing"}
+                href={"https://drive.google.com/file/d/171psC_i7riqRGySjFMgInVdLu26YTxPU/view?usp=sharing"}
               >
                 <Button aria-label="menuAdminLg" aria-controls="menuAdminLg" aria-haspopup="true" color="inherit">
                   <FilePresentIcon fontSize="small" />

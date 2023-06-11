@@ -42,6 +42,8 @@ const Footer = ({ locale }: Props): JSX.Element => {
         >
           <Link
             href="https://www.linkedin.com/in/jakub-kapturkiewicz-147442109/"
+            target="_blank"
+            rel="noopener noreferrer"
             passHref
             style={{ display: "flex", alignItems: "center", gap: 2 }}
             className="Hover"
@@ -50,6 +52,8 @@ const Footer = ({ locale }: Props): JSX.Element => {
           </Link>
           <Link
             href="https://github.com/KapiSolutions"
+            target="_blank"
+            rel="noopener noreferrer"
             passHref
             style={{ display: "flex", alignItems: "center", gap: 2 }}
             className="Hover"

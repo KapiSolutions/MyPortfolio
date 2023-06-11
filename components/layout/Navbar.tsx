@@ -41,6 +41,8 @@ const Navbar = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  const cvLink = "https://drive.google.com/file/d/19RFrVQYs6G3_1iD917I3dPmIrn-pk6fI/view?usp=sharing";
+
   // Mobile menu handlers
   const openNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -156,13 +158,9 @@ const Navbar = (): JSX.Element => {
               ))}
 
               <MenuItem onClick={closeNavMenu} divider sx={{ pb: 2, pt: 2 }}>
-                <Link
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={"https://drive.google.com/file/d/171psC_i7riqRGySjFMgInVdLu26YTxPU/view?usp=sharing"}
-                >
-                  <Stack direction="row" spacing={1}>
-                    <FilePresentIcon />
+                <Link target="_blank" rel="noopener noreferrer" href={cvLink}>
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <FilePresentIcon sx={{fontSize: 20}} />
                     <Typography textAlign="center">{t[locale].cv}</Typography>
                   </Stack>
                 </Link>
@@ -174,7 +172,7 @@ const Navbar = (): JSX.Element => {
 
               {/* Admin controls */}
               {user ? (
-                <section>
+                <Box sx={{mt:2}}>
                   <MenuItem onClick={closeNavMenu}>
                     <Stack direction="row" spacing={1}>
                       <SettingsIcon color="secondary" />
@@ -193,7 +191,7 @@ const Navbar = (): JSX.Element => {
                       </Typography>
                     </Stack>
                   </MenuItem>
-                </section>
+                </Box>
               ) : null}
             </Menu>
           </Box>
@@ -255,11 +253,7 @@ const Navbar = (): JSX.Element => {
             ))}
             <Stack direction="row" alignItems="center" spacing={1} sx={{ ml: 1 }}>
               <Divider orientation="vertical" flexItem />
-              <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                href={"https://drive.google.com/file/d/171psC_i7riqRGySjFMgInVdLu26YTxPU/view?usp=sharing"}
-              >
+              <Link target="_blank" rel="noopener noreferrer" href={cvLink}>
                 <Button aria-label="menuAdminLg" aria-controls="menuAdminLg" aria-haspopup="true" color="inherit">
                   <FilePresentIcon fontSize="small" />
                   <Typography textAlign="center" variant="body2" sx={{ ml: 1 }}>

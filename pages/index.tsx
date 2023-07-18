@@ -1,12 +1,10 @@
-import Head from "next/head";
 import React, { useEffect } from "react";
-import { GetStaticPropsContext } from "next";
 import { Stack, Box } from "@mui/material";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection";
 import carrier from "@/tmp/carrier.json";
 import BookBoxSection from "@/components/sections/bookBox/BookBoxSection";
 import CarrierSection from "@/components/sections/carrier/CarrierSection";
-import AboutMeSection from "@/components/sections/aboutMe/AboutMeSection";
+// import AboutMeSection from "@/components/sections/aboutMe/AboutMeSection";
 import { connectDB, client } from "@/utils/mongodb";
 import type { Projects } from "@/utils/schema/project";
 import type { Locale } from "@/utils/interfaces/main";
@@ -39,7 +37,7 @@ export default function Home({ projects }: Props) {
     <>
       <NextSeo
         title="JK Portfolio"
-        canonical={`https://www.brightlightgypsy.pl/${locale}`}
+        canonical={`https://www.kapisolutions.vercel.app/${locale}`}
         description={t[locale].desc}
         languageAlternates={[
           {
@@ -76,11 +74,9 @@ export default function Home({ projects }: Props) {
   );
 }
 
-export async function getStaticProps({ locale }: GetStaticPropsContext) {
-  // Get all products
+export async function getStaticProps() {
   const dbName = "Data";
   const projectsCollection = "projects";
-  // const carrierCollection = "carrier";
   let sortedProjects = null;
 
   function parseDate(input: string) {

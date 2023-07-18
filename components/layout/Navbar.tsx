@@ -41,7 +41,7 @@ const Navbar = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const cvLink = "https://drive.google.com/file/d/19RFrVQYs6G3_1iD917I3dPmIrn-pk6fI/view?usp=sharing";
+  const cvLink = "https://drive.google.com/file/d/1bJRl5egFxiXvobe8GxUscKQllg5GD3Sb/view?usp=sharing";
 
   // Mobile menu handlers
   const openNavMenu = (event: React.MouseEvent<HTMLElement>) => {

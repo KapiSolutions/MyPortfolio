@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Badge, Chip, Typography, Stack, Box, useTheme, useMediaQuery, Divider, Grid } from "@mui/material";
+import { Chip, Typography, Stack, Box, useTheme, useMediaQuery, Grid } from "@mui/material";
 import SegmentIcon from "@mui/icons-material/Segment";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -11,9 +11,9 @@ import { Locale } from "@/utils/interfaces/main";
 import type { Project } from "@/utils/schema/project";
 import Image from "next/image";
 import Link from "next/link";
-import getIcon from "@/utils/getIcon";
 import parse from "html-react-parser";
 import DOMPurify from "isomorphic-dompurify";
+import ImageGallery from "./ImageGallery";
 
 type Props = {
   project: Project;
@@ -22,6 +22,7 @@ type Props = {
 const ProjectOverview = ({ project }: Props): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
+  const [show, setShow] = useState(-1);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
@@ -102,21 +103,7 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
     return (
       <Stack direction="row" flexWrap="wrap" useFlexGap spacing={1.5}>
         {project.technology.split(" ").map((item, idx) => (
-          // <Badge
-          //   key={idx}
-          //   badgeContent={
-          //     <Box sx={{ width: 14, height: 14, borderRadius: "50%", backgroundColor: "background.default" }}>
-          //       {getIcon(item.toLowerCase())}
-          //     </Box>
-          //   }
-          //   // overlap="circular"
-          //   anchorOrigin={{
-          //     vertical: "bottom",
-          //     horizontal: "right",
-          //   }}
-          // >
           <Chip label={item} size="small" key={idx} />
-          // </Badge>
         ))}
       </Stack>
     );
@@ -154,28 +141,33 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
 
           {/* Show images if exist */}
           {"images" in property && property.images ? (
-            <Stack direction="row" flexWrap="wrap" useFlexGap spacing={2} sx={{ mt: 2, ml: 1 }}>
-              {property.images
-                .replaceAll("\n", " ")
-                .split(" ")
-                .map((url, idx) => (
-                  <Box
-                    key={idx}
-                    sx={{
-                      position: "relative",
-                      width: isMobile ? "100%" : "250px",
-                      height: "200px",
-                    }}
-                  >
-                    <Image
-                      src={url}
-                      fill
-                      alt={project.title[locale]}
-                      style={{ objectFit: "cover", borderRadius: "4px" }}
-                    />
-                  </Box>
-                ))}
-            </Stack>
+            <Box>
+              <Stack direction="row" flexWrap="wrap" useFlexGap spacing={2} sx={{ mt: 2, ml: 1 }}>
+                {property.images
+                  .replaceAll("\n", " ")
+                  .split(" ")
+                  .map((url, idx) => (
+                    <Box
+                      key={idx}
+                      sx={{
+                        position: "relative",
+                        width: isMobile ? "100%" : "250px",
+                        height: "200px",
+                      }}
+                      onClick={() => setShow(idx)}
+                      className="pointer zoom"
+                    >
+                      <Image
+                        src={url}
+                        fill
+                        alt={project.title[locale]}
+                        style={{ objectFit: "cover", borderRadius: "4px" }}
+                      />
+                    </Box>
+                  ))}
+              </Stack>
+              {!isMobile && <ImageGallery imgSet={property.images.split("\n")} show={show} setShow={setShow} />}
+            </Box>
           ) : null}
         </>
       );

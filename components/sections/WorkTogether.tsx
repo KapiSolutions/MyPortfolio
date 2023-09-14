@@ -35,7 +35,7 @@ const WorkTogether = (): JSX.Element => {
     MozTextFillColor: "transparent",
   };
   return (
-    <Container name="contactSection">
+    <Container name="contact" component="section">
       <Stack spacing={8} alignItems="center" justifyContent="center" sx={{ height: "90vh" }}>
         <Typography
           variant="h2"

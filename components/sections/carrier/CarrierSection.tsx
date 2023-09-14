@@ -33,9 +33,9 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
   };
 
   return (
-    <Box sx={{ width: "100%" }} name="carrierSection">
-      <Container sx={{mb:4}}>
-        <Typography variant="h3" sx={{textTransform: "uppercase",mb: isMobile ? 2 : 1, mt: 1 }}>
+    <Box sx={{ width: "100%" }} name="carrier" component="section">
+      <Container sx={{ mb: 4 }}>
+        <Typography variant="h3" sx={{ textTransform: "uppercase", mb: isMobile ? 2 : 1, mt: 1 }}>
           {t[locale].h}
         </Typography>
       </Container>

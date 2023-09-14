@@ -85,25 +85,25 @@ const Navbar = (): JSX.Element => {
     }
   }, [router.pathname]);
 
-  const scrollToSection = (name: string) => {
+  const scrollToSection = async (name: string) => {
     if (router.pathname === "/") {
       const element = document.getElementsByName(name)[0];
-      window.history.pushState(null, "", `/${locale}#${name}`); //add to history without loading the page
-      // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
       window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
     } else {
-      router.push(`/#${name}`, undefined, { scroll: false });
+      await router.push("/", undefined, { scroll: false });
+      const element = document.getElementsByName(name)[0];
+      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
     }
   };
 
   const brandButtonAction = () => {
     if (router.pathname === "/") {
-      window.history.pushState(null, "", `/${locale}`);
       window.scrollTo(0, 0);
     } else {
       router.push("/");
     }
   };
+
   const t = {
     en: {
       cv: "CV / RESUME",

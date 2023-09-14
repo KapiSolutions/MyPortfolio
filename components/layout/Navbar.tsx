@@ -30,7 +30,7 @@ import {
 const pages = {
   en: ["Projects", "Carrier Path", "Contact"],
   pl: ["Projekty", "Kariera", "Kontakt"],
-  sections: ["projectsSection", "carrierSection", "contactSection"],
+  sections: ["projects", "carrier", "contact"],
 };
 
 const Navbar = (): JSX.Element => {

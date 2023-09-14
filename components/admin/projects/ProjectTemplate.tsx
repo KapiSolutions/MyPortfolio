@@ -201,7 +201,7 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
   const scrollDown = () => {
     document.getElementsByName("showPreviewProjectButton")[0].scrollIntoView({ block: "start", inline: "nearest" });
   };
-  
+
   const revalidatePaths = async (id: string) => {
     const revalidateData = {
       paths: ["/", `/projects/${id}`],
@@ -379,7 +379,7 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
 
         {showPreview ? (
           <>
-            <ProjectOverview project={getValues()} />
+            <ProjectOverview project={getValues()} previewMode={true} />
             {/* Submit button */}
             <Button
               color="primary"

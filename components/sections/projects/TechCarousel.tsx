@@ -87,7 +87,7 @@ const TechCarousel = (): JSX.Element => {
     }
   };
   const carouselSlides = () => {
-    const qt = isMobile ? 3 : 4; 
+    const qt = isMobile ? 3 : 4;
     const sliderItems: number = tech.length > qt ? qt : tech.length;
     const items: Array<JSX.Element> = [];
 
@@ -116,6 +116,7 @@ const TechCarousel = (): JSX.Element => {
         indicators={false}
         animation="fade"
         duration={2000}
+        stopAutoPlayOnHover={false}
         sx={{ m: "auto", height: 70, width: "100%" }}
       >
         {carouselSlides()}

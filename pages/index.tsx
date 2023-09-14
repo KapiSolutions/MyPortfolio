@@ -37,20 +37,20 @@ export default function Home({ projects }: Props) {
     <>
       <NextSeo
         title="JK Portfolio"
-        canonical={`https://www.kapisolutions.vercel.app/${locale}`}
+        canonical={`https://www.kapisolutions.pl/${locale}`}
         description={t[locale].desc}
         languageAlternates={[
           {
             hrefLang: "en",
-            href: "https://kapisolutions.vercel.app/en",
+            href: "https://www.kapisolutions.pl/en",
           },
           {
             hrefLang: "pl",
-            href: "https://kapisolutions.vercel.app/pl",
+            href: "https://www.kapisolutions.pl/pl",
           },
           {
             hrefLang: "x-default",
-            href: "https://kapisolutions.vercel.app",
+            href: "https://www.kapisolutions.pl",
           },
         ]}
         additionalMetaTags={[

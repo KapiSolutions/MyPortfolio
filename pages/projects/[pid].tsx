@@ -10,9 +10,9 @@ import BreadCrumbs from "@/components/BreadCrumbs";
 import { NextSeo, ArticleJsonLd } from "next-seo";
 
 // Define types
-type Props = { project: Project | null };
+type Props = { project: Project | null; prevID: string; nextID: string };
 
-export default function ProjectOverviewPage({ project }: Props): JSX.Element {
+export default function ProjectOverviewPage({ project, prevID, nextID }: Props): JSX.Element {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
   const breadcrumbs = [{ name: project ? project.title[locale] : "404", path: `/projects/${project?._id}` }];
@@ -20,26 +20,26 @@ export default function ProjectOverviewPage({ project }: Props): JSX.Element {
     <>
       <NextSeo
         title={`JK Portfolio | ${project?.title[locale]}`}
-        canonical={`https://www.brightlightgypsy.pl/${locale}`}
+        canonical={`https://www.kapisolutions.pl/${locale}`}
         description={project?.description[locale]}
         languageAlternates={[
           {
             hrefLang: "en",
-            href: `https://kapisolutions.vercel.app/en/projects/${project?._id}`,
+            href: `https://www.kapisolutions.pl/en/projects/${project?._id}`,
           },
           {
             hrefLang: "pl",
-            href: `https://kapisolutions.vercel.app/pl/projects/${project?._id}`,
+            href: `https://www.kapisolutions.pl/pl/projects/${project?._id}`,
           },
           {
             hrefLang: "x-default",
-            href: `https://kapisolutions.vercel.app/projects/${project?._id}`,
+            href: `https://www.kapisolutions.pl/projects/${project?._id}`,
           },
         ]}
       />
       <ArticleJsonLd
         type="BlogPosting"
-        url={`https://kapisolutions.vercel.app/${locale}${router.asPath}`}
+        url={`https://www.kapisolutions.pl/${locale}${router.asPath}`}
         title={project ? project.title[locale] : "Title"}
         images={[project ? project.image : ""]}
         datePublished={project ? project.date : "2023-05-05T09:00:00+08:00"}
@@ -50,7 +50,9 @@ export default function ProjectOverviewPage({ project }: Props): JSX.Element {
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>
-      <Container maxWidth="md">{project ? <ProjectOverview project={project} /> : "Project doesnt exist."}</Container>
+      <Container maxWidth="md">
+        {project ? <ProjectOverview project={project} prevID={prevID} nextID={nextID} /> : "Project doesnt exist."}
+      </Container>
     </>
   );
 }
@@ -58,8 +60,11 @@ export default function ProjectOverviewPage({ project }: Props): JSX.Element {
 export async function getStaticProps(context: GetStaticPropsContext) {
   const dbName = "Data";
   const projectsCollection = "projects";
-  let project = null;
   const id = context.params?.pid ? context.params?.pid : "";
+  let project = null;
+  let sortedProjects = null;
+  let prevID = "";
+  let nextID = "";
 
   if (id && ObjectId.isValid(id as string)) {
     try {
@@ -68,16 +73,33 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       // Access the specified database and collection
       const db = client.db(dbName);
       const collection = db.collection(projectsCollection);
-      // Retrieve all documents in the collection
+      // Retrieve document by ID in the collection
       project = await collection.findOne({ _id: new ObjectId(id as string) });
+      // Retrieve all projects from the collection
+      const projects = await collection.find().toArray();
+      // Sort projects by date
+      sortedProjects = projects.sort(
+        (a: { realizationDate: string }, b: { realizationDate: string }) =>
+          parseDate(b.realizationDate) - parseDate(a.realizationDate)
+      );
+      // find previous and next id of the project
+      const actID = sortedProjects.findIndex((item: Project) => item._id?.toString() === id);
+      prevID = actID > 0 ? sortedProjects[actID - 1]._id : sortedProjects[sortedProjects.length - 1]._id;
+      nextID = actID < sortedProjects.length - 1 ? sortedProjects[actID + 1]._id : sortedProjects[0]._id;
     } catch (error) {
       console.log(error);
     }
   }
 
+  function parseDate(input: string) {
+    return new Date(input).getTime();
+  }
+
   return {
     props: {
       project: JSON.parse(JSON.stringify(project)),
+      prevID: prevID.toString(),
+      nextID: nextID.toString(),
     },
     revalidate: false, //on demand revalidation
   };

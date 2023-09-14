@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Chip, Typography, Stack, Box, useTheme, useMediaQuery, Grid } from "@mui/material";
+import { Chip, Typography, Stack, Box, useTheme, useMediaQuery, Grid, Button } from "@mui/material";
 import SegmentIcon from "@mui/icons-material/Segment";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import LinkIcon from "@mui/icons-material/Link";
 import TuneIcon from "@mui/icons-material/Tune";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { FaCodeBranch } from "react-icons/fa";
 import { Locale } from "@/utils/interfaces/main";
 import type { Project } from "@/utils/schema/project";
 import Image from "next/image";
@@ -17,9 +20,12 @@ import ImageGallery from "./ImageGallery";
 
 type Props = {
   project: Project;
+  prevID: string;
+  nextID: string;
+  previewMode?: boolean;
 };
 
-const ProjectOverview = ({ project }: Props): JSX.Element => {
+const ProjectOverview = ({ project, prevID, nextID, previewMode = false }: Props): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
   const [show, setShow] = useState(-1);
@@ -32,11 +38,15 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
       shortDesc: "Short overview",
       as: "As",
       technology: "Technology",
+      prev: "Prev",
+      next: "Next",
     },
     pl: {
       shortDesc: "Zarys projektu",
       as: "Jako",
       technology: "Technologia",
+      prev: "Poprzedni",
+      next: "Następny",
     },
     default: {},
   };
@@ -198,6 +208,44 @@ const ProjectOverview = ({ project }: Props): JSX.Element => {
           {getSection(key as keyof Project, idx)}
         </Box>
       ))}
+
+      {/* Nav buttons */}
+      {!previewMode && (
+        <Stack
+          direction="row"
+          component="nav"
+          spacing={isMobile ? 1 : 6}
+          mt={6}
+          alignItems="center"
+          justifyContent={isMobile ? "space-evenly" : "center"}
+        >
+          <Link
+            href={{
+              pathname: "/projects/[pid]",
+              query: { pid: prevID },
+              hash: "main",
+            }}
+            passHref
+          >
+            <Button variant="contained" startIcon={<KeyboardDoubleArrowLeftIcon />}>
+              {t[locale].prev}
+            </Button>
+          </Link>
+          {/* <FaCodeBranch style={{ fontSize: 32 }} /> */}
+          <Link
+            href={{
+              pathname: "/projects/[pid]",
+              query: { pid: nextID },
+              hash: "main",
+            }}
+            passHref
+          >
+            <Button variant="contained" endIcon={<KeyboardDoubleArrowRightIcon />}>
+              {t[locale].next}
+            </Button>
+          </Link>
+        </Stack>
+      )}
     </Box>
   );
 };

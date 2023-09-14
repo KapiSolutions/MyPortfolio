@@ -20,8 +20,8 @@ import ImageGallery from "./ImageGallery";
 
 type Props = {
   project: Project;
-  prevID: string;
-  nextID: string;
+  prevID?: string;
+  nextID?: string;
   previewMode?: boolean;
 };
 

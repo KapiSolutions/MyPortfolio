@@ -11,9 +11,17 @@ import {
   TbBrandPhp,
   TbBrandPython,
 } from "react-icons/tb";
-import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass, FaJava } from "react-icons/fa";
+import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass, FaJava, FaDocker } from "react-icons/fa";
 import { DiJavascript1 } from "react-icons/di";
-import { SiMysql, SiSocketdotio, SiExpress, SiArduino, SiCplusplus, SiProcessingfoundation } from "react-icons/si";
+import {
+  SiMysql,
+  SiSocketdotio,
+  SiExpress,
+  SiArduino,
+  SiCplusplus,
+  SiProcessingfoundation,
+  SiPuppeteer,
+} from "react-icons/si";
 
 const styles = {
   techIcon: {
@@ -69,6 +77,10 @@ const getIcon = (tech: string): JSX.Element | null => {
       return <SiCplusplus style={styles.techIcon} />;
     case "processing":
       return <SiProcessingfoundation style={styles.techIcon} />;
+    case "puppeteer":
+      return <SiPuppeteer style={styles.techIcon} />;
+    case "docker":
+      return <FaDocker style={styles.techIcon} />;
     default:
       return null;
   }

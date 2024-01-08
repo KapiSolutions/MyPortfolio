@@ -19,7 +19,7 @@ export default function ProjectOverviewPage({ project, prevID, nextID }: Props):
   return (
     <>
       <NextSeo
-        title={`JK Portfolio | ${project?.title[locale]}`}
+        title={`Kapisolutions | ${project?.title[locale]}`}
         canonical={`https://www.kapisolutions.pl/${locale}`}
         description={project?.description[locale]}
         languageAlternates={[

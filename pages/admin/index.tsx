@@ -11,7 +11,7 @@ export default function AdminPage({ user }: ProfileProps): JSX.Element {
   const breadcrumbs = [{ name: "Login Page", path: "/admin" }];
   return (
     <>
-      <NextSeo title="JK Portfolio | Successful Login!" nofollow={true} />
+      <NextSeo title="Kapisolutions | Successful Login!" nofollow={true} />
 
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />

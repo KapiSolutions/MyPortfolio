@@ -36,7 +36,7 @@ export default function Home({ projects }: Props) {
   return (
     <>
       <NextSeo
-        title="JK Portfolio"
+        title="Kapisolutions"
         canonical={`https://www.kapisolutions.pl/${locale}`}
         description={t[locale].desc}
         languageAlternates={[

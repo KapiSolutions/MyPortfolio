@@ -18,7 +18,7 @@ type Props = {
 };
 export default function Home({ projects }: Props) {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = (router.locale || "pl") as Locale;
   useEffect(() => {
     // Prefetch the project pages
     router.prefetch("/projects/[pid]");
@@ -26,18 +26,19 @@ export default function Home({ projects }: Props) {
 
   const t = {
     en: {
-      desc: "Gain insight into my recent projects and discover how I've combined my expertise in both software development and mechatronics to deliver reliable and cutting-edge solutions.",
+      desc: "KapiSolutions is a Polish company founded in 2020. Our main goal is to meet the clients expectations by offering professional solutions in the field of design and production of devices and machines. As a company, we also specialize in designing web applications, 3D printing and widely understood automation. Thanks to our extensive experience in many industries and technologies, the quality of our products is at the highest level. We approach each client individually, correlating the requirements with our experience and creativity. The process of designing and implementing new solutions almost always encounters some difficulties, but these are not problems for us, but challenges that we take on with pleasure!",
     },
     pl: {
-      desc: "Zapoznaj się z moimi ostatnimi projektami i odkryj, w jaki sposób połączyłem swoją wiedzę z zakresu tworzenia oprogramowania i mechatroniki, aby dostarczać niezawodne, najnowocześniejsze rozwiązania.",
+      desc: "Kapisolutions to polska firma założona w 2020r. Naszym głównym celem jest wychodzenie na przeciw oczekiwaniom rynkowym oferując profesjonalne rozwiązania z zakresu IT oraz mechatroniki. Jako firma specjalizujemy się również w projektowaniu aplikacji webowych, platform e-commerce, druku 3D oraz szeroko pojętej automatyce. Dzięki bogatemu doświadczeniu w wielu gałęziach przemysłu i technologii jakość naszych produktów plasuje się na najwyższym poziomie. Do każdego klienta podchodzimy indywidualnie korelując stawiane wymagania z naszym doświadczeniem i kreatywnością. Proces projektowania i wdrażania nowych rozwiązań niemal zawsze spotyka się z pewnymi trudnościami, lecz nie są to dla nas problemy, a wyzwania, które z przyjemnością podejmujemy!",
     },
-    default: {},
+    default:
+      "Kapisolutions to polska firma założona w 2020r. Naszym głównym celem jest wychodzenie na przeciw oczekiwaniom rynkowym oferując profesjonalne rozwiązania z zakresu IT oraz mechatroniki. Jako firma specjalizujemy się również w projektowaniu aplikacji webowych, platform e-commerce, druku 3D oraz szeroko pojętej automatyce. Dzięki bogatemu doświadczeniu w wielu gałęziach przemysłu i technologii jakość naszych produktów plasuje się na najwyższym poziomie. Do każdego klienta podchodzimy indywidualnie korelując stawiane wymagania z naszym doświadczeniem i kreatywnością. Proces projektowania i wdrażania nowych rozwiązań niemal zawsze spotyka się z pewnymi trudnościami, lecz nie są to dla nas problemy, a wyzwania, które z przyjemnością podejmujemy!",
   };
   return (
     <>
       <NextSeo
         title="Kapisolutions"
-        canonical={`https://www.kapisolutions.pl/${locale}`}
+        canonical={`https://www.kapisolutions.pl/${locale ? locale : "pl"}`}
         description={t[locale].desc}
         languageAlternates={[
           {
@@ -50,13 +51,7 @@ export default function Home({ projects }: Props) {
           },
           {
             hrefLang: "x-default",
-            href: "https://www.kapisolutions.pl",
-          },
-        ]}
-        additionalMetaTags={[
-          {
-            name: "google-site-verification",
-            content: "ZLBkwVLkikeGku687CjdWRlUAjhiD51qPa03EFFlH9k",
+            href: "https://www.kapisolutions.pl/pl",
           },
         ]}
       />

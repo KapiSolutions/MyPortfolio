@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 import { Box, Button, Typography, Stack, Container, useTheme, useMediaQuery } from "@mui/material";
 import Navbar from "./Navbar";
 import { Locale } from "@/utils/interfaces/main";
-import Lottie from "lottie-react";
-import headerLight from "@/public/lotties/headerLight.json";
+import { DotLottiePlayer } from "@dotlottie/react-player";
 
 //Define Types:
 type Props = {
@@ -29,6 +28,7 @@ const Header = ({ locale }: Props): JSX.Element => {
     },
     default: {},
   };
+  const lottiePath = "/lotties/header.lottie";
 
   return (
     <Box className={styles.container}>
@@ -46,8 +46,10 @@ const Header = ({ locale }: Props): JSX.Element => {
             maskImage: `linear-gradient(0deg, transparent 1%, ${theme.palette.background.default} 10%)`,
           }}
         >
-          <Lottie
-            animationData={headerLight}
+          <DotLottiePlayer
+            src={lottiePath}
+            autoplay
+            loop
             style={{
               position: "relative",
               right: "200px",
@@ -68,8 +70,10 @@ const Header = ({ locale }: Props): JSX.Element => {
             maskImage: `linear-gradient(0deg, transparent 1%, ${theme.palette.background.default} 10%)`,
           }}
         >
-          <Lottie
-            animationData={headerLight}
+          <DotLottiePlayer
+            src={lottiePath}
+            autoplay
+            loop
             style={{
               position: "relative",
               bottom: "100px",

@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
-import { Stack, Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection";
 import carrier from "@/tmp/carrier.json";
 import BookBoxSection from "@/components/sections/bookBox/BookBoxSection";
 import CarrierSection from "@/components/sections/carrier/CarrierSection";
-// import AboutMeSection from "@/components/sections/aboutMe/AboutMeSection";
 import { connectDB, client } from "@/utils/mongodb";
 import type { Projects } from "@/utils/schema/project";
 import type { Locale } from "@/utils/interfaces/main";
-import BreadCrumbs from "@/components/BreadCrumbs";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import WorkTogether from "@/components/sections/WorkTogether";
@@ -16,6 +14,7 @@ import WorkTogether from "@/components/sections/WorkTogether";
 type Props = {
   projects: Projects;
 };
+
 export default function Home({ projects }: Props) {
   const router = useRouter();
   const locale = (router.locale || "pl") as Locale;
@@ -54,15 +53,32 @@ export default function Home({ projects }: Props) {
             href: "https://www.kapisolutions.pl/pl",
           },
         ]}
+        openGraph={{
+          type: "website",
+          url: `https://www.kapisolutions.pl/${locale ? locale : "pl"}`,
+          title: "Kapisolutions",
+          description: t[locale].desc,
+          images: [
+            {
+              url: "https://storage.googleapis.com/portfolio-kapisolutions-storage/other/bookbox_library.jpg",
+              width: 905,
+              height: 1280,
+              alt: "Bookbox Library - Kapisolutions",
+            },
+            {
+              url: "https://www.example.ie/og-image-2.jpg",
+              width: 1080,
+              height: 600,
+              alt: "Kapisolutions logo",
+            },
+          ],
+        }}
       />
-      <Box sx={{ ml: 2 }}>
-        <BreadCrumbs items={null} />
-      </Box>
-      <Stack direction="column" spacing={5} justifyContent="center" alignItems="center">
+
+      <Stack direction="column" spacing={5} justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
         <ProjectsSection projects={projects} />
         <BookBoxSection />
         <CarrierSection carrier={carrier} />
-        {/* <AboutMeSection /> */}
         <WorkTogether />
       </Stack>
     </>

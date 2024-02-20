@@ -21,6 +21,7 @@ import {
   SiCplusplus,
   SiProcessingfoundation,
   SiPuppeteer,
+  SiNestjs,
 } from "react-icons/si";
 
 const styles = {
@@ -37,6 +38,8 @@ const getIcon = (tech: string): JSX.Element | null => {
       return <TbBrandNextjs style={styles.techIcon} />;
     case "node.js":
       return <FaNodeJs style={styles.techIcon} />;
+    case "nest.js":
+      return <SiNestjs style={styles.techIcon} />;
     case "socket.io":
       return <SiSocketdotio style={styles.techIcon} />;
     case "express.js":

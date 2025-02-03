@@ -9,8 +9,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import paletteProvider from "@/utils/paletteProvider";
 import { useAppSelector } from "../../store/hooks";
 import { Box } from "@mui/material";
+import { NextSeo } from "next-seo";
 
-//Define Types:
 type Props = {
   children?: React.ReactNode;
 };
@@ -23,6 +23,15 @@ const Layout = ({ children }: Props): JSX.Element => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <NextSeo
+        title="Kapisolutions"
+        additionalLinkTags={[
+          {
+            rel: "icon",
+            href: "favicon.svg",
+          },
+        ]}
+      />
       <Box className={styles.container}>
         <Header locale={locale} />
         <Box component="main" name="main" className={styles.main} sx={{ pt: 2, pb: 8 }}>

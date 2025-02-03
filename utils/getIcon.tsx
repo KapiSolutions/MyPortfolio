@@ -23,14 +23,15 @@ import {
   SiPuppeteer,
   SiNestjs,
 } from "react-icons/si";
+import { RiSvelteLine } from "react-icons/ri";
 
-const styles = {
+const defStyles = {
   techIcon: {
     width: 14,
     height: 14,
   },
 };
-const getIcon = (tech: string): JSX.Element | null => {
+const getIcon = (tech: string, styles = defStyles): JSX.Element | null => {
   switch (tech) {
     case "react":
       return <FaReact style={styles.techIcon} />;
@@ -84,6 +85,8 @@ const getIcon = (tech: string): JSX.Element | null => {
       return <SiPuppeteer style={styles.techIcon} />;
     case "docker":
       return <FaDocker style={styles.techIcon} />;
+    case "svelte":
+      return <RiSvelteLine style={styles.techIcon} />;
     default:
       return null;
   }

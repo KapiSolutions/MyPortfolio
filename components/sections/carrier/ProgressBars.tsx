@@ -94,7 +94,6 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
       freelancer: "KapiSolutions",
       prototypes: "Student",
     },
-    default: {},
   };
   return (
     <Container sx={{ mt: 5 }} name="carrierProjectsDone">

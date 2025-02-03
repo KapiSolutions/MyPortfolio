@@ -28,7 +28,6 @@ const ProjectsSection = ({ projects }: Props): JSX.Element => {
     pl: {
       sectionName: "Projekty",
     },
-    default: {},
   };
   return (
     <Box sx={{ width: "100vw", minHeight: "90vh" }} name="projects" component="section">

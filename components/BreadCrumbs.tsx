@@ -1,12 +1,13 @@
 import React from "react";
 import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import { Locale, BreadCrumbs } from "@/utils/interfaces/main";
+import type { Locale, BreadCrumbs as BreadCrumb } from "@/utils/interfaces/main";
 import Link from "next/link";
 
 type Props = {
-  items: BreadCrumbs | null;
+  items: BreadCrumb | null;
 };
+
 const BreadCrumbs = ({ items }: Props): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
@@ -21,7 +22,6 @@ const BreadCrumbs = ({ items }: Props): JSX.Element => {
     pl: {
       home: "Strona Główna",
     },
-    default: {}
   };
   return (
     <Box component="nav" sx={{ mb: 2 }}>
@@ -37,7 +37,8 @@ const BreadCrumbs = ({ items }: Props): JSX.Element => {
             |
           </Typography>
         }
-        flexWrap="wrap" useFlexGap
+        flexWrap="wrap"
+        useFlexGap
       >
         <li itemProp="itemListElement" itemScope={true} itemType="http://schema.org/ListItem">
           {items ? (

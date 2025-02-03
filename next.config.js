@@ -12,9 +12,9 @@ const nextConfig = {
     ],
   },
   i18n: {
-    locales: ["default", "en", "pl"],
-    defaultLocale: "default",
-    localeDetection: false,
+    locales: ["en", "pl"],
+    defaultLocale: "en",
+    localeDetection: true,
   },
   trailingSlash: false,
   async headers() {

@@ -9,7 +9,6 @@ import BreadCrumbs from "@/components/BreadCrumbs";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 
-// Define types
 type Props = { project: Project | null };
 
 export default function AdminNewProjectPage({ project }: Props): JSX.Element {
@@ -28,7 +27,6 @@ export default function AdminNewProjectPage({ project }: Props): JSX.Element {
       prev: "Twoje projekty",
       h1: "Edycja Projektu",
     },
-    default: {},
   };
   const breadcrumbs = [
     { name: t[locale].prev, path: "/admin/projects#main" },
@@ -36,7 +34,7 @@ export default function AdminNewProjectPage({ project }: Props): JSX.Element {
   ];
   return (
     <>
-      <NextSeo title={`JK Portfolio | ${t[locale].h1}`} nofollow={true} />
+      <NextSeo title={`Kapisolutions | ${t[locale].h1}`} nofollow={true} />
 
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
@@ -54,32 +52,33 @@ export default function AdminNewProjectPage({ project }: Props): JSX.Element {
 export const getServerSideProps = withPageAuthRequired({
   // withPageAuthRequired checks if the session is authenticated, if not then redirect to Auth0 login page
   async getServerSideProps(context) {
-    const dbName = "Data";
-    const projectsCollection = "projects";
-    let project = null;
-
     const id: string | undefined = Array.isArray(context.params?.pid) ? context.params?.pid[0] : context.params?.pid;
-    if (id && ObjectId.isValid(id)) {
-      try {
-        // Connect to MongoDB
-        await connectDB();
-        // Access the specified database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(projectsCollection);
-        // Retrieve all documents in the collection
-        project = await collection.findOne({ _id: new ObjectId(id) });
-      } catch (error) {
-        console.log(error);
-      } finally {
-        // Close the MongoDB connection
-        client.close();
-      }
+    if (!id || !ObjectId.isValid(id)) {
+      return {
+        props: {
+          project: null,
+        },
+      };
     }
-
-    return {
-      props: {
-        project: JSON.parse(JSON.stringify(project)),
-      },
-    };
+    try {
+      await connectDB();
+      const db = client.db("Data");
+      const collection = db.collection("projects");
+      const project = await collection.findOne({ _id: new ObjectId(id) });
+      return {
+        props: {
+          project: JSON.parse(JSON.stringify(project)),
+        },
+      };
+    } catch (error) {
+      console.log(error);
+      return {
+        props: {
+          project: null,
+        },
+      };
+    } finally {
+      client.close();
+    }
   },
 });

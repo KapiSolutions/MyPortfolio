@@ -20,7 +20,6 @@ const WorkTogether = (): JSX.Element => {
       h1: "Zapraszam do współpracy",
       p: "Skontaktuj się poprzez",
     },
-    default: {},
   };
   const gradient = {
     backgroundImage:

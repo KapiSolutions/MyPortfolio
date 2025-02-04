@@ -22,7 +22,6 @@ export default function AdminNewProjectPage(): JSX.Element {
       prev: "Twoje projekty",
       h1: "Nowy Projekt!",
     },
-    default: {},
   };
   const breadcrumbs = [
     { name: t[locale].prev, path: "/admin/projects#main" },
@@ -30,14 +29,14 @@ export default function AdminNewProjectPage(): JSX.Element {
   ];
   return (
     <>
-      <NextSeo title={`JK Portfolio | ${t[locale].h1}`} nofollow={true} />
+      <NextSeo title={`Kapisolutions | ${t[locale].h1}`} nofollow={true} />
 
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container>
         <Typography variant="h4" align={isMobile ? "center" : "left"}>
-          New Project!
+          {t[locale].h1}
         </Typography>
         <ProjectTemplate project={null} />
       </Container>

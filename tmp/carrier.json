@@ -1,5 +1,89 @@
 [
   {
+    "id": "1d1d12ap",
+    "position": 8,
+    "companyName": {
+      "en": "AppGreat",
+      "pl": "AppGreat"
+    },
+    "as": {
+      "en": "FullStack TypeScript Developer",
+      "pl": "FullStack TypeScript Developer"
+    },
+    "type": "job",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "",
+      "pl": ""
+    },
+    "companyImage": "",
+    "projectsDone": 3,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [
+        "As a Full-Stack TypeScript Developer at Appgreat (B2B contract), I played a key role in challenging project to improve and recreate the Multivee system in the cloud.",
+        "Working in a great, agile team of three, we built the solution entirely from the ground up to enable seamless management and control over TVs and other smart devices for client facilities.",
+        "My responsibilities included developing an advanced content management system (CMS) using SvelteKit, designed to empower administrators with intuitive control and streamlined management of multimedia content. I also engineered WebSockets-based Gateways, facilitating reliable, bidirectional communication to remotely control TVs and other smart devices in real time. The main challenge while creating Gateways was to create and maintain a secure and scalable protocol for communication via WS and integration with TVs of brands such as Philips or LG. The integration gives the possibility of full control over TVs, allowing for installing selected channel packages, controlling power, volume, changing channels, checking in guests, etc. The result of the work is an efficient real-time system that meets all the requirements of such facilities as hotels or hospitals.",
+        "Additionally, I built a progressive web app (PWA) that empowers guests to remotely control TVs conveniently from their mobile devices, ensuring intuitive and responsive user experiences.",
+        "This awesome project underscores my ability to bring innovative, scalable solutions to complex problems and highlighted my commitment to creating impactful, user-centered technology."
+      ],
+      "pl": [
+        "Jako Full-Stack TypeScript Developer w Appgreat (kontrakt B2B) odegrałem kluczową rolę w projekcie mającym na celu ulepszenie i odtworzenie systemu Multivee w chmurze.",
+        "Pracując w trzy osobowym zespole Agile, zbudowaliśmy rozwiązanie całkowicie od podstaw, umożliwiając bezproblemowe zarządzanie i kontrolę nad meldunkami gości, telewizorami i innymi inteligentnymi urządzeniami w obiektach klientów.",
+        "Moje obowiązki obejmowały opracowanie zaawansowanego systemu zarządzania treścią (CMS) przy użyciu SvelteKit, zaprojektowanego w celu umożliwienia administratorom intuicyjnej kontroli i usprawnionego zarządzania zasobami.",
+        "Zaprojektowałem i wdrożyłem również system bramek (Gateways) opartych o serwer Node.js i protokół WebSockets zapewniajac niezawodną, dwukierunkową komunikację w celu zdalnego sterowania telewizorami i innymi inteligentnymi urządzeniami w czasie rzeczywistym. Głównym wyzwaniem podczas tworzenia bramek było stworzenie i utrzymanie bezpiecznego i skalowalnego protokołu do komunikacji za pośrednictwem WS i integracji z telewizorami takich marek jak Philips lub LG.",
+        "Integracja daje możliwość pełnej kontroli nad telewizorami w obiektach klientów z poziomu CMS, umożliwiając instalację wybranych pakietów kanałów, kontrolowanie zasilania, głośności, zmianę kanałów, meldowanie gości itp.",
+        "Dodatkowo stworzyłem progresywną aplikację internetową (PWA), która umożliwia gościom sterowanie telewizorami dostępnymi w pokoju z poziomu urządzeń mobilnych.",
+        "Efektem pracy jest wydajny system czasu rzeczywistego, który spełnia wszystkie wymagania takich obiektów jak hotele czy szpitale."
+      ]
+    },
+    "links": ["https://multivee.pl", "https://www.youtube.com/watch?v=GbWa128uySw"],
+    "images": [],
+    "dateStart": "2024",
+    "dateEnd": "2024",
+    "summary": ""
+  },
+  {
+    "id": "1d1d12nb",
+    "position": 7,
+    "companyName": {
+      "en": "Nerdbord",
+      "pl": "Nerdbord"
+    },
+    "as": {
+      "en": "FullStack TypeScript Developer",
+      "pl": "FullStack TypeScript Developer"
+    },
+    "type": "job",
+    "companyDescription": {
+      "en": "company description",
+      "pl": "opis firmy"
+    },
+    "jobDescription": {
+      "en": "",
+      "pl": ""
+    },
+    "companyImage": "",
+    "projectsDone": 5,
+    "projectExamples": [],
+    "responsibilities": {
+      "en": [
+        "As a key member of an agile team (nonprofit cooperation), I collaborated with other developers to ensure efficient delivery of tasks. I have developed several open-source, full-stack web applications, emphasizing supreme quality. Our primary project involved creating sophisticated recruitment suite tools (Good Dev Hunting) utilized by HR professionals and headhunters."
+      ],
+      "pl": [
+        "Jako członek zespołu Agile (współpraca non-profit) współpracowałem z innymi programistami, aby zapewnić sprawną realizację zadań. Opracowałem kilka aplikacji webowych typu open source, kładąc nacisk na najwyższą jakość. Nasz główny projekt obejmował stworzenie zaawansowanego portalu rekrutacyjnyego (Good Dev Hunting), z którego korzystają programiści, specjaliści ds. HR oraz headhunterzy."
+      ]
+    },
+    "links": ["https://www.devhunting.co", "https://www.nerdbord.io"],
+    "images": [],
+    "dateStart": "2023",
+    "dateEnd": "2023",
+    "summary": ""
+  },
+  {
     "id": "1d1d12kp",
     "position": 6,
     "companyName": {
@@ -24,7 +108,8 @@
     "projectExamples": [],
     "responsibilities": {
       "en": [
-        "Software development - Full Stack (JavaScript, TypeScript, Php, Html, Css, Sass, Node.js, Express.js, Next.js, React with Context / Redux Toolkit / Zustand, HTTP/S, REST, Socket.io, OAuth 2.0, SQL (mySQL), noSQL (MongoDB, Firebase), Bootstrap, MUI Components, GIT, NPM, UI / UX, Photoshop, Figma, Canva, Fusion360)",
+        "As owner and engineer I provide cutting-edge solutions for private and public sector. I have successfully implemented 2 of my own self-service devices in one of the public libraries in Poland. I have also delivered several web applications contributing to my clients' satisfaction and development.",
+        "Software development - Full Stack (JavaScript, TypeScript, Html, Css, Sass, Node.js, Express.js, Next.js, React with Context / Redux Toolkit / Zustand, HTTP/S, REST, Socket.io, OAuth 2.0, SQL (mySQL), noSQL (MongoDB, Firebase), Bootstrap, MUI Components, GIT, NPM, UI / UX, Photoshop, Figma, Canva, Fusion360)",
         "Operating and programming Raspberry using Python, Node.js and JavaScript",
         "Electric and electronic circuits design and fabrication",
         "Construction design 3D/2D - Fusion360",
@@ -36,7 +121,8 @@
         "Accountancy"
       ],
       "pl": [
-        "Rozwój oprogramowania - Full Stack (JavaScript, TypeScript, Php, Html, Css, Sass, Node.js, Express.js, Next.js, React with Context / Redux Toolkit / Zustand, HTTP/S, REST, Socket.io, OAuth 2.0, SQL (mySQL), noSQL (MongoDB, Firebase), Bootstrap, MUI Components, GIT, NPM, UI / UX, Photoshop, Figma, Canva, Fusion360)",
+        "Jako właściciel i inżynier dostarczam najnowocześniejsze rozwiązania dla sektora prywatnego i publicznego. Z powodzeniem wdrożyłem 2 własne urządzenia samoobsługowe(BookBox) w jednej z bibliotek publicznych w Polsce. Dostarczyłem również kilka aplikacji webowych, które przyczyniły się do zadowolenia i rozwoju moich klientów.",
+        "Rozwój oprogramowania - Full Stack (JavaScript, TypeScript, Html, Css, Sass, Node.js, Express.js, Next.js, React with Context / Redux Toolkit / Zustand, HTTP/S, REST, Socket.io, OAuth 2.0, SQL (mySQL), noSQL (MongoDB, Firebase), Bootstrap, MUI Components, GIT, NPM, UI / UX, Photoshop, Figma, Canva, Fusion360)",
         "Obsługa i programowanie Raspberry Pi przy użyciu Python, Node.js i JavaScript",
         "Projektowanie i wykonywanie obwodów elektrycznych i elektronicznych",
         "Modelowanie 3D/2D - Fusion360",

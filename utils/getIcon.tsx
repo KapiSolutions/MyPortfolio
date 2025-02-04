@@ -22,8 +22,10 @@ import {
   SiProcessingfoundation,
   SiPuppeteer,
   SiNestjs,
+  SiPrisma,
+  SiPostgresql,
 } from "react-icons/si";
-import { RiSvelteLine } from "react-icons/ri";
+import { RiSvelteLine, RiOpenaiFill } from "react-icons/ri";
 
 const defStyles = {
   techIcon: {
@@ -87,6 +89,12 @@ const getIcon = (tech: string, styles = defStyles): JSX.Element | null => {
       return <FaDocker style={styles.techIcon} />;
     case "svelte":
       return <RiSvelteLine style={styles.techIcon} />;
+    case "prisma":
+      return <SiPrisma style={styles.techIcon} />;
+    case "postgresql":
+      return <SiPostgresql style={styles.techIcon} />;
+    case "openai":
+      return <RiOpenaiFill style={styles.techIcon} />;
     default:
       return null;
   }

@@ -90,7 +90,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
     },
     pl: {
       projects: "Ukończone Projekty:",
-      employee: "Pracownik",
+      employee: "Etat",
       freelancer: "KapiSolutions",
       prototypes: "Student",
     },

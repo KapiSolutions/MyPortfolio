@@ -1,22 +1,10 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Box, Stack, Typography, useTheme, useMediaQuery } from "@mui/material";
-import {
-  TbBrandNextjs,
-  TbBrandRedux,
-  TbBrandBootstrap,
-  TbBrandCss3,
-  TbBrandHtml5,
-  TbBrandMongodb,
-  TbBrandFirebase,
-  TbBrandPhp,
-  TbBrandMysql,
-} from "react-icons/tb";
-import { FaNodeJs, FaReact, FaStripe, FaRaspberryPi, FaSass } from "react-icons/fa";
-import { SiJavascript, SiTypescript } from "react-icons/si";
+import getIcon from "@/utils/getIcon";
 
-//Styles
-const styles = {
+//Styles for the tech icons
+const iconStyle = {
   techIcon: {
     width: 24,
     height: 24,
@@ -27,19 +15,19 @@ const tech = [
   "JavaScript",
   "TypeScript",
   "Node.js",
+  "Express.js",
   "Next.js",
   "React",
-  "Redux",
-  "Bootstrap",
+  "Svelte",
   "Html",
   "Css",
   "Sass",
-  "Php",
-  "MySql",
+  "Prisma",
+  "PostgreSQL",
   "MongoDB",
   "Firebase",
   "Stripe",
-  "Raspberry",
+  "OpenAi",
 ];
 
 const TechCarousel = (): JSX.Element => {
@@ -48,44 +36,6 @@ const TechCarousel = (): JSX.Element => {
     defaultMatches: true,
   });
 
-  const getIcon = (tech: string): JSX.Element | null => {
-    switch (tech) {
-      case "React":
-        return <FaReact style={styles.techIcon} />;
-      case "Next.js":
-        return <TbBrandNextjs style={styles.techIcon} />;
-      case "Node.js":
-        return <FaNodeJs style={styles.techIcon} />;
-      case "Redux":
-        return <TbBrandRedux style={styles.techIcon} />;
-      case "Bootstrap":
-        return <TbBrandBootstrap style={styles.techIcon} />;
-      case "Sass":
-        return <FaSass style={styles.techIcon} />;
-      case "Css":
-        return <TbBrandCss3 style={styles.techIcon} />;
-      case "Html":
-        return <TbBrandHtml5 style={styles.techIcon} />;
-      case "JavaScript":
-        return <SiJavascript style={styles.techIcon} />;
-      case "TypeScript":
-        return <SiTypescript style={styles.techIcon} />;
-      case "Php":
-        return <TbBrandPhp style={styles.techIcon} />;
-      case "MySql":
-        return <TbBrandMysql style={styles.techIcon} />;
-      case "MongoDB":
-        return <TbBrandMongodb style={styles.techIcon} />;
-      case "Firebase":
-        return <TbBrandFirebase style={styles.techIcon} />;
-      case "Stripe":
-        return <FaStripe style={styles.techIcon} />;
-      case "Raspberry":
-        return <FaRaspberryPi style={styles.techIcon} />;
-      default:
-        return null;
-    }
-  };
   const carouselSlides = () => {
     const qt = isMobile ? 3 : 4;
     const sliderItems: number = tech.length > qt ? qt : tech.length;
@@ -98,7 +48,7 @@ const TechCarousel = (): JSX.Element => {
             {tech.slice(i, i + sliderItems).map((item, index) => {
               return (
                 <Stack alignItems="center" spacing={1} key={index} sx={{ width: 40 }}>
-                  {getIcon(item)}
+                  {getIcon(item.toLowerCase(), iconStyle)}
                   <Typography variant="body1">{item}</Typography>
                 </Stack>
               );

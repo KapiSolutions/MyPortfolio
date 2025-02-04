@@ -9,129 +9,130 @@ import ProjectOverview from "@/components/ProjectOverview";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { NextSeo, ArticleJsonLd } from "next-seo";
 
-// Define types
 type Props = { project: Project | null; prevID: string; nextID: string };
 
 export default function ProjectOverviewPage({ project, prevID, nextID }: Props): JSX.Element {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const breadcrumbs = [{ name: project ? project.title[locale] : "404", path: `/projects/${project?._id}` }];
   return (
     <>
-      <NextSeo
-        title={`Kapisolutions | ${project?.title[locale]}`}
-        canonical={`https://www.kapisolutions.pl/${locale}`}
-        description={project?.description[locale]}
-        languageAlternates={[
-          {
-            hrefLang: "en",
-            href: `https://www.kapisolutions.pl/en/projects/${project?._id}`,
-          },
-          {
-            hrefLang: "pl",
-            href: `https://www.kapisolutions.pl/pl/projects/${project?._id}`,
-          },
-          {
-            hrefLang: "x-default",
-            href: `https://www.kapisolutions.pl/projects/${project?._id}`,
-          },
-        ]}
-      />
-      <ArticleJsonLd
-        type="BlogPosting"
-        url={`https://www.kapisolutions.pl/${locale}${router.asPath}`}
-        title={project ? project.title[locale] : "Title"}
-        images={[project ? project.image : ""]}
-        datePublished={project ? project.date : "2023-05-05T09:00:00+08:00"}
-        dateModified={project ? project.date : "2023-05-05T09:00:00+08:00"}
-        authorName="Jakub Kapturkiewicz"
-        description={project ? project.description[locale] : ""}
-      />
+      {project ? (
+        <>
+          <NextSeo
+            title={`Kapisolutions | ${project.title[locale]}`}
+            canonical={`${baseUrl}/${locale}/projects/${project._id}`}
+            description={project.description[locale]}
+            languageAlternates={[
+              {
+                hrefLang: "en",
+                href: `${baseUrl}/projects/${project._id}`,
+              },
+              {
+                hrefLang: "pl",
+                href: `${baseUrl}/pl/projects/${project._id}`,
+              },
+              {
+                hrefLang: "x-default",
+                href: `${baseUrl}/projects/${project._id}`,
+              },
+            ]}
+          />
+
+          <ArticleJsonLd
+            type="BlogPosting"
+            url={`${baseUrl}/${locale}${router.asPath}`}
+            title={project.title[locale]}
+            images={[project.image]}
+            datePublished={project.date}
+            dateModified={project.date}
+            authorName="Jakub Kapturkiewicz"
+            description={project.description[locale]}
+          />
+        </>
+      ) : (
+        <NextSeo title={"Kapisolutions | 404"} />
+      )}
+
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container maxWidth="md">
-        {project ? <ProjectOverview project={project} prevID={prevID} nextID={nextID} /> : "Project doesnt exist."}
+        {project ? <ProjectOverview project={project} prevID={prevID} nextID={nextID} /> : "Project not found."}
       </Container>
     </>
   );
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  const dbName = "Data";
-  const projectsCollection = "projects";
-  const id = context.params?.pid ? context.params?.pid : "";
-  let project = null;
-  let sortedProjects = null;
-  let prevID = "";
-  let nextID = "";
+  const id = context.params?.pid;
+  const defProps = { project: null, prevID: "", nextID: "" };
 
-  if (id && ObjectId.isValid(id as string)) {
-    try {
-      // Connect to MongoDB
-      await connectDB();
-      // Access the specified database and collection
-      const db = client.db(dbName);
-      const collection = db.collection(projectsCollection);
-      // Retrieve document by ID in the collection
-      project = await collection.findOne({ _id: new ObjectId(id as string) });
-      // Retrieve all projects from the collection
-      const projects = await collection.find().toArray();
-      // Sort projects by date
-      sortedProjects = projects.sort(
-        (a: { realizationDate: string }, b: { realizationDate: string }) =>
-          parseDate(b.realizationDate) - parseDate(a.realizationDate)
-      );
-      // find previous and next id of the project
-      const actID = sortedProjects.findIndex((item: Project) => item._id?.toString() === id);
-      prevID = actID > 0 ? sortedProjects[actID - 1]._id : sortedProjects[sortedProjects.length - 1]._id;
-      nextID = actID < sortedProjects.length - 1 ? sortedProjects[actID + 1]._id : sortedProjects[0]._id;
-    } catch (error) {
-      console.log(error);
+  if (!id || !ObjectId.isValid(id as string)) {
+    return { props: defProps, revalidate: false };
+  }
+  try {
+    await connectDB();
+    const db = client.db("Data");
+    const collection = db.collection("projects");
+    const project = await collection.findOne({ _id: new ObjectId(id as string) });
+
+    if (!project) {
+      return { props: defProps, revalidate: false };
     }
-  }
 
-  function parseDate(input: string) {
-    return new Date(input).getTime();
-  }
+    const projects = await collection.find().toArray();
+    // Sort projects by date
+    const sortedProjects = projects.sort((a, b) => {
+      const dateA = new Date(a.date.split(".").reverse().join("-"));
+      const dateB = new Date(b.date.split(".").reverse().join("-"));
+      return dateB.getTime() - dateA.getTime();
+    });
 
-  return {
-    props: {
-      project: JSON.parse(JSON.stringify(project)),
-      prevID: prevID.toString(),
-      nextID: nextID.toString(),
-    },
-    revalidate: false, //on demand revalidation
-  };
+    // find previous and next id of the project (for navigation)
+    const actID = sortedProjects.findIndex((item) => item._id?.toString() === id);
+    const prevID = actID > 0 ? sortedProjects[actID - 1]._id : sortedProjects[sortedProjects.length - 1]._id;
+    const nextID = actID < sortedProjects.length - 1 ? sortedProjects[actID + 1]._id : sortedProjects[0]._id;
+
+    return {
+      props: {
+        project: JSON.parse(JSON.stringify(project)),
+        prevID: prevID.toString(),
+        nextID: nextID.toString(),
+      },
+      revalidate: false, //on demand revalidation
+    };
+  } catch (error) {
+    console.log(error);
+    return { props: defProps, revalidate: false };
+  }
 }
 
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
-  const dbName = "Data";
-  const projectsCollection = "projects";
-  let documentIds = [];
   try {
-    // Connect to MongoDB
     await connectDB();
-    // Access the specified database and collection
-    const db = client.db(dbName);
-    const collection = db.collection(projectsCollection);
-    // Retrieve all documents from the collection
-    const documents = await collection.find().toArray();
+    const db = client.db("Data");
+    const collection = db.collection("projects");
+    const projects = await collection.find().toArray();
 
-    // Extract the IDs of each document
-    documentIds = documents.map((doc: { _id: string }) => doc._id.toString());
+    const documentIds = projects.map((doc) => doc._id.toString());
+    return {
+      paths: documentIds.flatMap((doc: string) => {
+        return (locales ?? []).map((locale) => {
+          return {
+            params: { pid: doc },
+            locale: locale,
+          };
+        });
+      }),
+      fallback: "blocking",
+    };
   } catch (error) {
-    console.log(error);
+    console.error("Error generating static paths:", error);
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
   }
-  return {
-    paths: documentIds.flatMap((doc: string) => {
-      return (locales ?? []).map((locale) => {
-        return {
-          params: { pid: doc },
-          locale: locale,
-        };
-      });
-    }),
-    fallback: "blocking",
-  };
 }

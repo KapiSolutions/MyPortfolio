@@ -6,7 +6,6 @@ import Navbar from "./Navbar";
 import { Locale } from "@/utils/interfaces/main";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 
-//Define Types:
 type Props = {
   locale: Locale;
 };
@@ -26,14 +25,23 @@ const Header = ({ locale }: Props): JSX.Element => {
       p: "Full-Stack Developer & Mechatronic Systems Engineer",
       mainButton: "Pokaż projekty",
     },
-    default: {},
   };
   const lottiePath = "/lotties/header.lottie";
+
+  const handleScroll = async () => {
+    if (router.pathname === "/") {
+      const element = document.getElementsByName("projects")[0];
+      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+    } else {
+      await router.push("/", undefined, { scroll: false });
+      const element = document.getElementsByName("projects")[0];
+      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+    }
+  };
 
   return (
     <Box className={styles.container}>
       <Navbar />
-      {/* , bottom: 0 */}
       {isMobile ? (
         <Box
           sx={{
@@ -102,13 +110,7 @@ const Header = ({ locale }: Props): JSX.Element => {
               size="large"
               color="primary"
               sx={{ mt: isMobile ? 2 : 0 }}
-              onClick={() => {
-                if (router.route === "/") {
-                  document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
-                } else {
-                  router.push("/#main");
-                }
-              }}
+              onClick={handleScroll}
             >
               {t[locale].mainButton}
             </Button>

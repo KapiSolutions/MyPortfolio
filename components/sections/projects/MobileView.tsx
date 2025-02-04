@@ -25,9 +25,7 @@ const MobileView = ({ projects }: Props): JSX.Element => {
       showMore: "Więcej",
       hide: "Zwiń",
     },
-    default: {},
   };
-
 
   return (
     <Stack spacing={2}>

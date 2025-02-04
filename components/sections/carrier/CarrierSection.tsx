@@ -29,7 +29,6 @@ const CarrierSection = ({ carrier }: Props): JSX.Element => {
       h: "Kariera",
       clickForDetails: "Kliknij w wybrany etap, aby zobaczyć szczegóły.",
     },
-    default: {},
   };
 
   return (

@@ -96,7 +96,6 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
       deleteButton: "Usuń",
       editButton: "Edytuj",
     },
-    default: {},
   };
   return (
     <>
@@ -134,7 +133,7 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
                   setRedirecting(true);
                 }}
               >
-                {redirecting ? <CircularProgress color="inherit" size={18}  /> : t[locale].editButton}
+                {redirecting ? <CircularProgress color="inherit" size={18} /> : t[locale].editButton}
               </Button>
             </Stack>
           </Grid>

@@ -90,11 +90,10 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
     },
     pl: {
       projects: "Ukończone Projekty:",
-      employee: "Pracownik",
+      employee: "Etat",
       freelancer: "KapiSolutions",
       prototypes: "Student",
     },
-    default: {},
   };
   return (
     <Container sx={{ mt: 5 }} name="carrierProjectsDone">

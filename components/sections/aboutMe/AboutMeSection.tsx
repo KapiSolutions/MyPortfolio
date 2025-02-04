@@ -23,7 +23,6 @@ const AboutMeSection = (): JSX.Element => {
     pl: {
       h: "O mnie",
     },
-    default: {},
   };
   function isEven(n: number) {
     return n % 2 == 0;

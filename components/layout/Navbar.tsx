@@ -4,8 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import FilePresentIcon from "@mui/icons-material/FilePresent";
-import { FaCodeBranch } from "react-icons/fa";
+import CodeIcon from "@mui/icons-material/Code";
 import ThemeSwitch from "../ThemeSwitch";
 import { Locale } from "@/utils/interfaces/main";
 import { LocaleSwitch } from "../LocaleSwitch";
@@ -44,7 +43,6 @@ const Navbar = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const cvLink = "https://drive.google.com/file/d/1Fo1p5dvnMbXHZPShHCxfbamE8oJZhd-e/view?usp=sharing";
 
   // Mobile menu handlers
   const openNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -104,15 +102,6 @@ const Navbar = (): JSX.Element => {
     }
   };
 
-  const t = {
-    en: {
-      cv: "CV / RESUME",
-    },
-    pl: {
-      cv: "CV",
-    },
-    default: {},
-  };
   return (
     <Box>
       <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
@@ -163,7 +152,10 @@ const Navbar = (): JSX.Element => {
                 disableScrollLock={true}
                 sx={{
                   transform: "translateY(12px) translateX(-20px)",
-                  "& .MuiMenu-paper": { backgroundColor: "background.nav", backdropFilter: "blur(24px)" },
+                  "& .MuiMenu-paper": {
+                    backgroundColor: "background.contrast",
+                    backdropFilter: "blur(24px) saturate(180%)",
+                  },
                 }}
               >
                 {pages[locale]?.map((page, idx) => (
@@ -178,15 +170,6 @@ const Navbar = (): JSX.Element => {
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))}
-
-                <MenuItem onClick={closeNavMenu} divider sx={{ pb: 2, pt: 2 }}>
-                  <Link target="_blank" rel="noopener noreferrer" href={cvLink}>
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <FilePresentIcon sx={{ fontSize: 20 }} />
-                      <Typography textAlign="center">{t[locale].cv}</Typography>
-                    </Stack>
-                  </Link>
-                </MenuItem>
 
                 <MenuItem onClick={closeNavMenu} divider>
                   <LocaleSwitch />
@@ -218,47 +201,30 @@ const Navbar = (): JSX.Element => {
               </Menu>
             </Box>
 
-            <Box sx={{ flexGrow: 1 }} className="pointer" onClick={brandButtonAction}>
-              <FaCodeBranch />
+            <Stack
+              sx={{ width: "100%", justifyContent: "center", alignItems: "center" }}
+              className="pointer"
+              onClick={brandButtonAction}
+            >
+              <CodeIcon />
               <Typography
-                variant="h5"
                 noWrap
-                component="span"
                 sx={{
-                  ml: 1,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
                   letterSpacing: ".3rem",
+                  fontSize: "6px",
                   color: "inherit",
-                  textDecoration: "none",
                 }}
               >
-                JK
+                KAPISOLUTIONS
               </Typography>
-            </Box>
+            </Stack>
             <ThemeSwitch />
           </Stack>
         ) : (
           // Desktop View
-          <Stack direction="row" alignItems="center" sx={{ width: "100%", pt: 1, pb: 1 }}>
-            <Box className="pointer" onClick={brandButtonAction}>
-              <FaCodeBranch />
-              <Typography
-                variant="h6"
-                noWrap
-                component="span"
-                sx={{
-                  ml: 1,
-                  mr: 2,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                JK
-              </Typography>
+          <Stack direction="row" alignItems="center" justifyContent="center" sx={{ width: "100%", pt: 1, pb: 1 }}>
+            <Box className="pointer" onClick={brandButtonAction} sx={{ display: "flex", mr: 1 }}>
+              <CodeIcon />
             </Box>
             <Stack direction="row" sx={{ flexGrow: 1 }}>
               {pages[locale]?.map((page, idx) => (
@@ -273,17 +239,6 @@ const Navbar = (): JSX.Element => {
                   {page}
                 </Button>
               ))}
-              <Stack direction="row" alignItems="center" spacing={1} sx={{ ml: 1 }}>
-                <Divider orientation="vertical" flexItem />
-                <Link target="_blank" rel="noopener noreferrer" href={cvLink}>
-                  <Button aria-label="menuAdminLg" aria-controls="menuAdminLg" aria-haspopup="true" color="inherit">
-                    <FilePresentIcon fontSize="small" />
-                    <Typography textAlign="center" variant="body2" sx={{ ml: 1 }}>
-                      {t[locale].cv}
-                    </Typography>
-                  </Button>
-                </Link>
-              </Stack>
               {/* Admin Menu */}
               {user ? (
                 <Stack direction="row" sx={{ ml: 2 }} spacing={1}>
@@ -327,16 +282,6 @@ const Navbar = (): JSX.Element => {
                         </Link>
                       </Stack>
                     </MenuItem>
-                    {/* <MenuItem onClick={closeNavMenuLg} divider>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                    <SettingsIcon sx={{fontSize:"medium"}}/>
-                      <Link href="/admin/carrier">
-                        <Typography textAlign="center" component="span">
-                          Carrier
-                        </Typography>
-                      </Link>
-                    </Stack>
-                  </MenuItem> */}
                     <MenuItem onClick={closeNavMenuLg} divider>
                       <Stack direction="row" alignItems="center" spacing={1}>
                         <LogoutIcon sx={{ fontSize: "medium" }} />

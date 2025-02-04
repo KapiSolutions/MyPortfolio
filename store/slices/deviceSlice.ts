@@ -20,7 +20,7 @@ export const deviceSlice = createSlice({
 });
 
 export const { setTheme } = deviceSlice.actions;
-// Other code such as selectors can use the imported `RootState` type
-export const selectTheme = (state: RootState) => state.device.theme
+
+export const selectTheme = (state: RootState) => state.device.theme;
 
 export default deviceSlice.reducer;

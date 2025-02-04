@@ -70,7 +70,6 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
       previewShowButton: "Podgląd projektu",
       previewCloseButton: "Zamknij podgląd",
     },
-    default: {},
   };
 
   // Scroll and set focus on the error field

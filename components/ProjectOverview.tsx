@@ -48,7 +48,6 @@ const ProjectOverview = ({ project, prevID, nextID, previewMode = false }: Props
       prev: "Poprzedni",
       next: "Następny",
     },
-    default: {},
   };
 
   const convertTitle = (title: string) => {

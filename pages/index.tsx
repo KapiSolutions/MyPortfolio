@@ -18,8 +18,9 @@ type Props = {
 export default function Home({ projects }: Props) {
   const router = useRouter();
   const locale = (router.locale || "pl") as Locale;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
   useEffect(() => {
-    // Prefetch the project pages
     router.prefetch("/projects/[pid]");
   }, [router]);
 
@@ -30,32 +31,30 @@ export default function Home({ projects }: Props) {
     pl: {
       desc: "Kapisolutions to polska firma założona w 2020r. Naszym głównym celem jest wychodzenie na przeciw oczekiwaniom rynkowym oferując profesjonalne rozwiązania z zakresu IT oraz mechatroniki. Jako firma specjalizujemy się również w projektowaniu aplikacji webowych, platform e-commerce, druku 3D oraz szeroko pojętej automatyce. Dzięki bogatemu doświadczeniu w wielu gałęziach przemysłu i technologii jakość naszych produktów plasuje się na najwyższym poziomie. Do każdego klienta podchodzimy indywidualnie korelując stawiane wymagania z naszym doświadczeniem i kreatywnością. Proces projektowania i wdrażania nowych rozwiązań niemal zawsze spotyka się z pewnymi trudnościami, lecz nie są to dla nas problemy, a wyzwania, które z przyjemnością podejmujemy!",
     },
-    default:
-      "Kapisolutions to polska firma założona w 2020r. Naszym głównym celem jest wychodzenie na przeciw oczekiwaniom rynkowym oferując profesjonalne rozwiązania z zakresu IT oraz mechatroniki. Jako firma specjalizujemy się również w projektowaniu aplikacji webowych, platform e-commerce, druku 3D oraz szeroko pojętej automatyce. Dzięki bogatemu doświadczeniu w wielu gałęziach przemysłu i technologii jakość naszych produktów plasuje się na najwyższym poziomie. Do każdego klienta podchodzimy indywidualnie korelując stawiane wymagania z naszym doświadczeniem i kreatywnością. Proces projektowania i wdrażania nowych rozwiązań niemal zawsze spotyka się z pewnymi trudnościami, lecz nie są to dla nas problemy, a wyzwania, które z przyjemnością podejmujemy!",
   };
   return (
     <>
       <NextSeo
         title="Kapisolutions"
-        canonical={`https://www.kapisolutions.pl/${locale ? locale : "pl"}`}
+        canonical={`${baseUrl}/${locale}`}
         description={t[locale].desc}
         languageAlternates={[
           {
             hrefLang: "en",
-            href: "https://www.kapisolutions.pl/en",
+            href: `${baseUrl}`,
           },
           {
             hrefLang: "pl",
-            href: "https://www.kapisolutions.pl/pl",
+            href: `${baseUrl}/pl`,
           },
           {
             hrefLang: "x-default",
-            href: "https://www.kapisolutions.pl/pl",
+            href: `${baseUrl}`,
           },
         ]}
         openGraph={{
           type: "website",
-          url: `https://www.kapisolutions.pl/${locale ? locale : "pl"}`,
+          url: `${baseUrl}/${locale}`,
           title: "Kapisolutions",
           description: t[locale].desc,
           images: [
@@ -64,12 +63,6 @@ export default function Home({ projects }: Props) {
               width: 905,
               height: 1280,
               alt: "Bookbox Library - Kapisolutions",
-            },
-            {
-              url: "https://www.example.ie/og-image-2.jpg",
-              width: 1080,
-              height: 600,
-              alt: "Kapisolutions logo",
             },
           ],
         }}
@@ -85,42 +78,36 @@ export default function Home({ projects }: Props) {
   );
 }
 
-export async function getStaticProps() {
-  const dbName = "Data";
-  const projectsCollection = "projects";
-  let sortedProjects = null;
-
-  function parseDate(input: string) {
-    const parts = input.match(/(\d+)/g);
-    if (parts !== null && parts.length === 3) {
-      const year = parseInt(parts[2], 10);
-      const month = parseInt(parts[1], 10) - 1;
-      const day = parseInt(parts[0], 10);
-      return new Date(year, month, day).getTime();
-    } else {
-      return 0;
-    }
-  }
+export const getStaticProps = async () => {
   try {
-    // Connect to MongoDB
     await connectDB();
-    // Access the specified database and collection
-    const db = client.db(dbName);
-    const collection = db.collection(projectsCollection);
-    // Retrieve all documents in the collection
-    const projects = await collection.find().toArray();
-    // Sort documents by date
-    sortedProjects = projects.sort((a: { date: string }, b: { date: string }) => parseDate(b.date) - parseDate(a.date));
+    const db = client.db("Data");
+    const collection = db.collection("projects");
+
+    const projects = await collection.find({}).toArray();
+
+    // Sort projects by date
+    const sortedProjects = projects.sort((a, b) => {
+      const dateA = new Date(a.date.split(".").reverse().join("-"));
+      const dateB = new Date(b.date.split(".").reverse().join("-"));
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    return {
+      props: {
+        projects: JSON.parse(JSON.stringify(sortedProjects)),
+      },
+      revalidate: false,
+    };
   } catch (error) {
-    console.log(error);
+    console.error("Failed to fetch projects:", error);
+    return {
+      props: {
+        projects: [],
+      },
+      revalidate: false,
+    };
   } finally {
-    // Close the MongoDB connection
-    client.close();
+    await client.close();
   }
-  return {
-    props: {
-      projects: JSON.parse(JSON.stringify(sortedProjects)),
-    },
-    revalidate: false, //on demand revalidation
-  };
-}
+};

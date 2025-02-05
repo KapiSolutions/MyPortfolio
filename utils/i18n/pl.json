@@ -1,0 +1,62 @@
+{
+  "breadcrumbs.home": "Strona główna",
+
+  "carrier.item.now": "Teraz",
+  "carrier.item.finished-projects": "Zakończone projekty:",
+  "carrier.item.responsibilities": "Zakres obowiązków:",
+  "carrier.item.job-desc": "Projekt / Zakres obowiązków:",
+  "carrier.item.study-field": "Kierunek studiów:",
+  "carrier.item.job-position": "Stanowisko:",
+  "carrier.item.links": "Linki:",
+  "carrier.item.close": "Zamknij",
+
+  "carrier.section.header": "Kariera",
+  "carrier.section.details": "Kliknij w wybrany etap, aby zobaczyć szczegóły.",
+
+  "contact.header": "Zapraszam do współpracy",
+  "contact.paragraph": "Skontaktuj się poprzez",
+
+  "footer.rights": "Wszelkie prawa zastrzeżone.",
+
+  "header.job-title": "Full-Stack Developer & Mechatronic Systems Engineer",
+  "header.button": "Pokaż projekty",
+
+  "main.desc": "Kapisolutions to polska firma założona w 2020r. Naszym głównym celem jest wychodzenie na przeciw oczekiwaniom rynkowym oferując profesjonalne rozwiązania z zakresu IT oraz mechatroniki. Jako firma specjalizujemy się również w projektowaniu aplikacji webowych, platform e-commerce, druku 3D oraz szeroko pojętej automatyce. Dzięki bogatemu doświadczeniu w wielu gałęziach przemysłu i technologii jakość naszych produktów plasuje się na najwyższym poziomie. Do każdego klienta podchodzimy indywidualnie korelując stawiane wymagania z naszym doświadczeniem i kreatywnością. Proces projektowania i wdrażania nowych rozwiązań niemal zawsze spotyka się z pewnymi trudnościami, lecz nie są to dla nas problemy, a wyzwania, które z przyjemnością podejmujemy!",
+
+  "project.overview.short-desc": "Zarys projektu",
+  "project.overview.as": "Jako",
+  "project.overview.technology": "Technologia",
+  "project.overview.prev": "Poprzedni",
+  "project.overview.next": "Następny",
+
+  "project.item.delete": "Usuń",
+  "project.item.edit": "Edytuj",
+  "project.item.cancel": "Anuluj",
+  "project.item.delete-confirm": "Potwierdź usunięcie",
+  "project.item.delete-question": "Czy na pewno chcesz usunąć ten projekt?",
+
+  "project.template.add-project": "Dodaj projekt!",
+  "project.template.update-project": "Zaktualizuj projekt!",
+  "project.template.preview-open": "Podgląd projektu",
+  "project.template.preview-close": "Zamknij podgląd",
+
+  "projects.mobile.show-more": "Pokaż więcej",
+  "projects.mobile.hide": "Zwiń",
+
+  "projects.section.header": "Projekty",
+
+  "projects.manage.header": "Zarządzaj projektami",
+  "projects.manage.add-new": "Dodaj nowy!",
+  "projects.manage.title": "Tytuł",
+  "projects.manage.date": "Data",
+  "projects.manage.actions": "Opcje",
+
+  "project.edit.header": "Edycja Projektu",
+  "project.new.header": "Nowy Projekt!",
+  "project.not-found": "Nie znaleziono projektu.",
+
+  "progressbars.projects": "Ukończone Projekty:",
+  "progressbars.employee": "Etat",
+  "progressbars.freelancer": "KapiSolutions",
+  "progressbars.prototypes": "Student"
+}

@@ -6,7 +6,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import CodeIcon from "@mui/icons-material/Code";
 import ThemeSwitch from "../ThemeSwitch";
-import { Locale } from "@/utils/interfaces/main";
+import { getTranslation, Locale } from "@/utils/i18n";
 import { LocaleSwitch } from "../LocaleSwitch";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -34,7 +34,7 @@ const pages = {
 
 const Navbar = (): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
   const [loading, setLoading] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElNavLg, setAnchorElNavLg] = useState<null | HTMLElement>(null);

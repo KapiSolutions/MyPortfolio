@@ -1,0 +1,62 @@
+{
+  "breadcrumbs.home": "Home",
+
+  "carrier.item.now": "Now",
+  "carrier.item.finished-projects": "Finished Projects:",
+  "carrier.item.responsibilities": "Responsibilities:",
+  "carrier.item.job-desc": "Project / Responsibilites:",
+  "carrier.item.study-field": "Field of study:",
+  "carrier.item.job-position": "Job position:",
+  "carrier.item.links": "Links:",
+  "carrier.item.close": "Close",
+
+  "carrier.section.header": "Carrier",
+  "carrier.section.details": "Click on the time line for details.",
+
+  "contact.header": "Want to work together?",
+  "contact.paragraph": "Feel free to reach out at",
+
+  "footer.rights": "All rights reserved.",
+
+  "header.job-title": "Full-Stack Developer & Mechatronic Systems Engineer",
+  "header.button": "Explore projects",
+
+  "main.desc": "KapiSolutions is a Polish company founded in 2020. Our main goal is to meet the clients expectations by offering professional solutions in the field of design and production of devices and machines. As a company, we also specialize in designing web applications, 3D printing and widely understood automation. Thanks to our extensive experience in many industries and technologies, the quality of our products is at the highest level. We approach each client individually, correlating the requirements with our experience and creativity. The process of designing and implementing new solutions almost always encounters some difficulties, but these are not problems for us, but challenges that we take on with pleasure!",
+
+  "project.overview.short-desc": "Short overview",
+  "project.overview.as": "As",
+  "project.overview.technology": "Technology",
+  "project.overview.prev": "Prev",
+  "project.overview.next": "Next",
+
+  "project.item.delete": "Delete",
+  "project.item.edit": "Edit",
+  "project.item.cancel": "Cancel",
+  "project.item.delete-confirm": "Confirm action",
+  "project.item.delete-question": "Are you sure you want to delete this project?",
+
+  "project.template.add-project": "Add project!",
+  "project.template.update-project": "Update project!",
+  "project.template.preview-open": "Show preview",
+  "project.template.preview-close": "Close preview",
+
+  "projects.mobile.show-more": "Show more",
+  "projects.mobile.hide": "Hide",
+
+  "projects.section.header": "Projects",
+
+  "projects.manage.header": "Menage projects",
+  "projects.manage.add-new": "Add New!",
+  "projects.manage.title": "Title",
+  "projects.manage.date": "Date",
+  "projects.manage.actions": "Actions",
+
+  "project.edit.header": "Edit Project!",
+  "project.new.header": "New Project!",
+  "project.not-found": "Project not found.",
+
+  "progressbars.projects": "Projects Done:",
+  "progressbars.employee": "Employee",
+  "progressbars.freelancer": "KapiSolutions",
+  "progressbars.prototypes": "Student"
+}

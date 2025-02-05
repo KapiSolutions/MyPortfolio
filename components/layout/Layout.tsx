@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import styles from "../../styles/layout/grid.module.scss";
 import { useRouter } from "next/router";
-import { Locale } from "@/utils/interfaces/main";
+import type { Locale } from "@/utils/i18n";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import paletteProvider from "@/utils/paletteProvider";
@@ -17,7 +17,7 @@ type Props = {
 
 const Layout = ({ children }: Props): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
   const themeState = useAppSelector((state) => state.device.theme);
   const theme = useMemo(() => createTheme(paletteProvider(themeState)), [themeState]);
   return (

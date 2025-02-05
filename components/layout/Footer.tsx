@@ -4,33 +4,25 @@ import { Container, Typography, Stack, Divider, useTheme, useMediaQuery } from "
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Locale } from "@/utils/interfaces/main";
-//Define Types:
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
+
 type Props = {
   locale: Locale;
 };
 
 const Footer = ({ locale }: Props): JSX.Element => {
   const theme = useTheme();
+  const t = (key: Tkey) => getTranslation(locale, key);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-
-  const t = {
-    en: {
-      rights: "All rights reserved.",
-    },
-    pl: {
-      rights: "Wszelkie prawa zastrzeżone.",
-    },
-  };
 
   return (
     <Container name="footer" component="footer" sx={{ pb: 3 }}>
       <Divider orientation="horizontal" flexItem sx={{ mb: 3 }} />
       <Stack direction={isMobile ? "column-reverse" : "row"} justifyContent="space-between" alignItems="center">
         <Typography variant="caption" display="block" align="left" mt={isMobile ? 2 : 0}>
-          ©{new Date().getFullYear()} {t[locale]?.rights}
+          ©{new Date().getFullYear()} {t("footer.rights")}
         </Typography>
         <Stack
           direction="row"
@@ -41,7 +33,7 @@ const Footer = ({ locale }: Props): JSX.Element => {
           component="nav"
         >
           <Link
-            href="https://www.linkedin.com/in/jakub-kapturkiewicz-147442109/"
+            href="https://www.linkedin.com/in/jakubkapturkiewicz/"
             target="_blank"
             rel="noopener noreferrer"
             passHref

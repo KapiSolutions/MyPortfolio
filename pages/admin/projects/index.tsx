@@ -3,12 +3,12 @@ import { Typography, Container, Stack, Grid, Divider, Box, Button, useTheme, use
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ProjectItem from "@/components/admin/projects/ProjectItem";
 import { useRouter } from "next/router";
-import type { Locale } from "@/utils/interfaces/main";
 import type { Projects } from "@/utils/schema/project";
 import Link from "next/link";
 import { connectDB, client } from "@/utils/mongodb";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { NextSeo } from "next-seo";
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
 
 type Props = {
   projects: Projects;
@@ -16,47 +16,30 @@ type Props = {
 
 export default function AdminProjectsPage({ projects }: Props): JSX.Element {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
+  const t = (key: Tkey) => getTranslation(locale, key);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
 
-  const t = {
-    en: {
-      h1: "Menage projects",
-      addButton: "Add New!",
-      title: "Title",
-      date: "Date",
-      actions: "Actions",
-      deleteButton: "Delete",
-      editButton: "Edit",
-    },
-    pl: {
-      h1: "Twoje projekty",
-      addButton: "Dodaj nowy!",
-      title: "Tytuł",
-      date: "Data",
-      actions: "Opcje",
-    },
-  };
-  const breadcrumbs = [{ name: t[locale].h1, path: "/admin/projects" }];
+  const breadcrumbs = [{ name: t("projects.manage.header"), path: "/admin/projects" }];
   return (
     <>
-      <NextSeo title={`Kapisolutions | ${t[locale].h1}`} nofollow={true} />
+      <NextSeo title={`Kapisolutions | ${t("projects.manage.header")}`} nofollow={true} />
 
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container>
         <Typography variant="h4" align={isMobile ? "center" : "left"}>
-          {t[locale].h1}
+          {t("projects.manage.header")}
         </Typography>
         <Box display="flex" justifyContent="flex-end" sx={{ mt: 4 }}>
           <Link href="/admin/projects/new#main">
             <Button variant="outlined" color="inherit" size="large" sx={{ width: isMobile ? "100%" : "auto" }}>
               <PostAddIcon sx={{ mr: 1 }} />
-              {t[locale].addButton}
+              {t("projects.manage.add-new")}
             </Button>
           </Link>
         </Box>
@@ -64,16 +47,16 @@ export default function AdminProjectsPage({ projects }: Props): JSX.Element {
         {/* Title Bar */}
         <Grid container spacing={2} wrap="nowrap" sx={{ mt: 2 }}>
           <Grid item xs={9} sm={5} lg={9}>
-            <Typography variant="body1">{t[locale].title}</Typography>
+            <Typography variant="body1">{t("projects.manage.title")}</Typography>
           </Grid>
           {isMobile ? null : (
             <Grid item sm={3} lg={1}>
-              <Typography variant="body1">{t[locale].date}</Typography>
+              <Typography variant="body1">{t("projects.manage.date")}</Typography>
             </Grid>
           )}
           <Grid item xs={3} sm={4} lg={2}>
             <Box display="flex">
-              <Typography variant="body1">{t[locale].actions}</Typography>
+              <Typography variant="body1">{t("projects.manage.actions")}</Typography>
             </Box>
           </Grid>
         </Grid>

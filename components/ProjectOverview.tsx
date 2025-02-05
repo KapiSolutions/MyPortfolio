@@ -9,8 +9,7 @@ import LinkIcon from "@mui/icons-material/Link";
 import TuneIcon from "@mui/icons-material/Tune";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import { FaCodeBranch } from "react-icons/fa";
-import { Locale } from "@/utils/interfaces/main";
+import { getTranslation, Locale, Tkey } from "@/utils/i18n";
 import type { Project } from "@/utils/schema/project";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,28 +26,13 @@ type Props = {
 
 const ProjectOverview = ({ project, prevID, nextID, previewMode = false }: Props): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
+  const t = (key: Tkey) => getTranslation(locale, key);
   const [show, setShow] = useState(-1);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const t = {
-    en: {
-      shortDesc: "Short overview",
-      as: "As",
-      technology: "Technology",
-      prev: "Prev",
-      next: "Next",
-    },
-    pl: {
-      shortDesc: "Zarys projektu",
-      as: "Jako",
-      technology: "Technologia",
-      prev: "Poprzedni",
-      next: "Następny",
-    },
-  };
 
   const convertTitle = (title: string) => {
     const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
@@ -191,12 +175,12 @@ const ProjectOverview = ({ project, prevID, nextID, previewMode = false }: Props
 
       {/* General Info Section */}
       <Stack spacing={2} sx={{ mt: 2 }}>
-        {topSegment(<SegmentIcon />, t[locale].shortDesc, project.shortDesc[locale])}
-        {topSegment(<WorkOutlineIcon />, t[locale].as, project.as)}
+        {topSegment(<SegmentIcon />, t("project.overview.short-desc"), project.shortDesc[locale])}
+        {topSegment(<WorkOutlineIcon />, t("project.overview.as"), project.as)}
         {project.liveLink ? topSegment(<LinkIcon />, "Live link", linkInsert(project.liveLink)) : null}
         {project.gitHubLink ? topSegment(<GitHubIcon />, "GitHub", linkInsert(project.gitHubLink)) : null}
         {project.youtubeLink ? topSegment(<YouTubeIcon />, "YouTube", linkInsert(project.youtubeLink)) : null}
-        {project.technology ? topSegment(<TuneIcon />, t[locale].technology, techArray(), true) : null}
+        {project.technology ? topSegment(<TuneIcon />, t("project.overview.technology"), techArray(), true) : null}
       </Stack>
       <Box sx={{ position: "relative", width: "100%", height: "300px", mt: 3 }}>
         <Image src={project.image} fill alt={project.title[locale]} style={{ objectFit: "cover" }} />
@@ -227,7 +211,7 @@ const ProjectOverview = ({ project, prevID, nextID, previewMode = false }: Props
             passHref
           >
             <Button variant="contained" startIcon={<KeyboardDoubleArrowLeftIcon />}>
-              {t[locale].prev}
+              {t("project.overview.prev")}
             </Button>
           </Link>
           {/* <FaCodeBranch style={{ fontSize: 32 }} /> */}
@@ -240,7 +224,7 @@ const ProjectOverview = ({ project, prevID, nextID, previewMode = false }: Props
             passHref
           >
             <Button variant="contained" endIcon={<KeyboardDoubleArrowRightIcon />}>
-              {t[locale].next}
+              {t("project.overview.next")}
             </Button>
           </Link>
         </Stack>

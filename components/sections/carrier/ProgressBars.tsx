@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Box, CircularProgress, Container, Stack, Typography } from "@mui/material";
-import { Locale } from "@/utils/interfaces/main";
-import { Carrier } from "@/utils/interfaces/carrier";
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
+import type { Carrier } from "@/utils/interfaces/carrier";
 import { useAppSelector } from "@/store/hooks";
-//Define Types:
+
 type Props = {
   locale: Locale;
   carrier: Carrier;
@@ -17,6 +17,8 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
   const [protProjects, setProtProjects] = useState(0); //Prototypes
   const themeState = useAppSelector((state) => state.device.theme);
   const textColor = themeState === "light" ? "inherit" : "text.secondary";
+  const t = (key: Tkey) => getTranslation(locale, key);
+
   // Set projects quantity for the progress bars
   const getProjects = () => {
     let employee = 0;
@@ -81,24 +83,10 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
     };
   }, [progress, isVisible]);
 
-  const t = {
-    en: {
-      projects: "Projects Done:",
-      employee: "Employee",
-      freelancer: "KapiSolutions",
-      prototypes: "Student",
-    },
-    pl: {
-      projects: "Ukończone Projekty:",
-      employee: "Etat",
-      freelancer: "KapiSolutions",
-      prototypes: "Student",
-    },
-  };
   return (
     <Container sx={{ mt: 5 }} name="carrierProjectsDone">
       <Typography variant="h6" align="center">
-        {t[locale].projects}
+        {t("progressbars.projects")}
       </Typography>
       <Stack mt={3} direction="row" justifyContent="center" sx={{ flexWrap: "wrap", gap: 4 }}>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
@@ -122,7 +110,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color={textColor}>
-            {t[locale].employee}
+            {t("progressbars.employee")}
           </Typography>
         </Stack>
         <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
@@ -146,7 +134,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color={textColor}>
-            {t[locale].freelancer}
+            {t("progressbars.freelancer")}
           </Typography>
         </Stack>
 
@@ -171,7 +159,7 @@ export const ProgressBars = ({ locale, carrier }: Props): JSX.Element => {
             </Box>
           </Box>
           <Typography variant="body2" color={textColor}>
-            {t[locale].prototypes}
+            {t("progressbars.prototypes")}
           </Typography>
         </Stack>
       </Stack>

@@ -1,26 +1,18 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Container, Typography, Stack, Box, useTheme, useMediaQuery, Divider } from "@mui/material";
-import { Locale } from "@/utils/interfaces/main";
+import { Container, Typography, Stack, useTheme, useMediaQuery } from "@mui/material";
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
 import Link from "next/link";
 
 const WorkTogether = (): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
+  const t = (key: Tkey) => getTranslation(locale, key);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const t = {
-    en: {
-      h1: "Want to work together?",
-      p: "Feel free to reach out at",
-    },
-    pl: {
-      h1: "Zapraszam do współpracy",
-      p: "Skontaktuj się poprzez",
-    },
-  };
+
   const gradient = {
     backgroundImage:
       theme.palette.mode === "light"
@@ -42,11 +34,11 @@ const WorkTogether = (): JSX.Element => {
           sx={{ textTransform: "uppercase", fontWeight: "bold", fontSize: isMobile ? "11vw" : "auto" }}
           style={gradient}
         >
-          {t[locale].h1}
+          {t("contact.header")}
         </Typography>
         <Stack spacing={2} alignItems="center" justifyContent="center">
           <Typography variant="body2" sx={{ opacity: 0.7 }}>
-            {t[locale].p}
+            {t("contact.paragraph")}
           </Typography>
           <Link href="mailto:biuro@kapisolutions.pl">
             <Typography variant="h5" sx={{}}>

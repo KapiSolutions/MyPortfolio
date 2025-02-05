@@ -3,8 +3,8 @@ import styles from "../../styles/layout/Header.module.scss";
 import { useRouter } from "next/router";
 import { Box, Button, Typography, Stack, Container, useTheme, useMediaQuery } from "@mui/material";
 import Navbar from "./Navbar";
-import { Locale } from "@/utils/interfaces/main";
 import { DotLottiePlayer } from "@dotlottie/react-player";
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
 
 type Props = {
   locale: Locale;
@@ -16,16 +16,7 @@ const Header = ({ locale }: Props): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const t = {
-    en: {
-      p: "Full-Stack Developer & Mechatronic Systems Engineer",
-      mainButton: "Explore projects",
-    },
-    pl: {
-      p: "Full-Stack Developer & Mechatronic Systems Engineer",
-      mainButton: "Pokaż projekty",
-    },
-  };
+  const t = (key: Tkey) => getTranslation(locale, key);
   const lottiePath = "/lotties/header.lottie";
 
   const handleScroll = async () => {
@@ -102,7 +93,7 @@ const Header = ({ locale }: Props): JSX.Element => {
             Jakub Kapturkiewicz
           </Typography>
           <Typography variant={isMobile ? "body1" : "h6"} mb={2}>
-            {t[locale]?.p}
+            {t("header.job-title")}
           </Typography>
           <Box>
             <Button
@@ -112,7 +103,7 @@ const Header = ({ locale }: Props): JSX.Element => {
               sx={{ mt: isMobile ? 2 : 0 }}
               onClick={handleScroll}
             >
-              {t[locale].mainButton}
+              {t("header.button")}
             </Button>
           </Box>
         </Stack>

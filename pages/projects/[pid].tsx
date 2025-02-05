@@ -1,6 +1,5 @@
 import { GetStaticPropsContext, GetStaticPathsContext } from "next";
 import { Container, Box } from "@mui/material";
-import type { Locale } from "@/utils/interfaces/main";
 import type { Project } from "@/utils/schema/project";
 import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
@@ -8,12 +7,14 @@ import { useRouter } from "next/router";
 import ProjectOverview from "@/components/ProjectOverview";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { NextSeo, ArticleJsonLd } from "next-seo";
+import { getTranslation, type Tkey, type Locale } from "@/utils/i18n";
 
 type Props = { project: Project | null; prevID: string; nextID: string };
 
 export default function ProjectOverviewPage({ project, prevID, nextID }: Props): JSX.Element {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
+  const t = (key: Tkey) => getTranslation(locale, key);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const breadcrumbs = [{ name: project ? project.title[locale] : "404", path: `/projects/${project?._id}` }];
   return (
@@ -59,7 +60,7 @@ export default function ProjectOverviewPage({ project, prevID, nextID }: Props):
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container maxWidth="md">
-        {project ? <ProjectOverview project={project} prevID={prevID} nextID={nextID} /> : "Project not found."}
+        {project ? <ProjectOverview project={project} prevID={prevID} nextID={nextID} /> : t("project.not-found")}
       </Container>
     </>
   );

@@ -1,12 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Box, Container, Typography, Button, Stack, useTheme, useMediaQuery } from "@mui/material";
-import { Locale } from "@/utils/interfaces/main";
-import img from "../../public/img/bookbox-section/1.png";
-import Image from "next/image";
+import { Box, Typography, Button, Stack, useTheme, useMediaQuery } from "@mui/material";
+import type { Locale } from "@/utils/i18n";
 import Link from "next/link";
 
-//Define Types:
 type Lang = {
   en: string | Array<string>;
   pl: string | Array<string>;
@@ -31,7 +28,7 @@ type Props = {
 
 const CarouselSlide = ({ slide }: Props): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
@@ -76,7 +73,11 @@ const CarouselSlide = ({ slide }: Props): JSX.Element => {
         }}
       >
         <Stack spacing={2} sx={{ width: isMobile ? "100%" : "60%" }}>
-          <Typography variant="h4" component="h1" sx={{textTransform: "uppercase", fontSize: isMobile ? "9vw" : "auto"}}>
+          <Typography
+            variant="h4"
+            component="h1"
+            sx={{ textTransform: "uppercase", fontSize: isMobile ? "9vw" : "auto" }}
+          >
             {slide.title[locale]}
           </Typography>
 

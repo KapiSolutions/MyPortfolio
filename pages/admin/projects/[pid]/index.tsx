@@ -2,48 +2,40 @@ import ProjectTemplate from "@/components/admin/projects/ProjectTemplate";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { Typography, Box, Container, useTheme, useMediaQuery } from "@mui/material";
 import type { Project } from "@/utils/schema/project";
-import type { Locale } from "@/utils/interfaces/main";
 import { connectDB, client } from "@/utils/mongodb";
 import { ObjectId } from "mongodb";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
 
 type Props = { project: Project | null };
 
 export default function AdminNewProjectPage({ project }: Props): JSX.Element {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
+  const t = (key: Tkey) => getTranslation(locale, key);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const t = {
-    en: {
-      prev: "Menage projects",
-      h1: "Edit Project!",
-    },
-    pl: {
-      prev: "Twoje projekty",
-      h1: "Edycja Projektu",
-    },
-  };
+
   const breadcrumbs = [
-    { name: t[locale].prev, path: "/admin/projects#main" },
+    { name: t("projects.manage.header"), path: "/admin/projects#main" },
     { name: project ? project.title[locale] : "404", path: `admin/projects/${project?._id}` },
   ];
   return (
     <>
-      <NextSeo title={`Kapisolutions | ${t[locale].h1}`} nofollow={true} />
+      <NextSeo title={`Kapisolutions | ${t("project.edit.header")}`} nofollow={true} />
 
       <Box sx={{ mt: 5, ml: 2 }}>
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container>
         <Typography variant="h4" align={isMobile ? "center" : "left"}>
-          {t[locale].h1}
+          {t("project.edit.header")}
         </Typography>
-        {project ? <ProjectTemplate project={project} /> : "Project not found."}
+        {project ? <ProjectTemplate project={project} /> : t("project.not-found")}
       </Container>
     </>
   );

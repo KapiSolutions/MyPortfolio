@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import type { Locale, BreadCrumbs as BreadCrumb } from "@/utils/interfaces/main";
+import type { BreadCrumbs as BreadCrumb } from "@/utils/interfaces/main";
+import { getTranslation, Locale, Tkey } from "@/utils/i18n";
 import Link from "next/link";
 
 type Props = {
@@ -11,18 +12,8 @@ type Props = {
 const BreadCrumbs = ({ items }: Props): JSX.Element => {
   const router = useRouter();
   const locale = (router.locale || "en") as Locale;
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
-    defaultMatches: true,
-  });
-  const t = {
-    en: {
-      home: "Home",
-    },
-    pl: {
-      home: "Strona Główna",
-    },
-  };
+  const t = (key: Tkey) => getTranslation(locale, key);
+
   return (
     <Box component="nav" sx={{ mb: 2 }}>
       <Stack
@@ -51,13 +42,13 @@ const BreadCrumbs = ({ items }: Props): JSX.Element => {
               passHref
             >
               <Typography variant="body2" component="span" itemProp="name" sx={{ opacity: 0.7 }} className="Hover">
-                {t[locale].home}
+                {t("breadcrumbs.home")}
               </Typography>
             </Link>
           ) : (
             <Box itemScope={true} itemType="http://schema.org/Thing" itemProp="item" itemID="/#main">
               <Typography variant="body2" itemProp="name">
-                {t[locale].home}
+                {t("breadcrumbs.home")}
               </Typography>
             </Box>
           )}

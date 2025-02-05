@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import { Locale } from "@/utils/interfaces/main";
+import { Locale } from "@/utils/i18n";
 import MultipleStopIcon from "@mui/icons-material/MultipleStop";
 
 export const LocaleSwitch = () => {

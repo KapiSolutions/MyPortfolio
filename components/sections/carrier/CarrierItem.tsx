@@ -32,10 +32,10 @@ import {
   IconButton,
   Box,
 } from "@mui/material";
-import { Job, Locale } from "@/utils/interfaces/carrier";
+import type { Job, Locale } from "@/utils/interfaces/carrier";
 import Link from "next/link";
+import { getTranslation, type Tkey } from "@/utils/i18n";
 
-//Define Types:
 type Props = {
   item: Job;
   locale: Locale;
@@ -43,6 +43,7 @@ type Props = {
 };
 export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
   const [openDialog, setOpenDialog] = useState(false);
+  const t = (key: Tkey) => getTranslation(locale, key);
 
   const handleOpen = () => {
     setOpenDialog(true);
@@ -51,28 +52,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
   const handleClose = () => {
     setOpenDialog(false);
   };
-  const t = {
-    en: {
-      now: "Now",
-      finishedProjects: "Finished Projects:",
-      responsibilities: "Responsibilities:",
-      jobDesc: "Project / Responsibilites:",
-      asStudy: "Field of study:",
-      as: "Job position:",
-      links: "Links:",
-      close: "Close",
-    },
-    pl: {
-      now: "Teraz",
-      finishedProjects: "Zakończone projekty:",
-      responsibilities: "Zakres obowiązków:",
-      jobDesc: "Projekt / Zakres obowiązków:",
-      asStudy: "Kierunek studiów: ",
-      as: "Stanowisko:",
-      links: "Linki:",
-      close: "Zamknij",
-    },
-  };
+
   const getDotItem = (type: string) => {
     switch (type) {
       case "freelancer":
@@ -109,7 +89,6 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
   };
 
   const timePeriod = (start: string, end: string) => {
-    // console.log(start, end);
     if (end) {
       if (start.localeCompare(end) === 0) {
         return start;
@@ -117,7 +96,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
         return `${start} - ${end}`;
       }
     } else {
-      return `${start} - ${t[locale].now}`;
+      return `${start} - ${t("carrier.item.now")}`;
     }
   };
   return (
@@ -164,27 +143,27 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
         <DialogContent dividers>
           {/* Job position */}
           <Typography variant="button" sx={{ mb: 2, fontWeight: "bold" }} component="p">
-            {item.type === "study" ? t[locale].asStudy : t[locale].as}
+            {item.type === "study" ? t("carrier.item.study-field") : t("carrier.item.job-position")}
           </Typography>
           <DialogContentText sx={{ mb: 2 }}>{item.as[locale]}</DialogContentText>
 
           {/* Finished Projects */}
           <Typography variant="button" sx={{ mb: 2, fontWeight: "bold" }} component="p">
-            {t[locale].finishedProjects} {item.projectsDone}
+            {t("carrier.item.finished-projects")} {item.projectsDone}
           </Typography>
 
           {/* Responsibilities */}
           {item.jobDescription[locale] ? (
             <>
               <Typography variant="button" component="p">
-                {t[locale].jobDesc}
+                {t("carrier.item.job-desc")}
               </Typography>
               <DialogContentText component="span">{item.jobDescription[locale]}</DialogContentText>
             </>
           ) : (
             <>
               <Typography variant="button" component="p" sx={{ fontWeight: "bold" }}>
-                {t[locale].responsibilities}
+                {t("carrier.item.responsibilities")}
               </Typography>
               <DialogContentText component="span">
                 <List sx={{ listStyleType: "disc", pl: 4 }}>
@@ -202,7 +181,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
           {item.links.length > 0 && (
             <>
               <Typography variant="button" component="p" sx={{ fontWeight: "bold" }}>
-                {t[locale].links}
+                {t("carrier.item.links")}
               </Typography>
               <DialogContentText component="span">
                 <List sx={{ listStyleType: "disc", pl: 4 }}>
@@ -220,7 +199,7 @@ export const CarrierItem = ({ item, locale, isMobile }: Props): JSX.Element => {
         </DialogContent>
         <DialogActions sx={{ p: 2 }}>
           <Button onClick={handleClose} color="inherit" variant="outlined">
-            {t[locale].close}
+            {t("carrier.item.close")}
           </Button>
         </DialogActions>
       </Dialog>

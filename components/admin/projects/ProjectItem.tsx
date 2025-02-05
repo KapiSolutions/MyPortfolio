@@ -19,17 +19,17 @@ import {
 } from "@mui/material";
 import type { Project } from "@/utils/schema/project";
 import { useRouter } from "next/router";
-import { Locale } from "@/utils/interfaces/main";
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
 import CloseIcon from "@mui/icons-material/Close";
 
-//Define Types
 type Props = {
   project: Project;
 };
 
 const ProjectItem = ({ project }: Props): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
+  const t = (key: Tkey) => getTranslation(locale, key);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
@@ -83,20 +83,6 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
     }
   };
 
-  const t = {
-    en: {
-      showMore: "Show more",
-      hide: "Hide",
-      deleteButton: "Delete",
-      editButton: "Edit",
-    },
-    pl: {
-      showMore: "Więcej",
-      hide: "Zwiń",
-      deleteButton: "Usuń",
-      editButton: "Edytuj",
-    },
-  };
   return (
     <>
       <Stack direction="column" spacing={3}>
@@ -115,7 +101,7 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
             <Stack direction="row" spacing={3}>
               {isMobile ? null : (
                 <Button variant="outlined" size="small" color="error" onClick={handleOpen}>
-                  {t[locale].deleteButton}
+                  {t("project.item.delete")}
                 </Button>
               )}
 
@@ -133,7 +119,7 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
                   setRedirecting(true);
                 }}
               >
-                {redirecting ? <CircularProgress color="inherit" size={18} /> : t[locale].editButton}
+                {redirecting ? <CircularProgress color="inherit" size={18} /> : t("project.item.edit")}
               </Button>
             </Stack>
           </Grid>
@@ -142,16 +128,16 @@ const ProjectItem = ({ project }: Props): JSX.Element => {
       </Stack>
 
       <Dialog open={openDialog} onClose={handleClose}>
-        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogTitle>{t("project.item.delete-confirm")}</DialogTitle>
         <DialogContent>
-          <DialogContentText>Are you sure you want to delete the document?</DialogContentText>
+          <DialogContentText>{t("project.item.delete-question")}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary" variant="outlined">
-            Cancel
+            {t("project.item.cancel")}
           </Button>
           <Button onClick={deleteItem} variant="contained" autoFocus>
-            Delete
+            {t("project.item.delete")}
           </Button>
         </DialogActions>
       </Dialog>

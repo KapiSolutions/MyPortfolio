@@ -3,27 +3,16 @@ import { Box, Skeleton, Chip, Badge, Typography, Paper, Stack, useTheme, useMedi
 import Image from "next/image";
 import { useRouter } from "next/router";
 import getIcon from "@/utils/getIcon";
-//Define Types
 import type { Project } from "@/utils/schema/project";
-import type { Locale } from "@/utils/interfaces/main";
+import type { Locale } from "@/utils/i18n";
+
 type Props = {
   project: Project | null;
 };
 
-//Styles
-const styles = {
-  description: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    display: "-webkit-box",
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: "vertical",
-  },
-};
-
 const ProjectPaper = ({ project }: Props): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
@@ -98,6 +87,16 @@ const ProjectPaper = ({ project }: Props): JSX.Element => {
       </Stack>
     </Paper>
   );
+};
+
+const styles = {
+  description: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+  },
 };
 
 export default ProjectPaper;

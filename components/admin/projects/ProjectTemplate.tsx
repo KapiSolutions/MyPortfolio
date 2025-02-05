@@ -11,7 +11,6 @@ import {
   FormControlLabel,
   Switch,
   CircularProgress,
-  IconButton,
 } from "@mui/material";
 import TranslateIcon from "@mui/icons-material/Translate";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,19 +21,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar, VariantType } from "notistack";
 import axios from "axios";
 import configTemplate from "@/utils/schema/project";
-import type { Locale } from "@/utils/interfaces/main";
 import type { Project } from "@/utils/schema/project";
 import ProjectOverview from "@/components/ProjectOverview";
-// import { MuiFileInput } from "mui-file-input";
+import { getTranslation, type Locale, type Tkey } from "@/utils/i18n";
 
-//Define Types
 type Props = {
   project: Project | null;
 };
 
 const ProjectTemplate = ({ project }: Props): JSX.Element => {
   const router = useRouter();
-  const locale = (router.locale || "en") as Locale;
+  const locale = router.locale as Locale;
+  const t = (key: Tkey) => getTranslation(locale, key);
   const { schema, initValues } = configTemplate(locale);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
@@ -57,20 +55,6 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
     defaultValues: project ? project : initValues,
   });
   const editMode = project ? true : false;
-  const t = {
-    en: {
-      submitButton: "Add project!",
-      submitEditButton: "Update project!",
-      previewShowButton: "Show preview",
-      previewCloseButton: "Close preview",
-    },
-    pl: {
-      submitButton: "Dodaj projekt!",
-      submitEditButton: "Zaktualizuj projekt!",
-      previewShowButton: "Podgląd projektu",
-      previewCloseButton: "Zamknij podgląd",
-    },
-  };
 
   // Scroll and set focus on the error field
   useEffect(() => {
@@ -373,7 +357,7 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
           sx={{ mt: 2, mb: 4 }}
           type="submit"
         >
-          {showPreview ? t[locale].previewCloseButton : t[locale].previewShowButton}
+          {showPreview ? t("project.template.preview-close") : t("project.template.preview-open")}
         </Button>
 
         {showPreview ? (
@@ -392,9 +376,9 @@ const ProjectTemplate = ({ project }: Props): JSX.Element => {
               {loading ? (
                 <CircularProgress size={26} />
               ) : editMode ? (
-                t[locale].submitEditButton
+                t("project.template.update-project")
               ) : (
-                t[locale].submitButton
+                t("project.template.add-project")
               )}
             </Button>
           </>

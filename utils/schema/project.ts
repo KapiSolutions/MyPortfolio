@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import type { Locale } from "@/utils/interfaces/main";
+import { Locale } from "../i18n";
 
 const initValues = {
   title: {
@@ -55,12 +55,12 @@ const initValues = {
 
 const project = (locale: Locale) => {
   const maxLength = 10000;
-  const errorMsg = locale === "en" || "default" ? "Field required" : "Pole wymagane";
+  const errorMsg = locale === "en" ? "Field required" : "Pole wymagane";
   const optionalString = Yup.string().max(maxLength, `Max ${maxLength} characters!`);
   const requiredString = Yup.string().max(maxLength, `Max ${maxLength} characters!`).required(errorMsg);
-  const objectReq = Yup.object().shape({pl:requiredString, en: requiredString})
-  const objectWithImg = Yup.object().shape({pl:optionalString, en: optionalString, image: optionalString})
-  
+  const objectReq = Yup.object().shape({ pl: requiredString, en: requiredString });
+  const objectWithImg = Yup.object().shape({ pl: optionalString, en: optionalString, image: optionalString });
+
   const schema = Yup.object().shape({
     title: objectReq,
     image: requiredString,
@@ -71,7 +71,7 @@ const project = (locale: Locale) => {
     features: objectWithImg,
     outcome: objectWithImg,
     conclusion: objectWithImg,
-    clientReview: Yup.object().shape({en:optionalString, pl: optionalString, name: optionalString}),
+    clientReview: Yup.object().shape({ en: optionalString, pl: optionalString, name: optionalString }),
     technology: optionalString,
     liveLink: optionalString,
     gitHubLink: optionalString,
@@ -83,6 +83,6 @@ const project = (locale: Locale) => {
   return { schema, initValues };
 };
 
-export type Project = typeof initValues & {_id?: string};
+export type Project = typeof initValues & { _id?: string };
 export interface Projects extends Array<Project> {}
 export default project;
